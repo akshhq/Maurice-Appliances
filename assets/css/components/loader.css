@@ -1,0 +1,35 @@
+/* ============================================================
+   MAURICE — COMPONENT: preloader
+   ============================================================ */
+
+/* ---------------- Loader ---------------- */
+.loader {
+  position: fixed; inset: 0; z-index: var(--z-loader);
+  background: var(--ink);
+  display: grid; place-items: center;
+  transition: opacity 0.6s var(--ease), visibility 0.6s;
+}
+.loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+.loader.skip { display: none; }
+.loader__inner { text-align: center; width: min(360px, 70vw); }
+.loader__logo { width: 100%; overflow: visible; }
+.loader__word {
+  font-family: var(--font-display); font-weight: 700; font-size: 56px;
+  fill: #fff; letter-spacing: -0.02em;
+}
+.loader__rule {
+  stroke: url(#emberGrad); stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 352; stroke-dashoffset: 352;
+}
+.loader.run .loader__rule { animation: drawRule 1.6s var(--ease) forwards; }
+@keyframes drawRule { to { stroke-dashoffset: 0; } }
+.loader__count {
+  margin-top: var(--s-4); font-family: var(--font-body);
+  font-weight: 600; font-size: 0.9rem; color: var(--silver);
+  font-variant-numeric: tabular-nums; letter-spacing: 0.05em;
+}
+.loader__count i { font-style: normal; opacity: 0.6; }
+
+/* ember gradient stroke via CSS var fallback (SVG uses solid; JS injects grad) */
+.loader__rule { stroke: var(--ember); }
+

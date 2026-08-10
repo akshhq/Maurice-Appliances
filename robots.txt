@@ -1,0 +1,24 @@
+# Maurice Appliances — robots.txt
+User-agent: *
+Allow: /
+
+# Application internals (belt-and-braces; also blocked in .htaccess)
+Disallow: /api/
+Disallow: /auth/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /portal/
+Disallow: /errors/
+Disallow: /uploads/temp/
+Disallow: /components/
+Disallow: /layouts/
+Disallow: /sections/
+Disallow: /partials/
+Disallow: /templates/
+
+# Avoid crawling filtered permutations of the catalogue
+Disallow: /*?*band=
+Disallow: /*?*warranty=
+Disallow: /*?*sort=
+
+Sitemap: https://www.mauriceappliances.in/sitemap.xml

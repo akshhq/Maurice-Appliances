@@ -1,0 +1,61 @@
+/* ============================================================
+   MAURICE — Product showcase (infinite marquee)
+   See partials/product-collage.php. A seamlessly looping row of every
+   product, shuffled, as compact illustrated cards. Pauses on hover/focus;
+   respects prefers-reduced-motion. GPU-accelerated (transform only).
+   ============================================================ */
+
+.showcase-section { background: var(--paper); }
+.showcase-section .wrap { margin-bottom: clamp(1.5rem, 1rem + 2vw, 2.5rem); }
+
+.showcase { position: relative; overflow: hidden; }
+
+.showcase__track {
+  display: flex;
+  width: max-content;
+  animation: showcase-scroll 170s linear infinite;
+  will-change: transform;
+}
+.showcase:hover .showcase__track,
+.showcase:focus-within .showcase__track { animation-play-state: paused; }
+
+.showcase__set { display: flex; flex: none; gap: var(--s-5); padding-inline: var(--s-5); }
+
+@keyframes showcase-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.showcase__card {
+  flex: none; width: 168px;
+  display: flex; flex-direction: column; align-items: center; gap: var(--s-2);
+  padding: var(--s-4); background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-lg); box-shadow: var(--sh-1); text-align: center;
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+.showcase__card:hover, .showcase__card:focus-visible {
+  transform: translateY(-5px); box-shadow: var(--sh-2); border-color: transparent;
+}
+
+.showcase__frame { width: 76px; }
+.showcase__frame svg, .showcase__frame img { width: 100%; height: auto; display: block; object-fit: contain; }
+.showcase__name {
+  font-size: var(--fs-sm); font-weight: 600; color: var(--text-1);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%;
+}
+.showcase__price { font-size: var(--fs-cap); color: var(--text-3); }
+
+.showcase__fade {
+  position: absolute; top: 0; bottom: 0; width: clamp(40px, 8vw, 120px); z-index: 2; pointer-events: none;
+}
+.showcase__fade--left { left: 0; background: linear-gradient(to right, var(--paper), transparent); }
+.showcase__fade--right { right: 0; background: linear-gradient(to left, var(--paper), transparent); }
+
+@media (max-width: 560px) {
+  .showcase__card { width: 136px; }
+  .showcase__frame { width: 60px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase__track { animation: none; }
+}

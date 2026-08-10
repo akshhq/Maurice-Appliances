@@ -1,0 +1,58 @@
+/* ============================================================
+   MAURICE — COMPONENT: buttons & badges
+   ============================================================ */
+
+/* ---- Buttons ---- */
+.btn {
+  --btn-bg: var(--red);
+  --btn-fg: #fff;
+  display: inline-flex; align-items: center; gap: var(--s-3);
+  padding: 0.9em 1.6em;
+  background: var(--btn-bg); color: var(--btn-fg);
+  font-family: var(--font-body); font-weight: 600; font-size: var(--fs-sm);
+  border-radius: var(--r-pill);
+  position: relative; overflow: hidden;
+  transition: transform var(--dur-1) var(--ease), box-shadow var(--dur-2) var(--ease), background var(--dur-2) var(--ease);
+  will-change: transform;
+}
+.btn::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--red-deep); transform: translateY(101%);
+  transition: transform var(--dur-2) var(--ease); z-index: 0;
+}
+.btn > * { position: relative; z-index: 1; }
+.btn:hover { transform: translateY(-2px); box-shadow: var(--sh-ember); }
+.btn:hover::after { transform: translateY(0); }
+.btn .arrow { transition: transform var(--dur-2) var(--ease); }
+.btn:hover .arrow { transform: translateX(4px); }
+
+.btn--ghost {
+  --btn-bg: transparent; --btn-fg: var(--ink);
+  border: 1.5px solid var(--line-strong);
+}
+.btn--ghost::after { background: var(--ink); }
+.btn--ghost:hover { --btn-fg: #fff; color: #fff; border-color: var(--ink); box-shadow: var(--sh-2); }
+
+.btn--light {
+  --btn-bg: rgba(255,255,255,0.10); --btn-fg: #fff;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(6px);
+}
+.btn--light::after { background: #fff; }
+.btn--light:hover { color: var(--ink); border-color: #fff; }
+
+.btn--sm { padding: 0.65em 1.15em; font-size: var(--fs-cap); }
+
+/* ---- Pills / badges ---- */
+.badge {
+  display: inline-flex; align-items: center; gap: 0.4em;
+  padding: 0.35em 0.8em;
+  font-size: var(--fs-cap); font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: var(--r-pill);
+  background: var(--surface-2); color: var(--text-2);
+  border: 1px solid var(--line);
+}
+.badge--red { background: rgba(224,30,38,.08); color: var(--red-deep); border-color: rgba(224,30,38,.18); }
+.badge--ember { background: rgba(255,106,61,.10); color: #c2451f; border-color: rgba(255,106,61,.22); }
+

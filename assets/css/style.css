@@ -1,0 +1,48 @@
+/* ============================================================
+   MAURICE APPLIANCES — MASTER STYLESHEET
+   ------------------------------------------------------------
+   Single entry point. Import order defines the cascade:
+     1. themes    — design tokens (custom properties)
+     2. vendors   — third-party CSS
+     3. base      — reset, typography, utilities
+     4. layout    — structural regions (header, footer, grid)
+     5. components— reusable UI
+     6. pages     — page-specific styles (loaded per page, see below)
+
+   NOTE ON PERFORMANCE
+   @import serialises requests. For production, concatenate these into a
+   single minified file with:  php scripts/optimization/build-assets.php
+   which writes assets/css/style.min.css. The header links the minified
+   build automatically when it exists.
+   ============================================================ */
+
+/* 1. Theme / tokens ---------------------------------------- */
+@import url("themes/tokens.css");
+
+/* 2. Vendors -----------------------------------------------
+   Third-party CSS goes in assets/css/vendors/ and is imported here. */
+
+/* 3. Base -------------------------------------------------- */
+@import url("base/reset.css");
+@import url("base/typography.css");
+@import url("base/utilities.css");
+
+/* 4. Layout ------------------------------------------------ */
+@import url("layout/grid.css");
+@import url("layout/header.css");
+@import url("layout/footer.css");
+
+/* 5. Components -------------------------------------------- */
+@import url("components/buttons.css");
+@import url("components/loader.css");
+@import url("components/cursor.css");
+@import url("components/product-card.css");
+@import url("components/filters.css");
+@import url("components/compare.css");
+@import url("components/chips.css");
+@import url("components/product-collage.css");
+@import url("components/india-map.css");
+
+/* 6. Pages -------------------------------------------------
+   Page CSS is linked per-page via $pageCss in the layout head
+   (assets/css/pages/*.css) so pages only download what they use. */

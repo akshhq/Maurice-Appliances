@@ -1,0 +1,185 @@
+/* ============================================================
+   MAURICE — CONTENT PAGES
+   About · Journey · Vision · Values · Manufacturing · Support · Legal
+   ============================================================ */
+
+/* ---------------- Prose ---------------- */
+.prose { max-width: 72ch; }
+.prose > * + * { margin-top: var(--s-5); }
+.prose h2 { font-size: var(--fs-h2); margin-top: var(--s-8); }
+.prose h3 { font-size: var(--fs-h3); margin-top: var(--s-7); }
+.prose p { color: var(--text-2); }
+.prose ul { display: grid; gap: var(--s-3); }
+.prose ul li { position: relative; padding-left: var(--s-6); color: var(--text-2); }
+.prose ul li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--red);
+}
+.prose a { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------------- Two-column content ---------------- */
+.ctwo { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,1.5rem + 3vw,5rem); align-items: start; }
+@media (max-width: 860px) { .ctwo { grid-template-columns: 1fr; } }
+
+/* ---------------- Statement / quote ---------------- */
+.statement {
+  position: relative; padding: clamp(2rem,1.5rem + 3vw,3.5rem);
+  background: var(--ink); color: #fff; border-radius: var(--r-lg); overflow: hidden;
+}
+.statement__glow { position: absolute; top: -40%; right: -10%; width: 420px; height: 420px;
+  background: var(--ember-glow); opacity: .12; filter: blur(40px); pointer-events: none; }
+.statement blockquote {
+  position: relative; z-index: 1; font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(1.4rem,1.1rem + 1.4vw,2rem); line-height: 1.28; letter-spacing: -.015em;
+}
+.statement figcaption { position: relative; z-index: 1; margin-top: var(--s-5); color: var(--ember);
+  font-size: var(--fs-sm); font-weight: 600; letter-spacing: .04em; }
+
+/* ---------------- Value / mission cards ---------------- */
+.vgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: var(--s-5); }
+@media (max-width: 760px) { .vgrid { grid-template-columns: 1fr; } }
+.vcard {
+  padding: var(--s-6); background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-lg); transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+.vcard:hover { transform: translateY(-4px); box-shadow: var(--sh-2); border-color: transparent; }
+.vcard__n { font-family: var(--font-display); font-size: .8rem; font-weight: 700; color: var(--red); letter-spacing: .1em; }
+.vcard h3 { margin: var(--s-3) 0; font-size: var(--fs-h3); }
+.vcard p { font-size: var(--fs-sm); color: var(--text-2); max-width: none; }
+
+/* ---------------- Numbered list (missions) ---------------- */
+.nlist { display: grid; gap: var(--s-4); counter-reset: n; }
+.nlist li {
+  display: flex; gap: var(--s-4); align-items: flex-start; counter-increment: n;
+  padding: var(--s-5); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
+}
+.nlist li::before {
+  content: counter(n,decimal-leading-zero); flex: none;
+  font-family: var(--font-display); font-weight: 700; font-size: .85rem; color: var(--red);
+  letter-spacing: .08em; padding-top: .15em;
+}
+.nlist li span { color: var(--text-2); font-size: var(--fs-sm); }
+
+/* ---------------- Journey hero illustration ---------------- */
+.phero--journey { position: relative; }
+.phero__art {
+  position: absolute; right: clamp(1rem, 4vw, 4rem); top: 50%; transform: translateY(-42%);
+  width: clamp(120px, 12vw, 180px); height: auto; opacity: .9; pointer-events: none;
+}
+@media (max-width: 980px) { .phero__art { display: none; } }
+
+/* ---------------- Full journey timeline ---------------- */
+.tl { position: relative; padding-left: clamp(1.75rem,1rem + 3vw,3rem); }
+.tl::before {
+  content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px;
+  background: var(--ember-line); border-radius: 2px;
+}
+.tl__item { position: relative; padding-bottom: var(--s-8); }
+.tl__item:last-child { padding-bottom: 0; }
+.tl__item::before {
+  content: ""; position: absolute; left: calc(-1 * clamp(1.75rem,1rem + 3vw,3rem) + 1px);
+  top: 6px; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--red); border: 3px solid var(--paper); box-shadow: 0 0 0 1px var(--line);
+}
+.tl__year {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.6rem,1.3rem + 1.4vw,2.2rem); color: var(--ink); line-height: 1;
+  margin-bottom: var(--s-4);
+}
+.tl__events { display: grid; gap: var(--s-3); }
+.tl__events li {
+  display: flex; gap: var(--s-3); align-items: flex-start;
+  font-size: var(--fs-sm); color: var(--text-2);
+}
+.tl__events li svg { flex: none; width: 16px; height: 16px; color: var(--red); margin-top: 3px; }
+
+/* ---------------- Info / spec cards ---------------- */
+.igrid { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--s-5); }
+@media (max-width: 900px) { .igrid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px) { .igrid { grid-template-columns: 1fr; } }
+.icard { padding: var(--s-5); border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); }
+.icard__ic { width: 42px; height: 42px; border-radius: 11px; background: rgba(224,30,38,.08);
+  color: var(--red); display: grid; place-items: center; margin-bottom: var(--s-4); }
+.icard__ic svg { width: 20px; height: 20px; }
+.icard h3 { font-size: 1.05rem; margin-bottom: var(--s-2); }
+.icard p { font-size: var(--fs-sm); color: var(--text-2); max-width: none; }
+
+/* ---------------- FAQ accordion ---------------- */
+.faq { display: grid; gap: var(--s-3); max-width: 76ch; }
+.faq__item { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); overflow: hidden; }
+.faq__q {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+  padding: var(--s-5); text-align: left; font-weight: 600; font-size: var(--fs-body); color: var(--text-1);
+}
+.faq__q:hover { color: var(--red); }
+.faq__icon { flex: none; width: 20px; height: 20px; position: relative; }
+.faq__icon::before, .faq__icon::after {
+  content: ""; position: absolute; background: var(--red); border-radius: 2px;
+  transition: transform var(--dur-2) var(--ease);
+}
+.faq__icon::before { top: 9px; left: 2px; width: 16px; height: 2px; }
+.faq__icon::after  { top: 2px; left: 9px; width: 2px; height: 16px; }
+.faq__item.open .faq__icon::after { transform: rotate(90deg); }
+.faq__a { max-height: 0; overflow: hidden; transition: max-height var(--dur-3) var(--ease); }
+.faq__a-inner { padding: 0 var(--s-5) var(--s-5); color: var(--text-2); font-size: var(--fs-sm); }
+.faq__a-inner p + p { margin-top: var(--s-3); }
+
+/* ---------------- Forms ---------------- */
+.formcard {
+  padding: clamp(1.5rem,1.2rem + 2vw,2.5rem); background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--sh-1);
+}
+.fieldgrid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+@media (max-width: 620px) { .fieldgrid { grid-template-columns: 1fr; } }
+.field { display: grid; gap: var(--s-2); }
+.field--full { grid-column: 1 / -1; }
+.field label { font-size: var(--fs-cap); font-weight: 600; color: var(--text-2); }
+.field label .req { color: var(--red); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: .8em 1em; background: var(--paper);
+  border: 1.5px solid var(--line); border-radius: var(--r-sm);
+  font-size: var(--fs-sm); color: var(--text-1);
+  transition: border-color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
+}
+.field textarea { min-height: 130px; resize: vertical; }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible {
+  outline: none; border-color: var(--red); box-shadow: 0 0 0 3px rgba(224,30,38,.12);
+}
+.field input.invalid, .field textarea.invalid, .field select.invalid {
+  border-color: var(--red); background: rgba(224,30,38,.03);
+}
+.field__hint { font-size: var(--fs-cap); color: var(--text-3); }
+.hp { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+.form-msg { margin-top: var(--s-4); font-size: var(--fs-sm); min-height: 1.3em; }
+.form-msg.ok  { color: #197a3d; }
+.form-msg.err { color: var(--red-deep); }
+
+/* ---------------- Contact detail blocks ---------------- */
+.cdetails { display: grid; gap: var(--s-5); }
+.cdetail { display: flex; gap: var(--s-4); align-items: flex-start; }
+.cdetail__ic { flex: none; width: 44px; height: 44px; border-radius: 12px;
+  background: var(--surface-2); color: var(--red); display: grid; place-items: center; }
+.cdetail__ic svg { width: 20px; height: 20px; }
+.cdetail__l { font-size: var(--fs-cap); color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; }
+.cdetail__v { font-weight: 600; color: var(--text-1); }
+.cdetail__v a:hover { color: var(--red); }
+
+/* ---------------- Download / doc rows ---------------- */
+.drow {
+  display: flex; align-items: center; gap: var(--s-4); padding: var(--s-5);
+  border: 1px solid var(--line); border-radius: var(--r); background: var(--surface);
+  transition: border-color var(--dur-2) var(--ease), transform var(--dur-2) var(--ease);
+}
+.drow:hover { border-color: var(--red); transform: translateX(4px); }
+.drow__ic { flex: none; width: 44px; height: 44px; border-radius: 11px;
+  background: rgba(224,30,38,.08); color: var(--red); display: grid; place-items: center; }
+.drow__t { font-weight: 600; }
+.drow__m { font-size: var(--fs-cap); color: var(--text-3); }
+.drow__go { margin-left: auto; color: var(--red); font-weight: 600; font-size: var(--fs-sm); white-space: nowrap; }
+
+/* ---------------- Dealer benefit list ---------------- */
+.blist { display: grid; gap: var(--s-4); }
+.blist li { display: flex; gap: var(--s-4); align-items: flex-start; }
+.blist li svg { flex: none; width: 22px; height: 22px; color: var(--red); margin-top: 1px; }
+.blist li b { display: block; margin-bottom: 2px; }
+.blist li span { font-size: var(--fs-sm); color: var(--text-2); }

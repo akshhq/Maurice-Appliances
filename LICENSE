@@ -1,0 +1,11 @@
+Copyright (c) 2026 Maurice Appliances. All rights reserved.
+
+This software and the associated design, source code, content and assets are
+the proprietary property of Maurice Appliances and are provided solely for the
+operation of the mauriceappliances.in website.
+
+No part of this project may be reproduced, distributed, sublicensed or used to
+create derivative works without prior written permission from Maurice Appliances.
+
+Third-party libraries loaded at runtime (GSAP, Lenis, SplitType) remain subject
+to their own respective licences.

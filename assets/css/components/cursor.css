@@ -1,0 +1,30 @@
+/* ============================================================
+   MAURICE — COMPONENT: custom cursor
+   ============================================================ */
+
+/* ---------------- Custom cursor ---------------- */
+.cursor { position: fixed; top: 0; left: 0; z-index: var(--z-cursor); pointer-events: none; mix-blend-mode: normal; }
+@media (hover: none), (pointer: coarse) { .cursor { display: none; } }
+.cursor__ring {
+  position: absolute; width: 38px; height: 38px;
+  border: 1.5px solid rgba(20,21,24,0.35); border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width var(--dur-2) var(--ease), height var(--dur-2) var(--ease),
+              border-color var(--dur-2) var(--ease), background var(--dur-2) var(--ease);
+}
+.cursor__dot {
+  position: absolute; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--red); transform: translate(-50%, -50%);
+  transition: opacity var(--dur-1) var(--ease);
+}
+.cursor__label {
+  position: absolute; transform: translate(-50%, -50%);
+  font-size: 0.72rem; font-weight: 600; color: #fff;
+  letter-spacing: 0.04em; opacity: 0; white-space: nowrap;
+  transition: opacity var(--dur-1) var(--ease);
+}
+.cursor.is-hover .cursor__ring { width: 64px; height: 64px; border-color: transparent; background: var(--red); }
+.cursor.is-hover .cursor__dot { opacity: 0; }
+.cursor.is-hover .cursor__label { opacity: 1; }
+.cursor.is-down .cursor__ring { width: 30px; height: 30px; }
+

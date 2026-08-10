@@ -1,0 +1,38 @@
+/* ============================================================
+   MAURICE — COMPONENT: product card
+   ============================================================ */
+
+/* ---------------- Product card (shared) ---------------- */
+.pcard {
+  position: relative; display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--r-lg); overflow: hidden;
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+.pcard:hover { transform: translateY(-6px); box-shadow: var(--sh-3); border-color: transparent; }
+.pcard__media {
+  position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center;
+  background: radial-gradient(120% 120% at 50% 30%, #fff 0%, var(--mist) 100%);
+  overflow: hidden;
+}
+.pcard__media::after {
+  content: ""; position: absolute; width: 60%; height: 60%; border-radius: 50%;
+  background: var(--ember-glow); opacity: 0; filter: blur(20px);
+  transition: opacity var(--dur-3) var(--ease);
+}
+.pcard:hover .pcard__media::after { opacity: 0.14; }
+.pcard__frame { position: relative; z-index: 1; width: 74%; max-width: 200px; transition: transform var(--dur-3) var(--ease); display: block; object-fit: contain; }
+.pcard:hover .pcard__frame { transform: scale(1.05); }
+.pcard__badges { position: absolute; top: var(--s-4); left: var(--s-4); z-index: 2; display: flex; gap: 6px; flex-wrap: wrap; }
+.pcard__body { padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-3); flex: 1; }
+.pcard__model { font-size: var(--fs-cap); text-transform: uppercase; letter-spacing: var(--tracking-caps); color: var(--red); font-weight: 700; }
+.pcard__title { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); line-height: 1.15; color: var(--text-1); }
+.pcard__spec { font-size: var(--fs-sm); color: var(--text-2); display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-4); margin-top: auto; }
+.pcard__spec span { display: inline-flex; align-items: center; gap: 5px; }
+.pcard__foot { display: flex; align-items: center; justify-content: space-between; padding: var(--s-4) var(--s-5); border-top: 1px solid var(--line); }
+.pcard__price .l { display: block; font-size: var(--fs-cap); color: var(--text-3); }
+.pcard__price .v { font-weight: 700; font-size: 1.15rem; color: var(--text-1); font-variant-numeric: tabular-nums; }
+.pcard__link { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-sm); font-weight: 600; color: var(--red); }
+.pcard__link svg { transition: transform var(--dur-2) var(--ease); }
+.pcard:hover .pcard__link svg { transform: translateX(4px); }
+.pcard__stretch { position: absolute; inset: 0; z-index: 3; }
