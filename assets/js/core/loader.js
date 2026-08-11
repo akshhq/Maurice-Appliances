@@ -30,14 +30,22 @@ export function runLoader() {
   document.body.style.overflow = 'hidden';
 
   return new Promise((resolve) => {
+    // Hard failsafe: never freeze the page longer than 4 s no matter what.
+    const failsafe = setTimeout(() => {
+      loader.classList.add('done');
+      document.body.style.overflow = '';
+      resolve();
+    }, 4000);
+
     const total = reduceMotion ? 200 : 1100;
-    const start = performance.now();
+    const start = typeof performance !== 'undefined' ? performance.now() : Date.now();
     function tick(now) {
       const p = Math.min(1, (now - start) / total);
       if (countEl) countEl.textContent = String(Math.round(p * 100));
       if (p < 1) {
         requestAnimationFrame(tick);
       } else {
+        clearTimeout(failsafe);
         loader.classList.add('done');
         document.body.style.overflow = '';
         try { sessionStorage.setItem('mauriceLoaderPlayed', '1'); } catch { /* private mode, etc. */ }

@@ -16,6 +16,16 @@ import { initCursor } from './modules/cursor.js';
 import { initNav } from './modules/nav.js';
 import { initForms } from './modules/forms.js';
 
+// Safety net: if any module import fails (wrong MIME type, 403, network error)
+// ensure the loader is force-dismissed so the page is never permanently frozen.
+window.addEventListener('error', (e) => {
+  const loader = document.getElementById('loader');
+  if (loader && !loader.classList.contains('done')) {
+    loader.classList.add('done');
+    document.body.style.overflow = '';
+  }
+}, { once: false });
+
 function boot() {
   initCursor();       // custom cursor (auto-disables on touch)
   initNav();          // sticky glass nav + mobile drawer
@@ -34,3 +44,4 @@ if (document.readyState === 'loading') {
 } else {
   runLoader().then(boot);
 }
+
