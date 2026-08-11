@@ -40,7 +40,7 @@ require LAYOUTS_PATH . '/main-header.php';
         ['95,000 heat pillars','Rado heat pillars supplied with one-year warranty to government offices across Himachal Pradesh.'],
         ['45,000 induction cooktops','MIC-21 induction units supplied to Sericulture offices throughout Himachal Pradesh.'],
         ['9,600 unit order','A further order of Rado heat pillars received from the Himachal Pradesh government in 2019.'],
-        ['HPBOCW L-1 vendor','Rate contract L-1 vendor status with the Himachal Pradesh Building &amp; Other Construction Workers Board.'],
+        ['HPBOCW L - 1 vendor','Rate contract L-1 vendor status with the Himachal Pradesh Building &amp; Other Construction Workers Board.'],
         ['Controller of Stores','Rate contract with the Controller of Stores, Udhyog Bhawan, Shimla.'],
         ['Retail dealers','An expanding network of retail dealers and distributors across northern India.'],
       ];

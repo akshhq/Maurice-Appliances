@@ -40,9 +40,9 @@ require LAYOUTS_PATH . '/main-header.php';
         ['Find your model number','It is printed on the rating label on the body of the appliance, and on your invoice. Have it ready before calling.'],
         ['Call customer support','Ring ' . ($co['phones'][0] ?? '') . ' with your model number, date of purchase and a description of the fault.'],
         ['Keep your invoice','Warranty claims need proof of purchase. A photo of the invoice is fine.'],
-        ['We assess the fault','Many issues are resolved over the phone. If not, we arrange inspection or replacement per your warranty terms.'],
+        ['We assess the fault','Many issues are resolved over the phone. If not, we arrange inspection or replacement as per your warranty terms.'],
         ['In-warranty repair','If the fault is covered, repair or replacement of the defective part is carried out at no charge.'],
-        ['Out-of-warranty support','Past warranty, we still help — you will be quoted for parts and labour before any work begins.'],
+        ['Out-of-warranty support','Post warranty, we still help — you will be quoted for parts and labour before any work begins.'],
       ];
       foreach ($steps as $i => $s): ?>
       <div class="icard reveal reveal-d<?= $i % 3 ?>">

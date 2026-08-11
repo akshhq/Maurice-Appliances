@@ -5,7 +5,7 @@ $enquiry = isset($_GET['enquiry']) ? clean_input((string)$_GET['enquiry']) : '';
 
 $seo = [
   'title' => 'Contact — Maurice Appliances',
-  'desc'  => 'Get in touch with Maurice Appliances customer support. Call, email mauriceappliances@gmail.com, or send us a message. Kullu, Himachal Pradesh.',
+  'desc'  => 'Get in touch with Maurice Appliances customer support. Call, email customer.care@mauriceappliances.in, or send us a message. Kullu, Himachal Pradesh.',
   'schema'=> breadcrumb_schema([
     ['name'=>'Home','url'=>url('index.php')],
     ['name'=>'Contact','url'=>url('pages/contact.php')],

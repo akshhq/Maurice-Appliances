@@ -15,7 +15,7 @@ $faqs = [
   ['Where can I buy Maurice products?',
    'Through our dealer and distributor network. Call ' . $phone . ' and we will direct you to your nearest stockist. A searchable dealer locator is in development.'],
   ['Do you supply to government departments?',
-   'Yes. We hold a rate contract with the Controller of Stores at Udhyog Bhawan, Shimla, and HPBOCW L-1 vendor status. We have supplied 95,000 Rado heat pillars and 45,000 MIC-21 induction cooktops to Himachal Pradesh government offices.'],
+   'Yes. We hold a rate contract with the Controller of Stores at Udhyog Bhawan, Shimla, and HPBOCW L - 1 vendor status. We have supplied 95,000 Rado heat pillars and 45,000 MIC-21 induction cooktops to Himachal Pradesh government offices.'],
   ['Can I become a Maurice dealer?',
    'We are actively appointing dealers and distributors across India. Submit the form on our Become a Dealer page, or call ' . $phone . ' to discuss terms.'],
   ['Do you offer OEM or private-label manufacturing?',

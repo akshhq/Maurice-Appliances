@@ -86,7 +86,7 @@ require LAYOUTS_PATH . '/main-header.php';
         ['Two manufacturing units', 'Bawana in Delhi and Jia in Kullu, Himachal Pradesh — giving us direct control over production and quality.', '<rect x="3" y="9" width="18" height="12" rx="2"/><path d="M7 9V5h10v4M9 21v-5h6v5"/>'],
         ['BIS (ISI) certified', 'Certified since 2017. Our labs were upgraded the same year to support in-house safety and performance testing.', '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>'],
         ['ISO 9001:2015', 'An internationally recognised quality-management standard applied across our manufacturing processes.', '<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>'],
-        ['Government supply', 'Rate-contracted supplier to Himachal Pradesh government departments, including HPBOCW L-1 vendor status.', '<path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>'],
+        ['Government supply', 'Rate-contracted supplier to Himachal Pradesh government departments, including HPBOCW L - 1 vendor status.', '<path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>'],
         ['In-house testing', 'Every appliance is checked for electrical safety, thermal performance, durability and energy efficiency.', '<path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/>'],
         ['1–5 year warranty', 'Warranty cover from one to five years depending on category, backed by an expanding service network.', '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'],
       ];
