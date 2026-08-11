@@ -218,18 +218,32 @@ function _product_media_files(): array {
   if ($files !== null) return $files;
 
   $files = [];
-  $dir = PUBLIC_PATH . '/media';
-  if (!is_dir($dir)) return $files;
+  $base = PUBLIC_PATH . '/media';
+  if (!is_dir($base)) return $files;
 
-  foreach (scandir($dir) ?: [] as $file) {
-    if ($file === '.' || $file === '..' || is_dir($dir . '/' . $file)) continue;
-    if (!preg_match('/\.(webp|jpe?g|png|gif)$/i', $file)) continue;
-    $files[] = $file;
+  // Recursive iterator: scan root + all subdirectories
+  $it = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator($base, FilesystemIterator::SKIP_DOTS)
+  );
+  foreach ($it as $f) {
+    if (!$f->isFile()) continue;
+    if (!preg_match('/\.(webp|jpe?g|png|gif)$/i', $f->getFilename())) continue;
+    // Store relative path from /media/ using forward slashes
+    $rel = ltrim(str_replace(DIRECTORY_SEPARATOR, '/', substr($f->getPathname(), strlen($base))), '/');
+    $files[] = $rel;
   }
   return $files;
 }
 
 function product_image_file(array $p): ?string {
+  // 1. Explicit image field — highest priority (exact filename or relative path from /media/)
+  if (!empty($p['image'])) {
+    $explicit = ltrim(str_replace('\\', '/', $p['image']), '/');
+    $full = PUBLIC_PATH . '/media/' . $explicit;
+    if (is_file($full)) return $explicit;
+  }
+
+  // 2. Fuzzy token match across all files found under /media/ (recursive)
   $candidates = array_values(array_unique(array_filter([
     trim(($p['model'] ?? '') . ' ' . ($p['title'] ?? '')),
     trim(($p['title'] ?? '') . ' ' . ($p['model'] ?? '')),
@@ -246,6 +260,7 @@ function product_image_file(array $p): ?string {
   $bestFile = null;
   $bestScore = 0;
   foreach (_product_media_files() as $file) {
+    // Use only the filename (not the directory) for matching
     $fileTokens = _product_media_tokens(pathinfo($file, PATHINFO_FILENAME));
     if (!$fileTokens) continue;
 
@@ -265,7 +280,11 @@ function product_image_file(array $p): ?string {
 
 function product_image_url(array $p): ?string {
   $file = product_image_file($p);
-  return $file ? url('media/' . rawurlencode($file)) : null;
+  if (!$file) return null;
+  // For paths with subdirectories, encode each segment separately
+  $parts = explode('/', $file);
+  $encoded = implode('/', array_map('rawurlencode', $parts));
+  return url('media/' . $encoded);
 }
 
 function product_visual(array $p, string $extraClass = '', bool $decorative = false): string {
