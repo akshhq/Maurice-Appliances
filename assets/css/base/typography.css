@@ -2,41 +2,96 @@
    MAURICE — BASE: typography
    ============================================================ */
 
-/* ---- Typography ---- */
-h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height: var(--lh-snug); letter-spacing: -0.01em; }
-h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); }
+/* ---- Heading hierarchy ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--lh-snug);
+  letter-spacing: -0.015em;
+  color: var(--text-1);
+}
+
+h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); letter-spacing: -0.025em; }
 h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); }
-p { max-width: var(--maxw-text); }
-strong { font-weight: 600; }
+h4 { font-size: var(--fs-h4); }
 
+p {
+  max-width: var(--maxw-text);
+  line-height: var(--lh-body);
+}
+
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ---- Display text ---- */
 .display {
   font-family: var(--font-display);
   font-size: var(--fs-display);
-  font-weight: 600;
+  font-weight: 700;
   line-height: var(--lh-tight);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
+/* ---- Eyebrow / kicker (use sparingly — no heading above it) ---- */
 .eyebrow {
+  display: inline-block;
   font-family: var(--font-body);
   font-size: var(--fs-cap);
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
   color: var(--red);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--s-3);
-}
-.eyebrow::before {
-  content: "";
-  width: 26px; height: 2px;
-  background: var(--ember-line);
-  border-radius: 2px;
+  padding: 0.35em 0.9em;
+  background: rgba(224, 30, 38, 0.08);
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(224, 30, 38, 0.16);
 }
 
-.lead { font-size: var(--fs-lg); color: var(--text-2); line-height: 1.5; }
+/* ---- Lead paragraph ---- */
+.lead {
+  font-size: var(--fs-lg);
+  color: var(--text-2);
+  line-height: 1.58;
+  font-weight: 400;
+}
+
+/* ---- Muted / helper text ---- */
 .muted { color: var(--text-3); }
+.caption { font-size: var(--fs-xs); color: var(--text-4); }
+
+/* ---- Tabular nums ---- */
 .tabular { font-variant-numeric: tabular-nums; }
 
+/* ---- Text utilities ---- */
+.text-center { text-align: center; }
+.text-balance { text-wrap: balance; }
+
+/* ---- Prose content ---- */
+.prose { max-width: 72ch; }
+.prose > * + * { margin-top: var(--s-4); }
+.prose h2 { font-size: var(--fs-h2); margin-top: var(--s-8); }
+.prose h3 { font-size: var(--fs-h3); margin-top: var(--s-7); }
+.prose p { color: var(--text-2); }
+.prose ul {
+  display: grid;
+  gap: var(--s-3);
+}
+.prose ul li {
+  position: relative;
+  padding-left: var(--s-6);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.prose ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+}
+.prose a { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
+.prose a:hover { text-decoration-thickness: 2px; }

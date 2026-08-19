@@ -1,0 +1,99 @@
+/* ============================================================
+   MAURICE — COMPONENT: Universal Modal Dialog
+   ============================================================ */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: none !important;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gutter);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal.is-open {
+  display: flex !important;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(19, 20, 22, 0.68);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal__dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 580px;
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-4);
+  padding: clamp(1.5rem, 1.2rem + 2vw, 2.75rem);
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(18px) scale(0.96);
+  transition: transform var(--dur-2) var(--ease);
+  border: 1px solid var(--line);
+}
+
+.modal.is-open .modal__dialog {
+  transform: none;
+}
+
+.modal__dialog--wide {
+  max-width: 1080px;
+}
+
+.modal__close {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--s-4);
+  font-size: 1.5rem;
+  color: var(--text-3);
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface-2);
+  cursor: pointer;
+  border: none;
+  line-height: 1;
+  transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
+}
+
+.modal__close:hover {
+  color: var(--ink);
+  background: var(--mist);
+  transform: scale(1.08);
+}
+
+.modal__head {
+  margin-bottom: var(--s-4);
+  padding-right: var(--s-6);
+}
+
+.modal__head h2 {
+  font-size: var(--fs-h3);
+  margin-bottom: var(--s-2);
+}
+
+.modal__lead {
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+.modal__form {
+  display: grid;
+  gap: var(--s-3);
+}

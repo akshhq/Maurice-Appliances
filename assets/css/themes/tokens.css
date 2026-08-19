@@ -1,93 +1,135 @@
 /* ============================================================
-   MAURICE APPLIANCES — DESIGN TOKENS
+   MAURICE APPLIANCES — DESIGN TOKENS (v2)
    Single source of visual truth. Referenced by every page.
    ============================================================ */
 
 :root {
-  /* ---- Colour ---- */
+  /* ---- Brand Palette ---- */
   --red: #E01E26;
   --red-deep: #B3161C;
+  --red-light: rgba(224, 30, 38, 0.08);
   --ember: #FF6A3D;
-  --ink: #141518;
-  --graphite: #3A3D42;
-  --silver: #9CA0A6;
-  --mist: #EEF0F2;
-  --paper: #FBFBFA;
-  --white: #FFFFFF;
-  --glass: rgba(255, 255, 255, 0.62);
-  --glass-dark: rgba(20, 21, 24, 0.55);
+  --ember-deep: #D95228;
 
-  /* Semantic */
+  /* ---- Neutrals ---- */
+  --ink: #131416;
+  --graphite: #2E3036;
+  --slate: #4A4F58;
+  --silver: #8B9099;
+  --fog: #C4C8CE;
+  --mist: #ECEEF1;
+  --paper: #F8F9FA;
+  --white: #FFFFFF;
+
+  /* ---- Glass ---- */
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-dark: rgba(19, 20, 22, 0.62);
+
+  /* ---- Semantic Colour Aliases ---- */
   --text-1: var(--ink);
   --text-2: var(--graphite);
-  --text-3: var(--silver);
+  --text-3: var(--slate);
+  --text-4: var(--silver);
   --bg: var(--paper);
   --surface: var(--white);
-  --surface-2: var(--mist);
-  --line: rgba(20, 21, 24, 0.10);
-  --line-strong: rgba(20, 21, 24, 0.18);
+  --surface-2: #F3F4F6;
+  --surface-3: #ECEEF1;
+  --line: rgba(19, 20, 22, 0.08);
+  --line-strong: rgba(19, 20, 22, 0.15);
 
-  /* Signature ember gradient */
+  /* ---- Signature Gradients ---- */
   --ember-glow: radial-gradient(circle, #FF6A3D 0%, #E01E26 55%, transparent 72%);
   --ember-line: linear-gradient(90deg, var(--ink) 0%, var(--ember) 55%, var(--red) 100%);
   --heat-fade: linear-gradient(180deg, rgba(255,106,61,0.10) 0%, transparent 100%);
+  --hero-bg: radial-gradient(130% 90% at 88% 8%, rgba(255,106,61,0.14) 0%, transparent 52%),
+             radial-gradient(60% 60% at 5% 90%, rgba(224,30,38,0.06) 0%, transparent 50%),
+             linear-gradient(180deg, var(--paper) 0%, #fff 100%);
 
   /* ---- Typography ---- */
-  --font-display: "Clash Display", "Space Grotesk", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Clash Display", "Syne", "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --fs-display: clamp(3.25rem, 1.5rem + 6vw, 6rem);
-  --fs-h1: clamp(2.4rem, 1.4rem + 3.6vw, 3.6rem);
-  --fs-h2: clamp(1.9rem, 1.3rem + 2.2vw, 2.7rem);
-  --fs-h3: clamp(1.3rem, 1.05rem + 0.9vw, 1.65rem);
-  --fs-lg: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
-  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
-  --fs-sm: 0.9375rem;
-  --fs-cap: 0.8125rem;
+  /* ---- Fluid Type Scale ---- */
+  --fs-display: clamp(3.2rem, 1.4rem + 7vw, 6.5rem);
+  --fs-h1:      clamp(2.4rem, 1.4rem + 3.8vw, 3.8rem);
+  --fs-h2:      clamp(1.85rem, 1.3rem + 2.2vw, 2.75rem);
+  --fs-h3:      clamp(1.3rem, 1.05rem + 0.9vw, 1.65rem);
+  --fs-h4:      clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  --fs-lg:      clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  --fs-body:    clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --fs-sm:      0.9375rem;
+  --fs-xs:      0.8125rem;
+  --fs-cap:     0.75rem;
 
-  --lh-tight: 1.04;
-  --lh-snug: 1.2;
-  --lh-body: 1.62;
+  /* ---- Line Heights ---- */
+  --lh-tight:   1.04;
+  --lh-snug:    1.2;
+  --lh-base:    1.62;
+  --lh-body:    1.62;
 
-  --tracking-wide: 0.14em;
-  --tracking-caps: 0.08em;
+  /* ---- Tracking ---- */
+  --tracking-wide: 0.13em;
+  --tracking-caps: 0.06em;
 
-  /* ---- Space scale (8pt) ---- */
-  --s-1: 0.25rem;  --s-2: 0.5rem;  --s-3: 0.75rem; --s-4: 1rem;
-  --s-5: 1.5rem;   --s-6: 2rem;    --s-7: 3rem;    --s-8: 4rem;
-  --s-9: 6rem;     --s-10: 8rem;   --s-11: 11rem;
+  /* ---- Space Scale (8pt grid) ---- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 8rem;
+  --s-11: 11rem;
 
   --gutter: clamp(1.25rem, 4vw, 3rem);
-  --maxw: 1320px;
+  --maxw: 1340px;
   --maxw-text: 68ch;
 
   /* ---- Radius ---- */
-  --r-sm: 8px;
-  --r: 14px;
-  --r-lg: 22px;
+  --r-xs:  6px;
+  --r-sm:  10px;
+  --r:     16px;
+  --r-md:  16px;
+  --r-lg:  24px;
+  --r-xl:  32px;
   --r-pill: 999px;
 
-  /* ---- Shadow (warm-tinted, layered) ---- */
-  --sh-1: 0 1px 2px rgba(20,21,24,.04), 0 2px 6px rgba(20,21,24,.05);
-  --sh-2: 0 1px 2px rgba(20,21,24,.04), 0 12px 32px rgba(20,21,24,.08);
-  --sh-3: 0 2px 4px rgba(20,21,24,.05), 0 26px 60px rgba(20,21,24,.13);
-  --sh-ember: 0 8px 30px rgba(224,30,38,.22);
+  /* ---- Layered Shadows (warm-tinted) ---- */
+  --sh-1: 0 1px 2px rgba(19,20,22,0.04), 0 2px 6px rgba(19,20,22,0.05);
+  --sh-2: 0 1px 3px rgba(19,20,22,0.05), 0 10px 28px rgba(19,20,22,0.08);
+  --sh-3: 0 2px 4px rgba(19,20,22,0.06), 0 24px 56px rgba(19,20,22,0.12);
+  --sh-4: 0 4px 8px rgba(19,20,22,0.07), 0 40px 80px rgba(19,20,22,0.14);
+  --sh-ember: 0 8px 30px rgba(224,30,38,0.22), 0 2px 8px rgba(224,30,38,0.14);
+  --sh-glow-red: 0 0 0 1px rgba(224,30,38,0.15), 0 8px 32px rgba(224,30,38,0.18);
 
   /* ---- Motion ---- */
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-1: 0.18s;
-  --dur-2: 0.36s;
-  --dur-3: 0.64s;
+  --ease:         cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:      cubic-bezier(0.55, 0, 1, 0.45);
+  --ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 0.16s;
+  --dur-2: 0.32s;
+  --dur-3: 0.60s;
+  --dur-4: 1.00s;
 
   /* ---- Layout ---- */
+  --topbar-h: 40px;
   --nav-h: 76px;
+  --nav-total: calc(var(--topbar-h) + var(--nav-h));
   --z-nav: 100;
   --z-cursor: 9999;
   --z-loader: 10000;
   --z-modal: 500;
+  --z-toast: 600;
+  --z-drawer: 450;
 }
 
 @media (max-width: 640px) {
-  :root { --nav-h: 64px; }
+  :root {
+    --topbar-h: 38px;
+    --nav-h: 60px;
+    --nav-total: calc(var(--topbar-h) + var(--nav-h));
+  }
 }

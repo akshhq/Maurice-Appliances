@@ -2,7 +2,7 @@
   "name": "Maurice Appliances",
   "short_name": "Maurice",
   "description": "ISI & ISO-certified Indian home appliances — making every home better tomorrow.",
-  "start_url": "/index.php",
+  "start_url": "/index.html",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
@@ -17,8 +17,8 @@
     { "src": "/assets/images/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ],
   "shortcuts": [
-    { "name": "All products", "url": "/products.php" },
-    { "name": "Become a dealer", "url": "/pages/become-dealer.php" },
-    { "name": "Contact", "url": "/pages/contact.php" }
+    { "name": "All products", "url": "/products.html" },
+    { "name": "Become a dealer", "url": "/pages/become-dealer.html" },
+    { "name": "Contact", "url": "/pages/contact.html" }
   ]
 }

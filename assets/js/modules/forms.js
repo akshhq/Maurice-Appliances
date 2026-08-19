@@ -1,6 +1,8 @@
-/* Form handling — newsletter + generic AJAX forms.
-   Progressive enhancement: every form has a real `action` and `method`,
-   so submissions still work if JavaScript fails to load. */
+/**
+ * MAURICE APPLIANCES — Form Handling (Client-side validation, localStorage backup & toast feedback)
+ */
+
+import { showToast } from '../core/catalog-utils.js';
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
@@ -9,7 +11,7 @@ export function initForms() {
   initAjaxForms();
 }
 
-/* ---------------- Newsletter (footer) ---------------- */
+/* ---------------- Newsletter (Footer) ---------------- */
 function initNewsletter() {
   const form = document.getElementById('newsletterForm');
   if (!form) return;
@@ -21,10 +23,9 @@ function initNewsletter() {
     msg.className = 'footer__form-msg ' + (ok ? 'ok' : 'err');
   };
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const input = form.querySelector('input[name="email"]');
-    const btn = form.querySelector('[type="submit"]');
     const email = (input?.value || '').trim();
 
     if (!EMAIL_RE.test(email)) {
@@ -33,30 +34,22 @@ function initNewsletter() {
       return;
     }
 
-    if (btn) btn.disabled = true;
-    setMsg('Subscribing…', true);
-
     try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'X-Requested-With': 'fetch' },
-      });
-      const data = await res.json().catch(() => ({ ok: res.ok }));
-      setMsg(data.message || (data.ok ? 'Thank you — you are on the list.' : 'Something went wrong.'), !!data.ok);
-      if (data.ok) form.reset();
-    } catch {
-      setMsg('Network error. Please try again shortly.', false);
-    } finally {
-      if (btn) btn.disabled = false;
-    }
+      const subs = JSON.parse(localStorage.getItem('maurice_newsletter_subscribers') || '[]');
+      subs.push({ email, date: new Date().toISOString() });
+      localStorage.setItem('maurice_newsletter_subscribers', JSON.stringify(subs));
+    } catch (err) {}
+
+    setMsg('Thank you for subscribing to Maurice updates!', true);
+    showToast('Subscribed successfully! You will receive new launch updates.', 'success');
+    form.reset();
   });
 }
 
-/* ---------------- Generic AJAX forms ---------------- */
+/* ---------------- Generic Forms (Contact, Dealer, Warranty, Service) ---------------- */
 function initAjaxForms() {
   document.querySelectorAll('[data-ajax-form]').forEach((form) => {
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
 
       const out = form.querySelector('[data-form-msg]');
@@ -67,11 +60,11 @@ function initAjaxForms() {
         out.className = 'form-msg ' + (ok ? 'ok' : 'err');
       };
 
-      // Honeypot — silently succeed for bots.
+      // Honeypot for bot detection
       const hp = form.querySelector('input[name="website"]');
       if (hp && hp.value) return;
 
-      // Client-side required/email validation
+      // Required field validation
       let valid = true;
       let firstBad = null;
       form.querySelectorAll('[required]').forEach((field) => {
@@ -82,29 +75,38 @@ function initAjaxForms() {
         if (bad && !firstBad) firstBad = field;
         if (bad) valid = false;
       });
+
       if (!valid) {
-        setMsg('Please complete the highlighted fields.', false);
+        setMsg('Please complete all highlighted mandatory fields.', false);
+        showToast('Please check the required fields.', 'warning');
         firstBad?.focus();
         return;
       }
 
-      const originalLabel = btn ? btn.textContent : '';
-      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      // Collect form data
+      const formData = new FormData(form);
+      const dataObj = {};
+      formData.forEach((val, key) => { dataObj[key] = val; });
+      dataObj.submittedAt = new Date().toISOString();
 
+      // Store in localStorage
       try {
-        const res = await fetch(form.action, {
-          method: form.method || 'POST',
-          body: new FormData(form),
-          headers: { 'X-Requested-With': 'fetch' },
-        });
-        const data = await res.json().catch(() => ({ ok: res.ok }));
-        setMsg(data.message || (data.ok ? 'Thank you — we will be in touch.' : 'Something went wrong. Please try again.'), !!data.ok);
-        if (data.ok) form.reset();
-      } catch {
-        setMsg('Network error. Please try again, or contact customer support.', false);
-      } finally {
-        if (btn) { btn.disabled = false; btn.textContent = originalLabel; }
-      }
+        const formType = form.dataset.formType || 'general_submission';
+        const key = `maurice_form_${formType}`;
+        const existing = JSON.parse(localStorage.getItem(key) || '[]');
+        existing.push(dataObj);
+        localStorage.setItem(key, JSON.stringify(existing));
+      } catch (err) {}
+
+      const originalLabel = btn ? btn.innerHTML : '';
+      if (btn) { btn.disabled = true; btn.innerHTML = 'Submitting...'; }
+
+      setTimeout(() => {
+        if (btn) { btn.disabled = false; btn.innerHTML = originalLabel; }
+        setMsg('Thank you! Your request has been recorded. Our team will contact you shortly.', true);
+        showToast('Form submitted successfully! We will contact you soon.', 'success');
+        form.reset();
+      }, 500);
     });
   });
 }

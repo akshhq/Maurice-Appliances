@@ -1,13 +1,7 @@
-/* ============================================================
-   MAURICE APPLIANCES — app.js
-   Application entry point (ES module).
-
-   Boot order:
-     1. Preloader intro          (core/loader.js)
-     2. Core systems             (core/scroll.js)
-     3. UI modules               (modules/*)
-     4. Dispatch 'maurice:ready' — page modules (pages/*) listen for this
-   ============================================================ */
+/**
+ * MAURICE APPLIANCES — Main Application Entry (Pure Vanilla JS / ES Modules)
+ * Initializes design system, custom cursor, navigation, inquiry modal, and compare drawer.
+ */
 
 import { CONFIG } from './core/config.js';
 import { runLoader } from './core/loader.js';
@@ -15,27 +9,25 @@ import { initScroll, initReveals } from './core/scroll.js';
 import { initCursor } from './modules/cursor.js';
 import { initNav } from './modules/nav.js';
 import { initForms } from './modules/forms.js';
-
-// Safety net: if any module import fails (wrong MIME type, 403, network error)
-// ensure the loader is force-dismissed so the page is never permanently frozen.
-window.addEventListener('error', (e) => {
-  const loader = document.getElementById('loader');
-  if (loader && !loader.classList.contains('done')) {
-    loader.classList.add('done');
-    document.body.style.overflow = '';
-  }
-}, { once: false });
+import { initInquiryModal } from './modules/inquiry-modal.js';
+import { initCompareDrawer } from './modules/compare-drawer.js';
 
 function boot() {
-  initCursor();       // custom cursor (auto-disables on touch)
-  initNav();          // sticky glass nav + mobile drawer
-  initScroll();       // Lenis smooth scroll synced to ScrollTrigger
-  initReveals();      // IntersectionObserver reveal animations
-  initForms();        // newsletter + AJAX forms
+  const basePath = window.location.pathname.includes('/pages/') ? '..' : '.';
+  initCursor();             // Custom magnetic cursor (auto-disabled on touch)
+  initNav();                // Glass sticky nav + 4-column mega menu + mobile drawer
+  initScroll();             // Smooth scroll + ScrollTrigger
+  initReveals();            // IntersectionObserver reveal animations
+  initForms();              // Universal form validation + localStorage lead capture
+  initInquiryModal();       // Global prefilled product inquiry modal & WhatsApp connect
+  initCompareDrawer(basePath); // LG-style sticky compare drawer + side-by-side modal
 
-  // Page-specific modules boot from this event.
+  window.__mauriceReady = true;
+  window.__mauriceBasePath = basePath;
+
+  // Dispatch event for any page listeners
   document.dispatchEvent(new CustomEvent('maurice:ready', {
-    detail: { reduceMotion: CONFIG.reduceMotion, config: CONFIG },
+    detail: { reduceMotion: CONFIG.reduceMotion, config: CONFIG, basePath: basePath },
   }));
 }
 
@@ -44,4 +36,3 @@ if (document.readyState === 'loading') {
 } else {
   runLoader().then(boot);
 }
-

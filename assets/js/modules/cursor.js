@@ -1,12 +1,28 @@
-/* Custom cursor — ring + dot, magnetic hover, contextual label.
-   Falls back gracefully: disabled on touch / coarse pointers. */
+/**
+ * MAURICE APPLIANCES — Custom Interactive Magnetic Cursor
+ * Injects DOM elements dynamically if not present, tracks pointer smoothly,
+ * scales on hover over interactive targets, and gracefully disables on touch devices.
+ */
 
 export function initCursor() {
   const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  const cursor = document.getElementById('cursor');
-  if (!fine || !cursor) {
+  if (!fine) {
     document.body.classList.remove('has-cursor');
     return;
+  }
+
+  let cursor = document.getElementById('cursor');
+  if (!cursor) {
+    cursor = document.createElement('div');
+    cursor.id = 'cursor';
+    cursor.className = 'cursor';
+    cursor.setAttribute('aria-hidden', 'true');
+    cursor.innerHTML = `
+      <div class="cursor__ring"></div>
+      <div class="cursor__dot"></div>
+      <div class="cursor__label"></div>
+    `;
+    document.body.appendChild(cursor);
   }
 
   const ring = cursor.querySelector('.cursor__ring');
@@ -14,50 +30,52 @@ export function initCursor() {
   const label = cursor.querySelector('.cursor__label');
 
   let mx = window.innerWidth / 2, my = window.innerHeight / 2;
-  let rx = mx, ry = my;          // ring (lerped)
-  const speed = 0.18;
+  let rx = mx, ry = my;
+  const speed = 0.2;
+  let isMoving = false;
 
   window.addEventListener('mousemove', (e) => {
-    mx = e.clientX; my = e.clientY;
-    // dot follows instantly
-    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-    label.style.transform = `translate(${mx}px, ${my + 2}px) translate(-50%,-50%)`;
+    mx = e.clientX;
+    my = e.clientY;
+    if (!isMoving) {
+      isMoving = true;
+      cursor.style.opacity = '1';
+    }
+    if (dot) dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+    if (label) label.style.transform = `translate(${mx}px, ${my + 2}px) translate(-50%,-50%)`;
   }, { passive: true });
 
   function render() {
     rx += (mx - rx) * speed;
     ry += (my - ry) * speed;
-    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    if (ring) ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
     requestAnimationFrame(render);
   }
   requestAnimationFrame(render);
 
   // Hover states on interactive elements
-  const hoverSel = 'a, button, [data-cursor], input, textarea, select, .pcard';
+  const hoverSel = 'a, button, [data-cursor], input, textarea, select, .pcard, .service-card, .vcard, .icard, .dealer-card';
   document.addEventListener('mouseover', (e) => {
     const t = e.target.closest(hoverSel);
     if (!t) return;
     const text = t.getAttribute('data-cursor');
-    if (text) { label.textContent = text; cursor.classList.add('is-hover'); }
-    else { cursor.classList.remove('is-hover'); label.textContent = ''; }
+    if (text && label) {
+      label.textContent = text;
+      cursor.classList.add('is-hover');
+    } else {
+      cursor.classList.add('is-hover-subtle');
+    }
   });
+
   document.addEventListener('mouseout', (e) => {
     const t = e.target.closest(hoverSel);
-    if (t && t.getAttribute('data-cursor')) { cursor.classList.remove('is-hover'); label.textContent = ''; }
+    if (t) {
+      cursor.classList.remove('is-hover');
+      cursor.classList.remove('is-hover-subtle');
+      if (label) label.textContent = '';
+    }
   });
 
   document.addEventListener('mousedown', () => cursor.classList.add('is-down'));
   document.addEventListener('mouseup', () => cursor.classList.remove('is-down'));
-
-  // Magnetic buttons
-  const magnets = document.querySelectorAll('[data-magnetic], .btn, .nav__cta');
-  magnets.forEach((el) => {
-    el.addEventListener('mousemove', (e) => {
-      const r = el.getBoundingClientRect();
-      const relX = e.clientX - r.left - r.width / 2;
-      const relY = e.clientY - r.top - r.height / 2;
-      el.style.transform = `translate(${relX * 0.18}px, ${relY * 0.28}px)`;
-    });
-    el.addEventListener('mouseleave', () => { el.style.transform = ''; });
-  });
 }

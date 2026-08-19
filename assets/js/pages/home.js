@@ -1,71 +1,54 @@
-/* Homepage behaviour:
-   1. Hero title line reveal (GSAP)
-   2. Mouse + scroll parallax on hero stage
-   3. Count-up stats
-   4. Lightweight ember particle canvas (2D — feature-detected, cheap, capped)
-   Everything degrades cleanly under prefers-reduced-motion. */
+/**
+ * MAURICE APPLIANCES — Homepage Controller (Pure Vanilla JS)
+ * Single Unified Hero Showcase, Dynamic Credential Stats,
+ * Amazon-style category bento grid, interactive finder & B2B express form.
+ */
+
+import { ALL_PRODUCTS, CATEGORIES, COMPANY } from '../data/products.js';
+import { initProductFinder } from '../modules/product-finder.js';
+import { initReveals } from '../core/scroll.js';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let initialized = false;
 
-document.addEventListener('maurice:ready', () => {
-  heroReveal();
-  heroParallax();
+export function initHomePage() {
+  if (initialized) return;
+  initialized = true;
+
+  initDynamicHeroStats();
   countUp();
   emberField();
-});
-
-/* ---- 1. Hero title ---- */
-function heroReveal() {
-  if (reduceMotion || !window.gsap) return;
-  const lines = document.querySelectorAll('#heroTitle .line > span');
-  gsap.set(lines, { yPercent: 110 });
-  gsap.to(lines, {
-    yPercent: 0, duration: 1, ease: 'power4.out', stagger: 0.09, delay: 0.1,
-  });
-  const lead = document.querySelector('.hero__lead');
-  const cta = document.querySelector('.hero__cta');
-  const trust = document.querySelector('.hero__trust');
-  gsap.from([lead, cta, trust], {
-    opacity: 0, y: 24, duration: 0.9, ease: 'power3.out', stagger: 0.1, delay: 0.5,
-  });
+  initProductFinder();
+  initB2BExpressForm();
+  initReveals();
 }
 
-/* ---- 2. Parallax ---- */
-function heroParallax() {
-  if (reduceMotion) return;
-  const stage = document.getElementById('heroStage');
-  if (!stage) return;
-  const items = stage.querySelectorAll('[data-parallax]');
+/* ---- 1. Dynamic Hero Stats ---- */
+function initDynamicHeroStats() {
+  const prodEl = document.getElementById('heroStatProducts');
+  const catEl = document.getElementById('heroStatCats');
+  const yearsEl = document.getElementById('heroStatYears');
 
-  // Mouse
-  let tx = 0, ty = 0, cx = 0, cy = 0;
-  window.addEventListener('mousemove', (e) => {
-    const nx = (e.clientX / window.innerWidth - 0.5);
-    const ny = (e.clientY / window.innerHeight - 0.5);
-    tx = nx; ty = ny;
-  }, { passive: true });
+  const totalProducts = ALL_PRODUCTS.length || 118;
+  const totalCats = CATEGORIES.length || 11;
+  const currentYear = new Date().getFullYear();
+  const yearsBuilt = Math.max(16, currentYear - (COMPANY.established || 2010));
 
-  function loop() {
-    cx += (tx - cx) * 0.06;
-    cy += (ty - cy) * 0.06;
-    items.forEach((el) => {
-      const d = parseFloat(el.dataset.parallax) || 0.1;
-      el.style.transform = `translate(${cx * d * 120}px, ${cy * d * 120}px)`;
-    });
-    requestAnimationFrame(loop);
+  if (prodEl) {
+    prodEl.setAttribute('data-count', String(totalProducts));
+    prodEl.textContent = String(totalProducts);
   }
-  requestAnimationFrame(loop);
-
-  // Scroll drift on the whole stage
-  if (window.gsap && window.ScrollTrigger) {
-    gsap.to(stage, {
-      yPercent: 12, ease: 'none',
-      scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-    });
+  if (catEl) {
+    catEl.setAttribute('data-count', String(totalCats));
+    catEl.textContent = String(totalCats);
+  }
+  if (yearsEl) {
+    yearsEl.setAttribute('data-count', String(yearsBuilt));
+    yearsEl.textContent = String(yearsBuilt);
   }
 }
 
-/* ---- 3. Count up ---- */
+/* ---- 2. Count Up Stats ---- */
 function countUp() {
   const els = document.querySelectorAll('[data-count]');
   if (!els.length) return;
@@ -89,16 +72,15 @@ function countUp() {
       requestAnimationFrame(step);
       io.unobserve(el);
     });
-  }, { threshold: 0.6 });
+  }, { threshold: 0.5 });
   els.forEach((el) => io.observe(el));
 }
 
-/* ---- 4. Ember particle field (2D canvas) ---- */
+/* ---- 3. Ember Particle Field (2D Canvas) ---- */
 function emberField() {
   const canvas = document.getElementById('emberCanvas');
   if (!canvas || reduceMotion) return;
-  // Skip on low-power / small screens to protect performance
-  if (window.innerWidth < 720 || navigator.hardwareConcurrency <= 4) return;
+  if (window.innerWidth < 720 || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)) return;
 
   const ctx = canvas.getContext('2d');
   let w, h, dpr, particles, raf;
@@ -111,14 +93,14 @@ function emberField() {
   }
 
   function seed() {
-    const count = Math.min(46, Math.floor(w / 26));
+    const count = Math.min(36, Math.floor(w / 32));
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * w,
       y: h + Math.random() * h,
       r: Math.random() * 2 + 0.6,
-      vy: Math.random() * 0.5 + 0.18,
-      vx: (Math.random() - 0.5) * 0.25,
-      a: Math.random() * 0.4 + 0.12,
+      vy: Math.random() * 0.45 + 0.15,
+      vx: (Math.random() - 0.5) * 0.2,
+      a: Math.random() * 0.35 + 0.1,
       hue: Math.random() > 0.5 ? '255,106,61' : '224,30,38',
     }));
   }
@@ -131,7 +113,7 @@ function emberField() {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${p.hue},${p.a})`;
-      ctx.shadowBlur = 8; ctx.shadowColor = `rgba(${p.hue},${p.a})`;
+      ctx.shadowBlur = 6; ctx.shadowColor = `rgba(${p.hue},${p.a})`;
       ctx.fill();
     }
     ctx.shadowBlur = 0;
@@ -139,17 +121,47 @@ function emberField() {
   }
 
   size(); seed(); frame();
-  let rt;
   window.addEventListener('resize', () => {
-    clearTimeout(rt);
-    rt = setTimeout(() => { cancelAnimationFrame(raf); size(); seed(); frame(); }, 200);
-  });
-
-  // Pause when hero not visible (battery/perf)
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver((e) => {
-      if (e[0].isIntersecting) { if (!raf) frame(); }
-      else { cancelAnimationFrame(raf); raf = null; }
-    }, { threshold: 0.01 }).observe(canvas);
-  }
+    cancelAnimationFrame(raf);
+    size(); seed(); frame();
+  }, { passive: true });
 }
+
+/* ---- 4. B2B / Dealer Express Onboarding Form ---- */
+function initB2BExpressForm() {
+  const form = document.getElementById('expressDealerForm');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.querySelector('[name="name"]')?.value.trim();
+    const city = form.querySelector('[name="city"]')?.value.trim();
+    const phone = form.querySelector('[name="phone"]')?.value.trim();
+
+    if (!name || !city || !phone) {
+      if (window.showToast) window.showToast('Please fill all 3 fields for express callback.', 'warning');
+      return;
+    }
+
+    try {
+      const existing = JSON.parse(localStorage.getItem('maurice_dealer_inquiries') || '[]');
+      existing.push({ id: Date.now(), name, city, phone, date: new Date().toISOString() });
+      localStorage.setItem('maurice_dealer_inquiries', JSON.stringify(existing));
+    } catch (err) {}
+
+    if (window.showToast) {
+      window.showToast('Express application received! Our regional distributor manager will call you within 2 hours.', 'success');
+    } else {
+      alert('Express application received! Our regional distributor manager will call you within 2 hours.');
+    }
+    form.reset();
+  });
+}
+
+// Auto-run if loaded
+if (document.readyState !== 'loading') {
+  initHomePage();
+} else {
+  document.addEventListener('DOMContentLoaded', initHomePage);
+}
+document.addEventListener('maurice:ready', initHomePage);

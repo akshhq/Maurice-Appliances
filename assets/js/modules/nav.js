@@ -1,5 +1,8 @@
-/* Navigation — scroll-aware glass nav, hide-on-scroll-down,
-   mobile menu toggle, escape/outside-click handling. */
+/**
+ * MAURICE APPLIANCES — Navigation Controller
+ * Handles glass sticky navbar, scroll awareness, mobile drawer toggle,
+ * and accessibility keyboard navigation.
+ */
 
 export function initNav() {
   const nav = document.getElementById('nav');
@@ -13,20 +16,35 @@ export function initNav() {
   function onScroll() {
     const y = window.scrollY;
     nav.classList.toggle('scrolled', y > 20);
-    // Hide when scrolling down past hero, show when scrolling up
-    if (y > 320 && y > lastY + 6) nav.classList.add('hidden');
-    else if (y < lastY - 6) nav.classList.remove('hidden');
+
+    // Don't auto-hide nav if user is hovering over a dropdown or mega menu
+    const isHoveringMenu = nav.matches(':hover') || nav.querySelector(':focus-within');
+    if (!isHoveringMenu) {
+      if (y > 320 && y > lastY + 8) {
+        nav.classList.add('hidden');
+      } else if (y < lastY - 8) {
+        nav.classList.remove('hidden');
+      }
+    } else {
+      nav.classList.remove('hidden');
+    }
+
     lastY = y;
     ticking = false;
   }
+
   window.addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
   }, { passive: true });
   onScroll();
 
-  // Mobile menu
+  // Mobile menu drawer
   function toggleMobile(open) {
-    const isOpen = open ?? !mobile.classList.contains('open');
+    if (!mobile || !burger) return;
+    const isOpen = open !== undefined ? open : !mobile.classList.contains('open');
     mobile.classList.toggle('open', isOpen);
     burger.classList.toggle('open', isOpen);
     burger.setAttribute('aria-expanded', String(isOpen));
@@ -35,11 +53,24 @@ export function initNav() {
   }
 
   if (burger && mobile) {
-    burger.addEventListener('click', () => toggleMobile());
-    mobile.querySelectorAll('a').forEach((a) =>
-      a.addEventListener('click', () => toggleMobile(false)));
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMobile();
+    });
+
+    mobile.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => toggleMobile(false));
+    });
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobile.classList.contains('open')) toggleMobile(false);
+    });
+
+    // Close when clicking outside on backdrop
+    document.addEventListener('click', (e) => {
+      if (mobile.classList.contains('open') && !mobile.contains(e.target) && !burger.contains(e.target)) {
+        toggleMobile(false);
+      }
     });
   }
 }

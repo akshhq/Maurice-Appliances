@@ -1,30 +1,78 @@
 /* ============================================================
-   MAURICE — COMPONENT: custom cursor
+   MAURICE — COMPONENT: Custom Interactive Magnetic Cursor
    ============================================================ */
 
-/* ---------------- Custom cursor ---------------- */
-.cursor { position: fixed; top: 0; left: 0; z-index: var(--z-cursor); pointer-events: none; mix-blend-mode: normal; }
-@media (hover: none), (pointer: coarse) { .cursor { display: none; } }
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  mix-blend-mode: normal;
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor { display: none !important; }
+}
+
 .cursor__ring {
-  position: absolute; width: 38px; height: 38px;
-  border: 1.5px solid rgba(20,21,24,0.35); border-radius: 50%;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(224, 30, 38, 0.45);
+  border-radius: 50%;
   transform: translate(-50%, -50%);
-  transition: width var(--dur-2) var(--ease), height var(--dur-2) var(--ease),
-              border-color var(--dur-2) var(--ease), background var(--dur-2) var(--ease);
+  transition:
+    width var(--dur-2) var(--ease),
+    height var(--dur-2) var(--ease),
+    border-color var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease);
 }
+
 .cursor__dot {
-  position: absolute; width: 5px; height: 5px; border-radius: 50%;
-  background: var(--red); transform: translate(-50%, -50%);
-  transition: opacity var(--dur-1) var(--ease);
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  transform: translate(-50%, -50%);
+  transition: opacity var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
 }
+
 .cursor__label {
-  position: absolute; transform: translate(-50%, -50%);
-  font-size: 0.72rem; font-weight: 600; color: #fff;
-  letter-spacing: 0.04em; opacity: 0; white-space: nowrap;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  white-space: nowrap;
   transition: opacity var(--dur-1) var(--ease);
+  pointer-events: none;
 }
-.cursor.is-hover .cursor__ring { width: 64px; height: 64px; border-color: transparent; background: var(--red); }
+
+.cursor.is-hover .cursor__ring {
+  width: 68px;
+  height: 68px;
+  border-color: transparent;
+  background: var(--red);
+  box-shadow: 0 4px 20px rgba(224, 30, 38, 0.35);
+}
 .cursor.is-hover .cursor__dot { opacity: 0; }
 .cursor.is-hover .cursor__label { opacity: 1; }
-.cursor.is-down .cursor__ring { width: 30px; height: 30px; }
 
+.cursor.is-hover-subtle .cursor__ring {
+  width: 48px;
+  height: 48px;
+  border-color: var(--red);
+  background: rgba(224, 30, 38, 0.06);
+}
+
+.cursor.is-down .cursor__ring {
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%) scale(0.9);
+}

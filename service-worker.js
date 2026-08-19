@@ -2,21 +2,21 @@
    MAURICE APPLIANCES — service worker
    Conservative offline strategy:
      • Static assets  → stale-while-revalidate
-     • HTML/PHP pages → network-first (always fresh prices/specs)
+     • HTML pages     → network-first (always fresh prices/specs)
      • Offline pages  → cached shell fallback
    Bump CACHE_VERSION on each deploy to invalidate old caches.
    ============================================================ */
 
-const CACHE_VERSION = 'maurice-v1.0.0';
+const CACHE_VERSION = 'maurice-v2.0.0';
 const STATIC_CACHE  = `${CACHE_VERSION}-static`;
 const PAGE_CACHE    = `${CACHE_VERSION}-pages`;
 
 const PRECACHE = [
   '/',
-  '/index.php',
+  '/index.html',
+  '/products.html',
   '/assets/css/style.css',
   '/assets/js/app.js',
-  '/errors/404.html',
 ];
 
 self.addEventListener('install', (event) => {
@@ -43,7 +43,6 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;      // leave CDNs alone
-  if (url.pathname.startsWith('/api/')) return;          // never cache API responses
 
   const isStatic = /\.(css|js|woff2?|svg|png|jpe?g|webp|avif|ico)$/.test(url.pathname);
 
@@ -59,21 +58,18 @@ self.addEventListener('fetch', (event) => {
         })
       )
     );
-    return;
+  } else {
+    // HTML Navigation requests: network-first, fallback to cache
+    event.respondWith(
+      fetch(request)
+        .then((res) => {
+          if (res.ok) {
+            const clone = res.clone();
+            caches.open(PAGE_CACHE).then((cache) => cache.put(request, clone));
+          }
+          return res;
+        })
+        .catch(() => caches.match(request).then((cached) => cached || caches.match('/index.html')))
+    );
   }
-
-  // Network-first for documents
-  event.respondWith(
-    fetch(request)
-      .then((res) => {
-        if (res.ok) {
-          const copy = res.clone();
-          caches.open(PAGE_CACHE).then((c) => c.put(request, copy));
-        }
-        return res;
-      })
-      .catch(() =>
-        caches.match(request).then((cached) => cached || caches.match('/errors/404.html'))
-      )
-  );
 });

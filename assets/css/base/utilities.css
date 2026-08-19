@@ -1,30 +1,141 @@
 /* ============================================================
-   MAURICE — BASE: reveal animations, a11y & utilities
+   MAURICE — BASE: utilities, reveals, a11y
    ============================================================ */
 
-/* ---- Reveal animation base ---- */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-.reveal.in-view { opacity: 1; transform: none; }
-.reveal-d1 { transition-delay: 0.08s; }
-.reveal-d2 { transition-delay: 0.16s; }
-.reveal-d3 { transition-delay: 0.24s; }
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; }
+/* ---- Reveal animations ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.72s var(--ease), transform 0.72s var(--ease);
 }
+.reveal.in-view { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.07s; }
+.reveal-d2 { transition-delay: 0.14s; }
+.reveal-d3 { transition-delay: 0.21s; }
+.reveal-d4 { transition-delay: 0.28s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- Section head ---- */
+.section-head {
+  max-width: 56ch;
+  margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+}
+.section-head .eyebrow { margin-bottom: var(--s-4); }
+.section-head h2 { margin-bottom: var(--s-3); }
+.section-head .lead { margin-bottom: var(--s-5); }
+.section-head .ember-rule {
+  height: 3px;
+  width: 0;
+  border-radius: 3px;
+  background: var(--ember-line);
+  margin-top: var(--s-4);
+  transition: width 1.1s var(--ease);
+}
+.section-head.in-view .ember-rule { width: 120px; }
 
 /* ---- Skip link ---- */
 .skip-link {
-  position: absolute; left: var(--s-4); top: -60px;
-  background: var(--ink); color: #fff; padding: 0.7em 1.2em;
-  border-radius: var(--r-sm); z-index: var(--z-loader);
+  position: absolute;
+  left: var(--s-4);
+  top: -60px;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.7em 1.2em;
+  border-radius: var(--r-sm);
+  z-index: var(--z-loader);
   transition: top var(--dur-2) var(--ease);
 }
 .skip-link:focus { top: var(--s-4); }
 
-/* ---- Helpers ---- */
+/* ---- Accessible helpers ---- */
 .sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
 }
-.text-center { text-align: center; }
+
+/* ---- Spacing helpers ---- */
 .mx-auto { margin-inline: auto; }
+.mt-auto { margin-top: auto; }
+.text-center { text-align: center; }
+.is-hidden { display: none !important; }
+
+/* ---- Toast notification ---- */
+.toast-stack {
+  position: fixed;
+  bottom: var(--s-6);
+  right: var(--s-6);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  pointer-events: none;
+}
+.toast {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: 0.85em 1.3em;
+  border-radius: var(--r);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: #fff;
+  background: var(--graphite);
+  box-shadow: var(--sh-3);
+  pointer-events: auto;
+  animation: toastIn 0.4s var(--ease) both;
+}
+.toast--success { background: #1a8a55; }
+.toast--warning { background: #c06820; }
+.toast--error   { background: var(--red-deep); }
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---- Section divider diamond ---- */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.section-divider::before, .section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.section-divider__glyph {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  background: var(--ember-line);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+/* ---- Breadcrumb ---- */
+.bc {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  flex-wrap: wrap;
+}
+.bc a { color: var(--text-3); transition: color var(--dur-1) var(--ease); }
+.bc a:hover { color: var(--red); }
+.bc__sep { color: var(--line-strong); }
+.bc__cur { color: var(--text-2); font-weight: 500; }

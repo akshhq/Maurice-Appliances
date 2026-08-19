@@ -1,0 +1,106 @@
+/* ============================================================
+   MAURICE — COMPONENT: Form Controls & Cards (Global)
+   ============================================================ */
+
+.formcard {
+  padding: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--sh-2);
+}
+
+.fieldgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-4);
+}
+@media (max-width: 640px) { .fieldgrid { grid-template-columns: 1fr; } }
+
+.field { display: grid; gap: var(--s-1); margin-bottom: var(--s-3); }
+.field:last-child { margin-bottom: 0; }
+.field--full { grid-column: 1 / -1; }
+
+.field label {
+  font-size: var(--fs-cap);
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.field label .req { color: var(--red); }
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.8em 1em;
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  color: var(--text-1);
+  font-family: inherit;
+  transition: border-color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+}
+.field select {
+  cursor: pointer;
+}
+.field textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-color: var(--red);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(224, 30, 38, 0.12);
+}
+
+.field input.invalid,
+.field textarea.invalid,
+.field select.invalid {
+  border-color: var(--red);
+  background: rgba(224, 30, 38, 0.03);
+}
+
+.field__hint {
+  font-size: var(--fs-cap);
+  color: var(--text-3);
+  margin-top: 2px;
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-msg {
+  margin-top: var(--s-4);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  min-height: 1.3em;
+  border-radius: var(--r-sm);
+  padding: var(--s-3) var(--s-4);
+  display: none;
+}
+.form-msg.ok  {
+  display: block;
+  background: rgba(26, 138, 85, 0.1);
+  color: #156d43;
+  border: 1px solid rgba(26, 138, 85, 0.2);
+}
+.form-msg.err {
+  display: block;
+  background: rgba(224, 30, 38, 0.08);
+  color: var(--red-deep);
+  border: 1px solid rgba(224, 30, 38, 0.2);
+}
