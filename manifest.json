@@ -18,7 +18,7 @@
   ],
   "shortcuts": [
     { "name": "All products", "url": "/products.html" },
-    { "name": "Become a dealer", "url": "/pages/become-dealer.html" },
-    { "name": "Contact", "url": "/pages/contact.html" }
+    { "name": "Become a dealer", "url": "/dealers/become-dealer.html" },
+    { "name": "Contact", "url": "/contact/contact.html" }
   ]
 }

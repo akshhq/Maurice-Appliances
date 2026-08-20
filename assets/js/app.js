@@ -15,7 +15,8 @@ import { initGlobalSearch } from './modules/global-search.js?v=3.0';
 import { initFloatingWidgets } from './modules/floating-widgets.js?v=3.0';
 
 function boot() {
-  const basePath = window.location.pathname.includes('/pages/') ? '..' : '.';
+  const isSubfolder = ['/company/', '/dealers/', '/support/', '/contact/', '/legal/', '/pages/'].some(p => window.location.pathname.includes(p));
+  const basePath = isSubfolder ? '..' : '.';
   initCursor();             // Custom magnetic cursor (auto-disabled on touch)
   initNav();                // Glass sticky nav + 4-column mega menu + mobile drawer
   initScroll();             // Smooth scroll + ScrollTrigger

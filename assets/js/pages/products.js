@@ -85,7 +85,8 @@ export function initProductsPage() {
     if (emptyState) emptyState.classList.toggle('is-hidden', list.length > 0);
     grid.classList.toggle('is-hidden', list.length === 0);
 
-    const basePath = window.location.pathname.includes('/pages/') ? '..' : '.';
+    const isSubfolder = ['/company/', '/dealers/', '/support/', '/contact/', '/legal/', '/pages/'].some(p => window.location.pathname.includes(p));
+    const basePath = isSubfolder ? '..' : '.';
     grid.innerHTML = list.map(p => renderProductCard(p, { basePath, showCompare: true })).join('');
 
     if (state.cat) {

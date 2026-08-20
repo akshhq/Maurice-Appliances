@@ -217,7 +217,7 @@ export function initProductDetailPage() {
                   <span>WhatsApp Trade Connect</span>
                 </a>
 
-                <a href="pages/dealers.html" class="btn btn--ghost btn--sm" style="width:100%;margin-top:4px">
+                <a href="dealers/dealers.html" class="btn btn--ghost btn--sm" style="width:100%;margin-top:4px">
                   <span>Locate Authorized Stockist</span>
                 </a>
               </div>
@@ -469,8 +469,8 @@ export function initProductDetailPage() {
               </ul>
             </div>
             <div style="display:flex;gap:var(--s-3);margin-top:var(--s-5);flex-wrap:wrap">
-              <a href="pages/warranty.html" class="btn">Register Warranty Online</a>
-              <a href="pages/service.html" class="btn btn--ghost">Book Service Call</a>
+              <a href="support/warranty.html" class="btn">Register Warranty Online</a>
+              <a href="support/service.html" class="btn btn--ghost">Book Service Call</a>
             </div>
           </div>
           <div class="statement">

@@ -128,7 +128,11 @@ maurice-main-website/
 │   ├── sql/                     # SQL scripts
 │   └── backups/                 # Database backups
 │
-├── pages/                       # Page content files (about, contact, dealers, etc.)
+├── company/                     # Company pages (about, journey, manufacturing, vision, values, careers, media)
+├── dealers/                     # Dealer network & application pages (dealers, become-dealer)
+├── support/                     # Customer support pages (service, warranty, faq, downloads)
+├── contact/                     # Contact page
+├── legal/                       # Legal & policy pages (privacy, terms)
 ├── partials/                    # Reusable HTML partials (header, footer, nav)
 ├── sections/                    # Section-level components (home-hero, home-stats, etc.)
 ├── layouts/                     # Page layout wrappers (main-header.php, main-footer.php)
@@ -170,27 +174,27 @@ maurice-main-website/
 
 | Page | URL | Description |
 |---|---|---|
-| Homepage | `/` | Hero, marquee, categories, stats, featured products, journey timeline, dealer CTA |
-| Product Catalogue | `/products.php` | 108 products with filter, search, sort & compare |
-| Product Detail | `/product.php?id={slug}` | Full specs, images, downloads for a single product |
-| Category | `/category.php?id={slug}` | Filtered view of one product category |
-| About | `/pages/about.php` | Company overview |
-| Our Journey | `/pages/journey.php` | Brand history timeline (2010 – present) |
-| Vision & Mission | `/pages/vision.php` | Strategic objectives |
-| Core Values | `/pages/values.php` | Five core principles |
-| Manufacturing | `/pages/manufacturing.php` | Factory & production info |
-| Dealers | `/pages/dealers.php` | Dealer network locator |
-| Become a Dealer | `/pages/become-dealer.php` | Dealer application form (live) |
-| Service | `/pages/service.php` | After-sales service info |
-| Warranty | `/pages/warranty.php` | Warranty policy |
-| FAQ | `/pages/faq.php` | Frequently asked questions |
-| Downloads | `/pages/downloads.php` | Product manuals & documents |
-| Contact | `/pages/contact.php` | Contact form (live) |
-| Media | `/pages/media.php` | Press & media resources |
-| Careers | `/pages/careers.php` | Careers / job application form (live) |
-| Privacy Policy | `/pages/privacy.php` | Privacy policy |
-| Terms of Use | `/pages/terms.php` | Terms and conditions |
-| Sitemap | `/sitemap.php` | Dynamic XML sitemap |
+| Homepage | `/index.html` | Hero, marquee, categories, stats, featured products, journey timeline, dealer CTA |
+| Product Catalogue | `/products.html` | 100+ products with filter, search, sort & compare |
+| Product Detail | `/product.html?model={slug}` | Full specs, images, downloads for a single product |
+| Category | `/category.html?cat={slug}` | Filtered view of one product category |
+| About | `/company/about.html` | Company overview |
+| Our Journey | `/company/journey.html` | Brand history timeline (2010 – present) |
+| Manufacturing | `/company/manufacturing.html` | Factory & production labs |
+| Vision & Mission | `/company/vision.html` | Strategic objectives |
+| Core Values | `/company/values.html` | Nine core brand values |
+| Careers | `/company/careers.html` | Careers / job application form |
+| Media | `/company/media.html` | Press & media resources |
+| Dealers | `/dealers/dealers.html` | Dealer network locator |
+| Become a Dealer | `/dealers/become-dealer.html` | Dealer application form (live) |
+| Service | `/support/service.html` | After-sales service info |
+| Warranty | `/support/warranty.html` | Warranty policy & digital registration |
+| FAQ | `/support/faq.html` | Frequently asked questions |
+| Downloads | `/support/downloads.html` | Product catalogues & spec sheets |
+| Contact | `/contact/contact.html` | Contact form & office locations |
+| Privacy Policy | `/legal/privacy.html` | Privacy policy |
+| Terms of Service | `/legal/terms.html` | Terms and conditions |
+| Sitemap | `/sitemap.xml` | Dynamic XML sitemap |
 | Diagnostics | `/check.php` | Server health check (**delete after install**) |
 
 All pages are **fully mobile responsive** and include **Schema.org JSON-LD** structured data for SEO.
