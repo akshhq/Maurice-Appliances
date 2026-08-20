@@ -2,7 +2,7 @@
  * MAURICE APPLIANCES — Form Handling (Client-side validation, localStorage backup & toast feedback)
  */
 
-import { showToast } from '../core/catalog-utils.js';
+import { showToast } from '../core/catalog-utils.js?v=3.0';
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 

@@ -4,9 +4,9 @@
  * Amazon-style category bento grid, interactive finder & B2B express form.
  */
 
-import { ALL_PRODUCTS, CATEGORIES, COMPANY } from '../data/products.js';
-import { initProductFinder } from '../modules/product-finder.js';
-import { initReveals } from '../core/scroll.js';
+import { ALL_PRODUCTS, CATEGORIES, COMPANY } from '../data/products.js?v=3.0';
+import { initProductFinder } from '../modules/product-finder.js?v=3.0';
+import { initReveals } from '../core/scroll.js?v=3.0';
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let initialized = false;

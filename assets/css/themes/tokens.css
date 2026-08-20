@@ -115,9 +115,9 @@
   --dur-4: 1.00s;
 
   /* ---- Layout ---- */
-  --topbar-h: 40px;
+  --topbar-h: 0px;
   --nav-h: 76px;
-  --nav-total: calc(var(--topbar-h) + var(--nav-h));
+  --nav-total: var(--nav-h);
   --z-nav: 100;
   --z-cursor: 9999;
   --z-loader: 10000;
@@ -128,8 +128,8 @@
 
 @media (max-width: 640px) {
   :root {
-    --topbar-h: 38px;
+    --topbar-h: 0px;
     --nav-h: 60px;
-    --nav-total: calc(var(--topbar-h) + var(--nav-h));
+    --nav-total: var(--nav-h);
   }
 }

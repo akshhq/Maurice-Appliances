@@ -563,6 +563,22 @@
 .finder-opt-card h4 { font-size: var(--fs-sm); font-weight: 700; color: var(--ink); margin-bottom: 2px; }
 .finder-opt-card p { font-size: var(--fs-cap); color: var(--text-3); line-height: 1.4; }
 
+/* ---- Step 3 Recommendations Grid ---- */
+.finder-recs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-5);
+  margin-top: var(--s-4);
+}
+@media (max-width: 960px) {
+  .finder-recs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .finder-recs-grid { grid-template-columns: 1fr; }
+}
+
+
+
 /* ============================================================
    6. STATS / CREDIBILITY STRIP
    ============================================================ */

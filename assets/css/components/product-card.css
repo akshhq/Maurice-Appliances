@@ -163,6 +163,13 @@
   white-space: nowrap;
 }
 
+.pcard__spec-pill--highlight {
+  background: rgba(224, 30, 38, 0.08);
+  color: var(--red);
+  border-color: rgba(224, 30, 38, 0.22);
+  font-weight: 600;
+}
+
 /* Legacy .pcard__spec */
 .pcard__spec {
   font-size: var(--fs-sm);

@@ -15,8 +15,8 @@ const PRECACHE = [
   '/',
   '/index.html',
   '/products.html',
-  '/assets/css/style.css',
-  '/assets/js/app.js',
+  '/assets/css/style.css?v=3.0',
+  '/assets/js/app.js?v=3.0',
 ];
 
 self.addEventListener('install', (event) => {

@@ -4,9 +4,9 @@
  * Frequently Bought Together Bundle, Interactive Pincode Checker, Variant Matrix & Reviews.
  */
 
-import { ALL_PRODUCTS, PRODUCTS_BY_CAT, getProductBySlug, getCategory, getRelatedProducts } from '../data/products.js';
-import { formatINR, renderProductVisual, renderProductCard, showToast } from '../core/catalog-utils.js';
-import { initReveals } from '../core/scroll.js';
+import { ALL_PRODUCTS, PRODUCTS_BY_CAT, getProductBySlug, getCategory, getRelatedProducts } from '../data/products.js?v=3.0';
+import { formatINR, renderProductVisual, renderProductCard, showToast } from '../core/catalog-utils.js?v=3.0';
+import { initReveals } from '../core/scroll.js?v=3.0';
 
 let initialized = false;
 
@@ -240,50 +240,6 @@ export function initProductDetailPage() {
         </div>
       </section>
 
-      <!-- Section: Frequently Bought Together Bundle (Amazon Pattern) -->
-      <section class="wrap">
-        <div class="pdp-bundle">
-          <h2 class="pdp-bundle__title">Frequently Bought Together</h2>
-          <div class="pdp-bundle__items-row">
-            <div class="pdp-bundle__card">
-              ${renderProductVisual(currentVariant, 'pdp__thumb-img', true)}
-              <div>
-                <b>${currentVariant.model}</b>
-                <span>${formatINR(mrp)}</span>
-              </div>
-            </div>
-
-            <span class="pdp-bundle__plus">+</span>
-
-            <div class="pdp-bundle__card">
-              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--ink)" stroke-width="1.6"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="9"/></svg>
-              <div>
-                <b>SS 304 Heavy Connection Pipes (Pair)</b>
-                <span>₹${accessoryPrice1}</span>
-              </div>
-            </div>
-
-            <span class="pdp-bundle__plus">+</span>
-
-            <div class="pdp-bundle__card">
-              <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="var(--ink)" stroke-width="1.6"><rect x="3" y="8" width="18" height="8" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg>
-              <div>
-                <b>Forged Brass Heavy Angle Valve Pair</b>
-                <span>₹${accessoryPrice2}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="pdp-bundle__action-row">
-            <div class="pdp-bundle__total-price">
-              Total Bundle Price: <b>${formatINR(bundleTotal)}</b> (Save ₹350 on installation kit)
-            </div>
-            <button type="button" class="btn btn--sm open-inquiry-btn" data-model="${currentVariant.model} with Complete Installation Kit" data-mrp="${bundleTotal}">
-              <span>Inquire Complete Installation Bundle</span>
-            </button>
-          </div>
-        </div>
-      </section>
 
       <!-- Sticky Secondary Navigation Bar (LG & Amazon Hybrid) -->
       <nav class="pdp-nav-bar" id="pdpStickyNav" aria-label="Product Sections Navigation">

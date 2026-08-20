@@ -3,8 +3,8 @@
  * Persistent compare tray + detailed side-by-side spec modal.
  */
 
-import { getProductBySlug, ALL_PRODUCTS } from '../data/products.js';
-import { getCompareList, removeFromCompare, clearCompare, formatINR, renderProductVisual } from '../core/catalog-utils.js';
+import { getProductBySlug, ALL_PRODUCTS } from '../data/products.js?v=3.0';
+import { getCompareList, removeFromCompare, clearCompare, formatINR, renderProductVisual } from '../core/catalog-utils.js?v=3.0';
 
 export function initCompareDrawer(basePath = '') {
   let tray = document.getElementById('compareTray');

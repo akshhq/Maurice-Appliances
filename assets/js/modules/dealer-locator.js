@@ -3,7 +3,7 @@
  * State / District cascade + Instant Pincode & Keyword search + Map directions.
  */
 
-import { DEALER_NETWORK, getStates, getDistricts, filterDealers } from '../data/dealers.js';
+import { DEALER_NETWORK, getStates, getDistricts, filterDealers } from '../data/dealers.js?v=3.0';
 
 export function initDealerLocator() {
   const container = document.getElementById('dealerLocatorApp');

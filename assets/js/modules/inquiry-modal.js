@@ -3,8 +3,8 @@
  * Handles SKU prefilled inquiries, dealer inquiries, and WhatsApp direct links.
  */
 
-import { COMPANY } from '../data/products.js';
-import { showToast } from '../core/catalog-utils.js';
+import { COMPANY } from '../data/products.js?v=3.0';
+import { showToast } from '../core/catalog-utils.js?v=3.0';
 
 export function initInquiryModal() {
   let modal = document.getElementById('inquiryModal');

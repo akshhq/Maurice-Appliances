@@ -3,7 +3,7 @@
  * Universal helpers for pure client-side HTML/JS execution.
  */
 
-import { ALL_PRODUCTS, PRODUCTS_BY_CAT, getProductBySlug, getCategory } from '../data/products.js';
+import { ALL_PRODUCTS, PRODUCTS_BY_CAT, getProductBySlug, getCategory } from '../data/products.js?v=3.0';
 
 export function formatINR(num) {
   if (num === null || num === undefined || isNaN(num)) return '₹0';
@@ -58,12 +58,23 @@ export function renderProductVisual(product, extraClass = '', isDecorative = fal
 
 export function renderProductCard(p, options = {}) {
   const { basePath = '', showCompare = true } = options;
-  const productUrl = `${basePath ? basePath + '/' : ''}product.html?cat=${encodeURIComponent(p.cat)}&model=${encodeURIComponent(p.slug)}`;
+  const cat = p.category || p.cat || '';
+  const productUrl = `${basePath ? basePath + '/' : ''}product.html?cat=${encodeURIComponent(cat)}&model=${encodeURIComponent(p.slug)}`;
+
+  let smartHighlight = '';
+  if (cat === 'water-heaters' || (p.model && p.model.toLowerCase().includes('geyser'))) {
+    if (p.model.includes('1L') || p.model.includes('3L')) smartHighlight = '<span class="pcard__spec-pill pcard__spec-pill--highlight">1–2 Persons</span>';
+    else if (p.model.includes('6L') || p.model.includes('10L') || p.model.includes('15L')) smartHighlight = '<span class="pcard__spec-pill pcard__spec-pill--highlight">2–4 Persons</span>';
+    else if (p.model.includes('25L') || p.model.includes('35L') || p.model.includes('50L')) smartHighlight = '<span class="pcard__spec-pill pcard__spec-pill--highlight">4–6+ Persons</span>';
+  } else if (p.wattage) {
+    smartHighlight = `<span class="pcard__spec-pill pcard__spec-pill--highlight">${p.wattage}W</span>`;
+  }
+
   const specPills = (p.specs || []).slice(0, 3).map(s => `<span class="pcard__spec-pill">${s}</span>`).join('');
   const compareChecked = getCompareList().includes(p.slug) ? 'checked' : '';
 
   return `
-    <article class="pcard reveal" data-name="${(p.model + ' ' + p.title + ' ' + (p.specs || []).join(' ')).toLowerCase()}" data-price="${p.mrp || 0}" data-band="${p.priceBand}" data-warranty="${p.warrantyYears}" data-wattage="${p.wattage || 0}" data-title="${p.title}" data-cat="${p.cat}" data-slug="${p.slug}">
+    <article class="pcard reveal" data-name="${(p.model + ' ' + p.title + ' ' + (p.specs || []).join(' ')).toLowerCase()}" data-price="${p.mrp || 0}" data-band="${p.priceBand}" data-warranty="${p.warrantyYears}" data-wattage="${p.wattage || 0}" data-title="${p.title}" data-cat="${p.cat || p.category}" data-slug="${p.slug}">
       <div class="pcard__stage">
         <div class="pcard__badges">
           <span class="badge badge--red">ISI Certified</span>
@@ -84,6 +95,7 @@ export function renderProductCard(p, options = {}) {
         <p class="pcard__model">${p.model}</p>
         <h3 class="pcard__title"><a href="${productUrl}">${p.title}</a></h3>
         <div class="pcard__spec-pills">
+          ${smartHighlight}
           ${specPills}
         </div>
         <div class="pcard__foot">

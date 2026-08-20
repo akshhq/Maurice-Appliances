@@ -6,93 +6,7 @@
    TOP UTILITY BAR (Havells & Midea Inspired)
    ============================================================ */
 .topbar {
-  background: var(--ink);
-  color: rgba(255,255,255,0.88);
-  font-size: var(--fs-cap);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  position: sticky;
-  top: 0;
-  z-index: calc(var(--z-nav) + 2);
-  height: var(--topbar-h);
-}
-.topbar__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  gap: var(--s-4);
-}
-
-.topbar__left {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  font-weight: 500;
-}
-
-.topbar__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--red);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: var(--r-pill);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  flex: none;
-}
-.topbar__badge svg { width: 11px; height: 11px; }
-
-.topbar__sep-dot {
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  flex: none;
-}
-
-.topbar__right {
-  display: flex;
-  align-items: center;
-  gap: var(--s-4);
-  margin-left: auto;
-}
-
-.topbar__phone {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #fff;
-  font-weight: 700;
-  font-size: var(--fs-xs);
-  transition: color var(--dur-1) var(--ease);
-  flex: none;
-}
-.topbar__phone:hover { color: var(--ember); }
-.topbar__phone svg { width: 13px; height: 13px; color: var(--ember); flex: none; }
-
-.topbar__links {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-}
-.topbar__links a {
-  color: rgba(255,255,255,0.72);
-  font-weight: 500;
-  transition: color var(--dur-1) var(--ease);
-}
-.topbar__links a:hover { color: #fff; }
-.topbar__sep { color: rgba(255,255,255,0.25); font-size: 0.75rem; }
-
-@media (max-width: 1024px) {
-  .topbar__left { display: none; }
-}
-@media (max-width: 720px) {
-  .topbar__links { display: none; }
-  .topbar__right { justify-content: center; width: 100%; }
+  display: none !important;
 }
 
 /* ============================================================
@@ -100,7 +14,7 @@
    ============================================================ */
 .nav {
   position: sticky;
-  top: var(--topbar-h);
+  top: 0;
   left: 0;
   right: 0;
   z-index: var(--z-nav);
@@ -205,7 +119,12 @@
   transition: transform var(--dur-2) var(--ease);
   opacity: 0.5;
 }
-.nav__item:hover .nav__caret { transform: rotate(180deg); }
+.nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
 
 /* ---- Simple Dropdown ---- */
 .drop {
@@ -220,6 +139,7 @@
   padding: var(--s-2);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transform: translateY(10px) scale(0.98);
   transform-origin: top left;
   transition: opacity var(--dur-2) var(--ease), visibility var(--dur-2), transform var(--dur-2) var(--ease);
@@ -228,6 +148,7 @@
 .nav__item--drop:focus-within .drop {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
   transform: none;
 }
 .drop a {
@@ -257,7 +178,8 @@
   box-shadow: var(--sh-4);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
+  pointer-events: none;
+  transform: translateY(-8px);
   transform-origin: top center;
   transition: opacity var(--dur-2) var(--ease), visibility var(--dur-2), transform var(--dur-2) var(--ease);
   max-height: 85vh;
@@ -268,6 +190,7 @@
 .nav__item--mega:focus-within .mega {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
   transform: none;
 }
 

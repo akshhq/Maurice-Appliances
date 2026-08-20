@@ -1,0 +1,179 @@
+/**
+ * MAURICE APPLIANCES — Floating UX Widgets (WhatsApp + Back-to-Top)
+ */
+
+.floating-btn {
+  position: fixed;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(19, 20, 22, 0.16), 0 1px 3px rgba(19, 20, 22, 0.08);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              bottom 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* WhatsApp Floating Button */
+.floating-btn--whatsapp {
+  right: 24px;
+  bottom: 24px;
+  background: #25D366;
+  color: #FFFFFF;
+}
+
+.floating-btn--whatsapp:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.38);
+  background: #20BA5A;
+  color: #FFFFFF;
+}
+
+.floating-tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--ink);
+  color: #FFFFFF;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--sh-2);
+}
+
+.floating-tooltip::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--ink);
+}
+
+.floating-btn--whatsapp:hover .floating-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(-4px);
+}
+
+/* Back to Top Floating Button */
+.floating-btn--top {
+  right: 24px;
+  bottom: 86px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  pointer-events: none;
+}
+
+.floating-btn--top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.floating-btn--top:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: var(--surface-sub);
+  border-color: var(--line-strong);
+  color: var(--red);
+}
+
+/* Automatic adjustment when Compare Drawer is visible */
+.floating-btn--whatsapp.has-tray-open {
+  bottom: 96px;
+}
+
+.floating-btn--top.has-tray-open {
+  bottom: 158px;
+}
+
+/* Topbar and Navbar Search Buttons */
+.topbar__search-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: all var(--t-fast);
+  text-decoration: none;
+}
+
+.topbar__search-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav__search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all var(--t-fast);
+  flex-shrink: 0;
+}
+
+.nav__search-btn:hover {
+  background: var(--surface-sub);
+  border-color: var(--text-3);
+  color: var(--red);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .floating-btn {
+    width: 46px;
+    height: 46px;
+  }
+  .floating-btn--whatsapp {
+    right: 16px;
+    bottom: 16px;
+  }
+  .floating-btn--top {
+    right: 16px;
+    bottom: 70px;
+  }
+  .floating-btn--whatsapp.has-tray-open {
+    bottom: 84px;
+  }
+  .floating-btn--top.has-tray-open {
+    bottom: 138px;
+  }
+  .floating-tooltip {
+    display: none;
+  }
+}

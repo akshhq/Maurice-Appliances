@@ -3,9 +3,9 @@
  * Supports faceted filters (Category, Capacity, Wattage, Price, Warranty), instant search, sorting, and compare tray.
  */
 
-import { ALL_PRODUCTS, CATEGORIES, getCategory, getProducts } from '../data/products.js';
-import { formatINR, renderProductCard, showToast } from '../core/catalog-utils.js';
-import { initReveals } from '../core/scroll.js';
+import { ALL_PRODUCTS, CATEGORIES, getCategory, getProducts } from '../data/products.js?v=3.0';
+import { formatINR, renderProductCard, showToast } from '../core/catalog-utils.js?v=3.0';
+import { initReveals } from '../core/scroll.js?v=3.0';
 
 let initialized = false;
 

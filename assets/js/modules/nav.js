@@ -1,7 +1,7 @@
 /**
  * MAURICE APPLIANCES — Navigation Controller
  * Handles glass sticky navbar, scroll awareness, mobile drawer toggle,
- * and accessibility keyboard navigation.
+ * search trigger injection, and accessibility keyboard navigation.
  */
 
 export function initNav() {
@@ -72,5 +72,22 @@ export function initNav() {
         toggleMobile(false);
       }
     });
+  }
+
+  // Auto-inject Search Trigger in Nav Actions
+  const navActions = nav.querySelector('.nav__actions');
+  if (navActions && !navActions.querySelector('[data-open-search]')) {
+    const searchBtn = document.createElement('button');
+    searchBtn.type = 'button';
+    searchBtn.className = 'nav__search-btn';
+    searchBtn.setAttribute('data-open-search', '');
+    searchBtn.setAttribute('aria-label', 'Search appliances (Ctrl+K)');
+    searchBtn.title = 'Search appliances (Ctrl+K)';
+    searchBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+    `;
+    navActions.insertBefore(searchBtn, navActions.firstChild);
   }
 }

@@ -3,9 +3,9 @@
  * Step 1: Category & Room/Family Size -> Step 2: Power/Feature Preference -> Step 3: Instant Recommendations
  */
 
-import { ALL_PRODUCTS, PRODUCTS_BY_CAT } from '../data/products.js';
-import { renderProductCard } from '../core/catalog-utils.js';
-import { initReveals } from '../core/scroll.js';
+import { ALL_PRODUCTS, PRODUCTS_BY_CAT } from '../data/products.js?v=3.0';
+import { renderProductCard } from '../core/catalog-utils.js?v=3.0';
+import { initReveals } from '../core/scroll.js?v=3.0';
 
 export function initProductFinder() {
   const container = document.getElementById('productFinderApp');
@@ -140,7 +140,7 @@ export function initProductFinder() {
         <!-- Step 3: Recommended Results -->
         <div class="finder-step" style="border-bottom:none">
           <p class="finder-step__title"><span class="step-num">3</span> Recommended For You (<span style="color:var(--red)">${recs.length} Optimal Matches</span>)</p>
-          <div class="pgrid" style="margin-top:var(--s-4)">
+          <div class="finder-recs-grid">
             ${recs.map(p => renderProductCard(p, { showCompare: true })).join('')}
           </div>
         </div>
