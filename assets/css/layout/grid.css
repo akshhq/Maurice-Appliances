@@ -22,9 +22,9 @@
 
 /* ---- Primitive grid ---- */
 .grid { display: grid; gap: var(--s-6); }
-@media (min-width: 640px)  { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 720px)  { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 980px)  { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 480px)  { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 768px)  { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px)  { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
 
 /* ---- Compact page hero (all pages except homepage) ---- */
 .phero {
@@ -114,7 +114,7 @@
   gap: clamp(2rem, 1.5rem + 3vw, 5rem);
   align-items: start;
 }
-@media (max-width: 860px) { .ctwo { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) { .ctwo { grid-template-columns: 1fr; } }
 
 /* ---- Featured / showcase flex header ---- */
 .featured__head {

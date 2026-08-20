@@ -55,12 +55,12 @@
 /* ---- Compact: map beside legend (dealers.php, inline within a page) ---- */
 .indiamap--compact { grid-template-columns: 280px 1fr; align-items: center; }
 .indiamap--compact .indiamap__art svg { max-width: 260px; }
-@media (max-width: 860px) { .indiamap--compact { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) { .indiamap--compact { grid-template-columns: 1fr; } }
 
 /* ---- Hero: large centered map, legend as a row beneath (become-dealer.php) ---- */
 .indiamap--hero { grid-template-columns: 1fr; text-align: center; }
 .indiamap--hero .indiamap__art svg { max-width: 420px; }
 .indiamap--hero .indiamap__legend { grid-template-columns: repeat(3, 1fr); text-align: left; gap: var(--s-6); }
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .indiamap--hero .indiamap__legend { grid-template-columns: 1fr; }
 }

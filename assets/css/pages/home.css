@@ -39,7 +39,7 @@
   align-items: center;
   gap: clamp(2rem, 1.5rem + 3vw, 4.5rem);
 }
-@media (max-width: 990px) {
+@media (max-width: 1024px) {
   .hero__grid {
     grid-template-columns: 1fr;
     gap: var(--s-6);
@@ -109,7 +109,7 @@
   padding-top: var(--s-5);
   border-top: 1px solid var(--line);
 }
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .hero__stats-row {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--s-4);
@@ -285,10 +285,10 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--s-4);
 }
-@media (max-width: 1100px) {
+@media (max-width: 1024px) {
   .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .bento-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
@@ -529,7 +529,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--s-4);
 }
-@media (max-width: 800px) { .finder-options-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .finder-options-grid { grid-template-columns: 1fr; } }
 
 .finder-opt-card {
   display: flex;
@@ -565,6 +565,33 @@
 .finder-opt-card h4 { font-size: var(--fs-sm); font-weight: 700; color: var(--ink); margin-bottom: 2px; }
 .finder-opt-card p { font-size: var(--fs-cap); color: var(--text-3); line-height: 1.4; }
 
+/* ---- Step 2B Feature Chips ---- */
+.finder-feat-chips {
+  display: flex;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+}
+.finder-feat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.45em 0.9em;
+  background: var(--surface-2);
+  border: 1.5px solid var(--line);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all var(--dur-1) var(--ease);
+}
+.finder-feat-btn:hover { border-color: var(--silver); color: var(--text-1); }
+.finder-feat-btn.active {
+  background: rgba(224, 30, 38, 0.08);
+  border-color: var(--red);
+  color: var(--red);
+}
+
 /* ---- Step 3 Recommendations Grid ---- */
 .finder-recs-grid {
   display: grid;
@@ -572,10 +599,10 @@
   gap: var(--s-5);
   margin-top: var(--s-4);
 }
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .finder-recs-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .finder-recs-grid { grid-template-columns: 1fr; }
 }
 
@@ -594,7 +621,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: var(--s-6);
 }
-@media (max-width: 900px) { .stats__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 1024px) { .stats__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .stats__grid { grid-template-columns: 1fr; } }
 
 .stat { text-align: center; }
@@ -625,7 +652,7 @@
   align-items: center;
   overflow: hidden;
 }
-@media (max-width: 900px) { .b2b-card { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) { .b2b-card { grid-template-columns: 1fr; } }
 
 .b2b-card__glow {
   position: absolute;
@@ -655,7 +682,7 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--s-3);
 }
-@media (max-width: 600px) { .b2b-perks { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .b2b-perks { grid-template-columns: 1fr; } }
 
 .b2b-perk {
   display: flex;
@@ -688,7 +715,7 @@
   gap: var(--s-4);
 }
 @media (max-width: 1024px) { .service-hub-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .service-hub-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .service-hub-grid { grid-template-columns: 1fr; } }
 
 .service-card {
   display: flex;
@@ -878,7 +905,7 @@
 }
 
 /* ---- Small phone (≤ 375px) ---- */
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   .hero__stage { max-width: 240px; }
   .hero__title { font-size: 1.75rem; }
 

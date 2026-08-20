@@ -299,7 +299,7 @@
   color: var(--text-2);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .search-modal {
     padding: var(--s-2);
   }

@@ -126,7 +126,8 @@
   --z-drawer: 450;
 }
 
-@media (max-width: 640px) {
+/* Tier 2: Standard Mobile / Tablet Portrait (< 768px) */
+@media (max-width: 768px) {
   :root {
     --topbar-h: 0px;
     --nav-h: 60px;

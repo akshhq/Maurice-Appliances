@@ -30,7 +30,7 @@
   padding-bottom: var(--s-8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
-@media (max-width: 880px) {
+@media (max-width: 1024px) {
   .footer__top { grid-template-columns: 1fr; gap: var(--s-7); }
 }
 
@@ -140,10 +140,10 @@
 @media (max-width: 1024px) {
   .footer__cols { grid-template-columns: repeat(3, 1fr); }
 }
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .footer__cols { grid-template-columns: repeat(2, 1fr); gap: var(--s-6) var(--s-4); }
 }
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .footer__cols { grid-template-columns: 1fr; }
 }
 

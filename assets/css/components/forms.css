@@ -15,7 +15,7 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--s-4);
 }
-@media (max-width: 640px) { .fieldgrid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .fieldgrid { grid-template-columns: 1fr; } }
 
 .field { display: grid; gap: var(--s-1); margin-bottom: var(--s-3); }
 .field:last-child { margin-bottom: 0; }

@@ -82,12 +82,24 @@ export function initNav() {
     }
   });
 
+  // Close dropdowns immediately when cursor enters main content area
+  const main = document.getElementById('main') || document.querySelector('main');
+  if (main) {
+    main.addEventListener('mouseenter', () => {
+      closeAllDropdowns();
+    });
+  }
+
   let lastY = window.scrollY;
   let ticking = false;
 
   function onScroll() {
     const y = window.scrollY;
     nav.classList.toggle('scrolled', y > 20);
+
+    if (Math.abs(y - lastY) > 20) {
+      closeAllDropdowns();
+    }
 
     // Don't auto-hide nav if user is hovering over a dropdown or mega menu or menu is currently open
     const isHoveringMenu = nav.matches(':hover') || nav.querySelector('.is-open') || nav.querySelector(':focus-within');

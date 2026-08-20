@@ -78,7 +78,7 @@ export const CATEGORIES = [
   { id: "irons", name: "Irons", blurb: "Dry irons from lightweight to heavy-weight, Teflon and steel soles.", iconCategory: "Cooling & Utility", badge: "Teflon Coated" },
   { id: "chimneys", name: "Chimneys", blurb: "Auto-clean electric chimneys, 60cm and 90cm, motion-sensor.", iconCategory: "Kitchen & Cooking", badge: "Motion Sensor" },
   { id: "kitchen-appliances", name: "Kitchen Appliances", blurb: "Kettles, air fryers, OTGs, breakfast makers, coffee maker and Atta Chakki.", iconCategory: "Kitchen & Cooking", badge: "Multi-utility" },
-  { id: "madhani", name: "Madhani", blurb: "Electric churners with heavy-duty motors and wooden chakla.", iconCategory: "Kitchen & Cooking", badge: "Double Bearing" },
+  { id: "madhani", name: "Madhani & Madhani Mini", blurb: "Electric churners from 75W Mini to 200W Commercial with double ball bearings and wooden chakla.", iconCategory: "Kitchen & Cooking", badge: "Double Bearing" },
   { id: "coolers-ac", name: "Coolers & AC", blurb: "Air coolers and air conditioners arriving soon.", iconCategory: "Cooling & Utility", badge: "Coming Soon" }
 ];
 

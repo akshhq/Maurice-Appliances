@@ -60,30 +60,12 @@ export function initProductDetailPage() {
       <!-- Above the Fold: Amazon-Inspired 3-Column PDP Grid -->
       <section class="wrap pdp" id="overview">
         <div class="pdp__grid">
-          <!-- 1. LEFT COLUMN: Media Gallery & Thumbs -->
+          <!-- 1. LEFT COLUMN: Media Gallery -->
           <div class="pdp__visual">
             <div class="pdp__stage" id="pdpStage">
-              <div class="pdp__badges">
-                <span class="pdp__bestseller-badge">#1 Best Seller in ${category.name}</span>
-                <span class="badge badge--red">ISI IS: 2082</span>
-                ${currentVariant.warranty ? `<span class="badge badge--ember">${currentVariant.warranty}</span>` : ''}
-              </div>
               <div id="pdpMainImageWrap" class="pdp__image-container">
                 ${renderProductVisual(currentVariant, 'pdp__image', false)}
               </div>
-            </div>
-
-            <!-- Thumbnail Gallery Switcher -->
-            <div class="pdp__thumbs" id="pdpThumbs">
-              <button type="button" class="pdp__thumb active" data-angle="front" title="Front Angle View">
-                ${renderProductVisual(currentVariant, 'pdp__thumb-img', true)}
-              </button>
-              <button type="button" class="pdp__thumb" data-angle="side" title="Technical Angle View">
-                ${renderProductVisual(currentVariant, 'pdp__thumb-img', true)}
-              </button>
-              <button type="button" class="pdp__thumb" data-angle="spec" title="Exploded Spec Diagram">
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
-              </button>
             </div>
             
             <p class="pdp__cert-tag">
@@ -94,6 +76,12 @@ export function initProductDetailPage() {
 
           <!-- 2. MIDDLE COLUMN: Product Core Details (Amazon Style) -->
           <div class="pdp__info">
+            <div class="pdp__meta-badges">
+              <span class="badge badge--ember">#1 Best Seller in ${category.name}</span>
+              <span class="badge badge--red">ISI IS: 2082 Certified</span>
+              ${currentVariant.warranty ? `<span class="badge badge--dark">${currentVariant.warranty}</span>` : ''}
+            </div>
+
             <a href="products.html?cat=${encodeURIComponent(category.id)}" class="pdp__brand-kicker">
               <span>Visit the Maurice Official Store</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>

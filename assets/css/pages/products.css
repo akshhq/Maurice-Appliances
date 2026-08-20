@@ -12,7 +12,7 @@
   gap: clamp(1.5rem, 1rem + 2vw, 3rem);
   align-items: start;
 }
-@media (max-width: 960px) { .plist__inner { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) { .plist__inner { grid-template-columns: 1fr; } }
 
 /* ---- Faceted Filters Sidebar ---- */
 .filters {
@@ -39,7 +39,7 @@
   background: var(--line-strong);
   border-radius: 4px;
 }
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .filters {
     position: fixed;
     inset: 0;
@@ -70,7 +70,7 @@
   font-weight: 700;
 }
 .filters__close { display: none; font-size: 1.4rem; color: var(--text-2); }
-@media (max-width: 960px) { .filters__close { display: block; } }
+@media (max-width: 1024px) { .filters__close { display: block; } }
 
 .filter-group {
   padding-block: var(--s-4);
@@ -199,7 +199,7 @@
   font-weight: 600;
   color: var(--text-1);
 }
-@media (max-width: 960px) { .pfilter-toggle-btn { display: inline-flex; } }
+@media (max-width: 1024px) { .pfilter-toggle-btn { display: inline-flex; } }
 
 .pgrid {
   display: grid;
@@ -219,11 +219,11 @@
   align-items: start;
 }
 .pdp__grid > * { min-width: 0; }
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   .pdp__grid { grid-template-columns: 1fr 1.2fr; }
   .pdp__buy-box-col { grid-column: span 2; margin-top: var(--s-5); }
 }
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   .pdp__grid { grid-template-columns: 1fr; }
   .pdp__buy-box-col { grid-column: span 1; }
 }
@@ -240,63 +240,47 @@
   border: 1.5px solid var(--line);
   border-radius: var(--r-lg);
   box-shadow: var(--sh-2);
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   margin-bottom: var(--s-3);
-}
-
-.pdp__badges {
-  position: absolute;
-  top: var(--s-3);
-  left: var(--s-3);
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  padding: var(--s-4);
 }
 
 .pdp__image-container {
   width: 100%;
   height: 100%;
-  display: grid;
-  place-items: center;
-  padding: var(--s-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-2);
 }
 .pdp__image {
-  width: 82%;
-  height: 82%;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 16px 28px rgba(19,20,22,0.14));
+  object-position: center;
+  filter: drop-shadow(0 12px 24px rgba(19,20,22,0.12));
   transition: transform var(--dur-2) var(--ease);
 }
 .pdp__stage:hover .pdp__image {
-  transform: scale(1.06);
+  transform: scale(1.02);
+}
+
+.pdp__meta-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-3);
 }
 
 .pdp__thumbs {
-  display: flex;
-  gap: var(--s-2);
+  display: none !important;
 }
-.pdp__thumb {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--r-sm);
-  border: 1.5px solid var(--line);
-  background: var(--surface-2);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: all var(--dur-1) var(--ease);
-  overflow: hidden;
-}
-.pdp__thumb:hover { border-color: var(--silver); }
-.pdp__thumb.active {
-  border-color: var(--red);
-  box-shadow: 0 0 0 2px rgba(224,30,38,0.18);
-  background: #fff;
-}
-.pdp__thumb-img { width: 68%; height: auto; display: block; object-fit: contain; }
 
 .pdp__cert-tag {
   display: flex;
@@ -413,7 +397,7 @@
   gap: var(--s-2);
   margin-bottom: var(--s-5);
 }
-@media (max-width: 500px) { .pdp__services-strip { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .pdp__services-strip { grid-template-columns: repeat(2, 1fr); } }
 
 .pdp__service-item {
   display: flex;
@@ -671,7 +655,7 @@
 }
 .pdp-nav-bar__product-hint strong { font-weight: 700; }
 .pdp-nav-bar__product-hint span { color: var(--red); font-weight: 700; }
-@media (max-width: 900px) { .pdp-nav-bar__product-hint { display: none; } }
+@media (max-width: 1024px) { .pdp-nav-bar__product-hint { display: none; } }
 
 .pdp-nav-bar__links {
   display: flex;
@@ -713,7 +697,7 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--s-5);
 }
-@media (max-width: 800px) { .specgrid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .specgrid { grid-template-columns: 1fr; } }
 
 .spectable {
   width: 100%;
@@ -1000,7 +984,7 @@
 }
 
 /* ---- Small phone (≤ 375px) ---- */
-@media (max-width: 375px) {
+@media (max-width: 480px) {
   /* Catalog grid: single column on very small phones */
   .pgrid { grid-template-columns: 1fr; }
 

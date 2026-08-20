@@ -12,7 +12,7 @@
   gap: clamp(2rem, 1.5rem + 3vw, 5rem);
   align-items: start;
 }
-@media (max-width: 860px) { .ctwo { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) { .ctwo { grid-template-columns: 1fr; } }
 
 /* ============================================================
    STATEMENT / QUOTE CALLOUT
@@ -65,7 +65,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: var(--s-5);
 }
-@media (max-width: 760px) { .vgrid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .vgrid { grid-template-columns: 1fr; } }
 
 .vcard {
   padding: var(--s-6);
@@ -200,8 +200,8 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--s-5);
 }
-@media (max-width: 900px) { .igrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .igrid { grid-template-columns: 1fr; } }
+@media (max-width: 1024px) { .igrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) { .igrid { grid-template-columns: 1fr; } }
 
 .icard {
   padding: var(--s-6);
@@ -312,7 +312,7 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--s-4);
 }
-@media (max-width: 640px) { .fieldgrid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .fieldgrid { grid-template-columns: 1fr; } }
 
 .field { display: grid; gap: var(--s-1); }
 .field--full { grid-column: 1 / -1; }
@@ -464,11 +464,11 @@
   padding-bottom: var(--s-6);
   border-bottom: 1.5px solid var(--line);
 }
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .locator-filters { grid-template-columns: 1fr 1fr; }
   .locator-field--btn { grid-column: 1 / -1; }
 }
-@media (max-width: 580px) {
+@media (max-width: 768px) {
   .locator-filters { grid-template-columns: 1fr; }
 }
 
@@ -535,7 +535,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: var(--s-4);
 }
-@media (max-width: 800px) { .locator-results-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) { .locator-results-grid { grid-template-columns: 1fr; } }
 
 .dealer-card {
   background: var(--surface);

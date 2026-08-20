@@ -27,9 +27,12 @@
 .pcard__stage {
   position: relative;
   aspect-ratio: 4 / 3;
-  display: grid;
-  place-items: center;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: radial-gradient(130% 120% at 50% 25%, #fff 0%, var(--surface-2) 100%);
+  padding: var(--s-4);
   overflow: hidden;
 }
 .pcard__stage::after {
@@ -39,6 +42,7 @@
   background: radial-gradient(circle at 50% 60%, rgba(255,106,61,0.08), transparent 65%);
   opacity: 0;
   transition: opacity var(--dur-3) var(--ease);
+  pointer-events: none;
 }
 .pcard:hover .pcard__stage::after { opacity: 1; }
 
@@ -46,9 +50,12 @@
 .pcard__media {
   position: relative;
   aspect-ratio: 4 / 3;
-  display: grid;
-  place-items: center;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: radial-gradient(130% 120% at 50% 25%, #fff 0%, var(--surface-2) 100%);
+  padding: var(--s-4);
   overflow: hidden;
 }
 
@@ -56,63 +63,42 @@
 .pcard__frame {
   position: relative;
   z-index: 1;
-  width: auto;
-  height: auto;
-  max-width: 82%;
-  max-height: 82%;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   display: block;
   object-fit: contain;
+  object-position: center;
   transition: transform var(--dur-3) var(--ease);
 }
 .pcard:hover .pcard__image,
-.pcard:hover .pcard__frame { transform: scale(1.06); }
+.pcard:hover .pcard__frame { transform: scale(1.03); }
 
 /* Product frame SVG fallback */
 .pframe {
   display: block;
-  width: auto;
-  height: auto;
-  max-width: 82%;
-  max-height: 82%;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
   color: var(--red);
   --ink: var(--graphite);
   transition: transform var(--dur-3) var(--ease);
 }
-.pcard:hover .pframe { transform: scale(1.05); }
+.pcard:hover .pframe { transform: scale(1.03); }
 
-/* ---- Badges overlay ---- */
+/* ---- Badges overlay (removed from product image) ---- */
 .pcard__badges {
-  position: absolute;
-  top: var(--s-3);
-  left: var(--s-3);
-  z-index: 2;
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
+  display: none !important;
 }
 
-/* Compare checkbox ---- */
+/* Compare checkbox (removed) ---- */
 .pcard__compare {
-  position: absolute;
-  top: var(--s-3);
-  right: var(--s-3);
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--glass);
-  backdrop-filter: blur(6px);
-  border: 1px solid var(--line);
-  border-radius: var(--r-pill);
-  padding: 3px 8px;
-  font-size: var(--fs-cap);
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--text-2);
-  transition: all var(--dur-1) var(--ease);
+  display: none !important;
 }
-.pcard__compare:hover { background: #fff; border-color: var(--line-strong); }
-.pcard__compare input { accent-color: var(--red); }
 
 /* ---- Card body ---- */
 .pcard__body {
@@ -215,10 +201,7 @@
 }
 
 .pcard__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--s-2);
-  flex-wrap: wrap;
+  display: none !important;
 }
 
 .pcard__link {
@@ -247,22 +230,24 @@
 
 /* img-wrap alias */
 .pcard__img-wrap {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
+  padding: var(--s-4);
 }
 .pcard__img-wrap img,
 .pcard__img-wrap svg {
-  width: auto;
-  height: auto;
-  max-width: 82%;
-  max-height: 82%;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
+  object-position: center;
   transition: transform var(--dur-3) var(--ease);
   position: relative;
   z-index: 1;
 }
 .pcard:hover .pcard__img-wrap img,
-.pcard:hover .pcard__img-wrap svg { transform: scale(1.06); }
+.pcard:hover .pcard__img-wrap svg { transform: scale(1.03); }

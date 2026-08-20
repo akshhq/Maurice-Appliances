@@ -76,17 +76,6 @@ export function renderProductCard(p, options = {}) {
   return `
     <article class="pcard reveal" data-name="${(p.model + ' ' + p.title + ' ' + (p.specs || []).join(' ')).toLowerCase()}" data-price="${p.mrp || 0}" data-band="${p.priceBand}" data-warranty="${p.warrantyYears}" data-wattage="${p.wattage || 0}" data-title="${p.title}" data-cat="${p.cat || p.category}" data-slug="${p.slug}">
       <div class="pcard__stage">
-        <div class="pcard__badges">
-          <span class="badge badge--red">ISI Certified</span>
-          ${p.warranty ? `<span class="badge badge--ember">${p.warranty}</span>` : ''}
-          ${p.mrp >= 8000 ? `<span class="badge">Best Seller</span>` : ''}
-        </div>
-        ${showCompare ? `
-        <label class="pcard__compare" data-no-nav="true" title="Add to Compare">
-          <input type="checkbox" class="compare-checkbox" data-slug="${p.slug}" ${compareChecked} aria-label="Compare ${p.model}">
-          <span>Compare</span>
-        </label>
-        ` : ''}
         <a href="${productUrl}" class="pcard__img-wrap" data-cursor="View">
           ${renderProductVisual(p, 'pcard__image', false, basePath)}
         </a>
@@ -102,10 +91,6 @@ export function renderProductCard(p, options = {}) {
           <div class="pcard__price-wrap">
             <span class="pcard__mrp">${formatINR(p.mrp)}</span>
             <span class="pcard__tax-note">MRP (incl. taxes)</span>
-          </div>
-          <div class="pcard__actions">
-            <button type="button" class="btn btn--sm btn--ghost open-inquiry-btn" data-model="${p.model} - ${p.title}" data-mrp="${p.mrp}" data-cursor="Inquire">Inquire</button>
-            <a href="${productUrl}" class="btn btn--sm" data-cursor="Specs">Specs</a>
           </div>
         </div>
       </div>

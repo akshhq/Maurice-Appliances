@@ -51,7 +51,7 @@
 .showcase__fade--left { left: 0; background: linear-gradient(to right, var(--paper), transparent); }
 .showcase__fade--right { right: 0; background: linear-gradient(to left, var(--paper), transparent); }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .showcase__card { width: 136px; }
   .showcase__frame { width: 60px; }
 }
