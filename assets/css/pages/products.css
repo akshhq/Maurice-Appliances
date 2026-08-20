@@ -218,6 +218,7 @@
   gap: clamp(1.5rem, 1rem + 1.8vw, 3rem);
   align-items: start;
 }
+.pdp__grid > * { min-width: 0; }
 @media (max-width: 1200px) {
   .pdp__grid { grid-template-columns: 1fr 1.2fr; }
   .pdp__buy-box-col { grid-column: span 2; margin-top: var(--s-5); }
@@ -532,6 +533,7 @@
 .pdp__pincode-input-row { display: flex; gap: 6px; }
 .pdp__pincode-input {
   flex: 1;
+  min-width: 0;
   padding: 6px 10px;
   background: #fff;
   border: 1px solid var(--line);
@@ -974,6 +976,12 @@
 
   /* Product catalog grid: 2-col on phone */
   .pgrid { grid-template-columns: repeat(2, 1fr); gap: var(--s-3); }
+
+  /* Long badge text (e.g. multi-year warranty strings) should wrap instead of
+     spilling past the card edge — short badges are unaffected since they
+     already fit on one line. */
+  .pcard__badges { max-width: calc(100% - var(--s-3) * 2); }
+  .badge--ember { white-space: normal; text-align: left; line-height: 1.3; }
 
   /* Bundle: stack vertically */
   .pdp-bundle__items { flex-direction: column; }

@@ -104,7 +104,7 @@ export function initProductFinder() {
 
         <!-- Step 1: Category Selector Tabs -->
         <div class="finder-step">
-          <p class="finder-step__title"><span class="step-num">1</span> Select Appliance Category</p>
+          <p class="finder-step__title"><span class="step-num">1</span><span>Select Appliance Category</span></p>
           <div class="finder-cat-chips">
             <button type="button" class="finder-cat-btn ${state.category === 'water-heaters' ? 'active' : ''}" data-cat="water-heaters">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="14" rx="6"/><path d="M9 21h2M13 21h2"/><circle cx="12" cy="10" r="2"/></svg>
@@ -123,7 +123,7 @@ export function initProductFinder() {
 
         <!-- Step 2: Usage / Capacity Selection -->
         <div class="finder-step">
-          <p class="finder-step__title"><span class="step-num">2</span> Select Size & Requirement</p>
+          <p class="finder-step__title"><span class="step-num">2</span><span>Select Size & Requirement</span></p>
           <div class="finder-options-grid">
             ${activeData.usages.map(u => `
               <div class="finder-opt-card ${state.usage === u.id ? 'active' : ''}" data-usage="${u.id}">
@@ -139,7 +139,7 @@ export function initProductFinder() {
 
         <!-- Step 3: Recommended Results -->
         <div class="finder-step" style="border-bottom:none">
-          <p class="finder-step__title"><span class="step-num">3</span> Recommended For You (<span style="color:var(--red)">${recs.length} Optimal Matches</span>)</p>
+          <p class="finder-step__title"><span class="step-num">3</span><span>Recommended For You (<span style="color:var(--red)">${recs.length} Optimal Matches</span>)</span></p>
           <div class="finder-recs-grid">
             ${recs.map(p => renderProductCard(p, { showCompare: true })).join('')}
           </div>
