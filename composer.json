@@ -1,0 +1,9 @@
+{
+    "name": "maurice/maurice-appliances",
+    "description": "Maurice Appliances Official Website Form Handlers and Email Integration",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "phpmailer/phpmailer": "^6.9"
+    }
+}

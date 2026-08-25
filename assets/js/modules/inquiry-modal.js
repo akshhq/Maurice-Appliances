@@ -128,8 +128,13 @@ export function initInquiryModal() {
     window.open(`https://wa.me/${COMPANY.whatsapp.replace(/[^0-9]/g, '')}?text=${text}`, '_blank');
   });
 
+  function getApiEndpoint() {
+    const isSubfolder = ['/company/', '/dealers/', '/support/', '/contact/', '/legal/', '/pages/'].some(p => window.location.pathname.includes(p));
+    return isSubfolder ? '../api/submit-form.php' : './api/submit-form.php';
+  }
+
   // Handle Form Submission
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.getElementById('inq-name').value.trim();
     const phone = document.getElementById('inq-phone').value.trim();
@@ -140,26 +145,47 @@ export function initInquiryModal() {
       return;
     }
 
-    // Save lead to localStorage
-    const lead = {
-      id: Date.now(),
-      product: productInput.value,
-      name,
-      phone,
-      email: document.getElementById('inq-email').value.trim(),
-      city,
-      type: document.getElementById('inq-type').value,
-      notes: document.getElementById('inq-notes').value.trim(),
-      date: new Date().toISOString()
-    };
-    try {
-      const existing = JSON.parse(localStorage.getItem('maurice_leads') || '[]');
-      existing.push(lead);
-      localStorage.setItem('maurice_leads', JSON.stringify(existing));
-    } catch (err) {}
+    const submitBtn = document.getElementById('submitInquiryBtn');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Submitting...</span>';
+    }
 
-    showToast('Thank you! Your inquiry has been submitted. Our regional sales team will contact you shortly.', 'success');
-    form.reset();
-    closeModal();
+    const formData = new FormData();
+    formData.append('formType', 'product_inquiry');
+    formData.append('product', productInput.value || '');
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('email', document.getElementById('inq-email').value.trim());
+    formData.append('city', city);
+    formData.append('inquiry_type', document.getElementById('inq-type').value);
+    formData.append('notes', document.getElementById('inq-notes').value.trim());
+
+    try {
+      const response = await fetch(getApiEndpoint(), {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Submission failed');
+      }
+
+      showToast('Thank you! Your inquiry has been submitted. Our regional sales team will contact you shortly.', 'success');
+      form.reset();
+      closeModal();
+
+    } catch (error) {
+      console.error('Product inquiry error:', error);
+      showToast('Unable to submit your inquiry. Please try again later or email customer.care@mauriceappliances.in', 'error');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+    }
   });
 }

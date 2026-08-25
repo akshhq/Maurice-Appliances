@@ -76,7 +76,7 @@ Maurice is an Indian manufacturer of electrical appliances (heating solutions, c
 
 ## 5. Signature Components & Patterns
 
-1. **Top Utility Bar**: Sticky top anchor carrying ISI certifications, toll-free direct dial, and quick links.
+1. **Top Utility Bar**: Sticky top anchor carrying ISI certifications, direct support, and quick links.
 2. **Sticky Glass Navbar & 4-Column Mega-Menu**: Multi-category breakdown (Heating, Cooking, Cooling & Utility) + live promotional showcase.
 3. **Category Pill Chips**: Horizontal scrollable quick-filters on Homepage and Catalog.
 4. **Flagship Showcase Tabs**: Dynamic category switching for high-ticket appliances.

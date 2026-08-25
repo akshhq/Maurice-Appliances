@@ -452,7 +452,7 @@ export function initProductDetailPage() {
               <p>Every Maurice appliance is backed by standard factory warranty covering material defects and workmanship. In the unlikely event of a fault, our regional service technicians are available across India.</p>
               <ul>
                 <li><strong>Warranty Term:</strong> ${currentVariant.warranty || '1 Year Complete'}</li>
-                <li><strong>Dedicated Toll-Free Support:</strong> 1800 547 2505</li>
+                <li><strong>Dedicated Support:</strong> Contact our customer care team</li>
                 <li><strong>Direct Email:</strong> customer.care@mauriceappliances.in</li>
               </ul>
             </div>

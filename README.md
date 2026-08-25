@@ -468,7 +468,6 @@ database/schema/products.json
 | **Corporate Office** | 6487 C-6, Vatika Complex, Vasant Kunj, New Delhi - 110 070 |
 | **Manufacturing Units** | Bawana, Delhi · Jia, Kullu (Himachal Pradesh) |
 | **Certifications** | BIS (ISI) Certified · ISO 9001:2015 |
-| **Toll-Free** | 1800 547 2505 |
 | **Sales** | +91 98165-91699 · +91 90154-88584 |
 | **Email** | mauriceappliances@gmail.com |
 | **Info Email** | info@mauriceappliances.com |

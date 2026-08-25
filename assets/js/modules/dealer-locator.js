@@ -52,7 +52,7 @@ export function initDealerLocator() {
       <div class="locator-empty is-hidden" id="dealerEmptyState">
         <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
         <h3>No direct dealer located for this selection</h3>
-        <p>Our network is continuously expanding. Call our central support team at <strong>1800 547 2505</strong> for express dispatch or nearest stockist directions.</p>
+        <p>Our network is continuously expanding. Contact our central support team for express dispatch or nearest stockist directions.</p>
         <a href="become-dealer.html" class="btn" style="margin-top:var(--s-4)">Apply to become a dealer in this area</a>
       </div>
     </div>

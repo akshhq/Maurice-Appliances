@@ -1,10 +1,15 @@
 /**
- * MAURICE APPLIANCES — Form Handling (Client-side validation, localStorage backup & toast feedback)
+ * MAURICE APPLIANCES — Form Handling (AJAX submissions to Hostinger PHP backend)
  */
 
 import { showToast } from '../core/catalog-utils.js?v=3.0';
 
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+function getApiEndpoint() {
+  const isSubfolder = ['/company/', '/dealers/', '/support/', '/contact/', '/legal/', '/pages/'].some(p => window.location.pathname.includes(p));
+  return isSubfolder ? '../api/submit-form.php' : './api/submit-form.php';
+}
 
 export function initForms() {
   initNewsletter();
@@ -23,7 +28,7 @@ function initNewsletter() {
     msg.className = 'footer__form-msg ' + (ok ? 'ok' : 'err');
   };
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const input = form.querySelector('input[name="email"]');
     const email = (input?.value || '').trim();
@@ -34,22 +39,50 @@ function initNewsletter() {
       return;
     }
 
-    try {
-      const subs = JSON.parse(localStorage.getItem('maurice_newsletter_subscribers') || '[]');
-      subs.push({ email, date: new Date().toISOString() });
-      localStorage.setItem('maurice_newsletter_subscribers', JSON.stringify(subs));
-    } catch (err) {}
+    const btn = form.querySelector('button[type="submit"]');
+    const originalBtnContent = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = 'Subscribing...';
+    }
 
-    setMsg('Thank you for subscribing to Maurice updates!', true);
-    showToast('Subscribed successfully! You will receive new launch updates.', 'success');
-    form.reset();
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('formType', 'newsletter_subscription');
+
+    try {
+      const response = await fetch(getApiEndpoint(), {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Subscription failed');
+      }
+
+      setMsg('Thank you for subscribing to Maurice updates!', true);
+      showToast('Subscribed successfully! You will receive new launch updates.', 'success');
+      form.reset();
+
+    } catch (error) {
+      console.error('Newsletter submission error:', error);
+      setMsg('Unable to subscribe right now. Please try again later.', false);
+      showToast('Unable to subscribe right now. Please try again.', 'error');
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalBtnContent;
+      }
+    }
   });
 }
 
 /* ---------------- Generic Forms (Contact, Dealer, Warranty, Service) ---------------- */
 function initAjaxForms() {
   document.querySelectorAll('[data-ajax-form]').forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const out = form.querySelector('[data-form-msg]');
@@ -83,30 +116,41 @@ function initAjaxForms() {
         return;
       }
 
-      // Collect form data
-      const formData = new FormData(form);
-      const dataObj = {};
-      formData.forEach((val, key) => { dataObj[key] = val; });
-      dataObj.submittedAt = new Date().toISOString();
-
-      // Store in localStorage
-      try {
-        const formType = form.dataset.formType || 'general_submission';
-        const key = `maurice_form_${formType}`;
-        const existing = JSON.parse(localStorage.getItem(key) || '[]');
-        existing.push(dataObj);
-        localStorage.setItem(key, JSON.stringify(existing));
-      } catch (err) {}
-
       const originalLabel = btn ? btn.innerHTML : '';
-      if (btn) { btn.disabled = true; btn.innerHTML = 'Submitting...'; }
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = 'Submitting...';
+      }
 
-      setTimeout(() => {
-        if (btn) { btn.disabled = false; btn.innerHTML = originalLabel; }
-        setMsg('Thank you! Your request has been recorded. Our team will contact you shortly.', true);
+      const formData = new FormData(form);
+      formData.append('formType', form.dataset.formType || 'general_submission');
+
+      try {
+        const response = await fetch(getApiEndpoint(), {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || 'Submission failed');
+        }
+
+        setMsg('Thank you! Your request has been submitted. Our team will contact you shortly.', true);
         showToast('Form submitted successfully! We will contact you soon.', 'success');
         form.reset();
-      }, 500);
+
+      } catch (error) {
+        console.error('Form submission error:', error);
+        setMsg('Something went wrong. Please try again later or email customer.care@mauriceappliances.in', false);
+        showToast('Unable to submit the form. Please try again later.', 'error');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = originalLabel;
+        }
+      }
     });
   });
 }

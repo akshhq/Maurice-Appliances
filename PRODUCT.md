@@ -10,7 +10,7 @@
 - **Manufacturing Units**:
   1. VPO, Jia Teh. Bhunter, Distt. Kullu, Himachal Pradesh – 175125
   2. Sector-4, DSIDC Industrial Area, Bawana, Delhi – 110039
-- **Customer Care Helpline**: 1800 547 2505 (Toll-Free, Mon–Sat 9:30 AM – 6:30 PM)
+- **Customer Care**: Direct support via the contact page (Mon–Sat 9:30 AM – 6:30 PM)
 - **Official Email**: contact@mauriceappliances.in / service@mauriceappliances.in
 - **Distribution Scope**: 250+ Authorized Distributors across 12+ States (Himachal Pradesh, Punjab, Haryana, Delhi NCR, Uttarakhand, Uttar Pradesh, Rajasthan, Jammu & Kashmir, and beyond).
 

@@ -89,8 +89,7 @@ export const DEALER_NETWORK = [
     city: "New Delhi",
     pincode: "110070",
     address: "6487 C-6, Vatika Complex, Vasant Kunj, New Delhi - 110 070",
-    phone: "1800 547 2505",
-    altPhone: "+91 90154-88584",
+    phone: "+91 90154-88584",
     email: "delhi.sales@mauriceappliances.in",
     categories: ["All 11 Categories"],
     isFactoryOutlet: true

@@ -21,6 +21,45 @@ export function initHomePage() {
   initProductFinder();
   initB2BExpressForm();
   initReveals();
+  initHeroShowcaseCarousel();
+}
+
+/* ---- Hero showcase carousel (mobile-only visual; safe no-op on desktop) ---- */
+function initHeroShowcaseCarousel() {
+  const grid = document.getElementById('heroShowcaseGrid');
+  const dotsWrap = document.getElementById('heroShowcaseDots');
+  if (!grid || !dotsWrap) return;
+  const dots = [...dotsWrap.querySelectorAll('.hero__showcase-dot')];
+  const cards = [...grid.querySelectorAll('.hero__showcase-card')];
+  if (!dots.length || !cards.length) return;
+
+  let ticking = false;
+  function updateActiveDot() {
+    ticking = false;
+    const gridRect = grid.getBoundingClientRect();
+    const center = gridRect.left + gridRect.width / 2;
+    let closest = 0;
+    let closestDist = Infinity;
+    cards.forEach((card, i) => {
+      const r = card.getBoundingClientRect();
+      const dist = Math.abs((r.left + r.width / 2) - center);
+      if (dist < closestDist) { closestDist = dist; closest = i; }
+    });
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === closest));
+  }
+
+  grid.addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(updateActiveDot); }
+  }, { passive: true });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      const card = cards[i];
+      if (card) card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+    });
+  });
+
+  updateActiveDot();
 }
 
 /* ---- 1. Dynamic Hero Stats ---- */
@@ -132,7 +171,7 @@ function initB2BExpressForm() {
   const form = document.getElementById('expressDealerForm');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = form.querySelector('[name="name"]')?.value.trim();
     const city = form.querySelector('[name="city"]')?.value.trim();
@@ -143,18 +182,46 @@ function initB2BExpressForm() {
       return;
     }
 
-    try {
-      const existing = JSON.parse(localStorage.getItem('maurice_dealer_inquiries') || '[]');
-      existing.push({ id: Date.now(), name, city, phone, date: new Date().toISOString() });
-      localStorage.setItem('maurice_dealer_inquiries', JSON.stringify(existing));
-    } catch (err) {}
-
-    if (window.showToast) {
-      window.showToast('Express application received! Our regional distributor manager will call you within 2 hours.', 'success');
-    } else {
-      alert('Express application received! Our regional distributor manager will call you within 2 hours.');
+    const btn = form.querySelector('button[type="submit"]');
+    const originalLabel = btn ? btn.innerHTML : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = 'Submitting...';
     }
-    form.reset();
+
+    const formData = new FormData(form);
+    formData.append('formType', 'express_dealer_callback');
+
+    try {
+      const response = await fetch('./api/submit-form.php', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Submission failed');
+      }
+
+      if (window.showToast) {
+        window.showToast('Express application received! Our regional distributor manager will call you within 2 hours.', 'success');
+      } else {
+        alert('Express application received! Our regional distributor manager will call you within 2 hours.');
+      }
+      form.reset();
+
+    } catch (error) {
+      console.error('Express dealer callback error:', error);
+      if (window.showToast) {
+        window.showToast('Unable to submit the application. Please try again.', 'error');
+      }
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = originalLabel;
+      }
+    }
   });
 }
 

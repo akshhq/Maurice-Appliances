@@ -11,7 +11,6 @@ export const COMPANY = {
   brandRegistered: 2012,
   address: "VPO, Jia Teh. Bhunter Distt Kullu, Himachal Pradesh - 175 125",
   corporateOffice: "6487 C-6, Vatika Complex, Vasant Kunj, New Delhi - 110 070",
-  tollFree: "1800 547 2505",
   phones: ["+91 98165-91699", "+91 90154-88584"],
   email: "mauriceappliances@gmail.com",
   infoEmail: "info@mauriceappliances.com",

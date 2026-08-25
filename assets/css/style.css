@@ -2473,10 +2473,6 @@ em { font-style: italic; }
   .phero h1 { font-size: clamp(1.6rem, 5vw + 0.5rem, 2rem); }
   .phero .lead { font-size: var(--fs-sm); }
 
-  /* Topbar: only phone number (links already hidden at 720px) */
-  .topbar__phone span { display: none; }
-  .topbar__phone::after { content: "1800 547 2505"; font-size: var(--fs-cap); }
-
   /* Nav: tighter bar */
   .nav__bar { gap: var(--s-2); }
   .nav__logo-word { font-size: 1.4rem; }

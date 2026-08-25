@@ -217,6 +217,68 @@
   box-shadow: var(--sh-1);
 }
 
+/* ---- Mobile-only: eyebrow icon + alt stat label ----
+   These stay invisible/unchanged above the breakpoint so tablet
+   and desktop markup renders exactly as before. */
+.eyebrow__icon-mobile,
+.hero-stat__label-mobile {
+  display: none;
+}
+
+/* ---- Mobile-only: hero showcase becomes a swipeable single-card
+   carousel with dot pagination instead of a static 2x2 grid.
+   Only applies at phone widths; tablet/desktop grid above is untouched. ---- */
+@media (max-width: 640px) {
+  .eyebrow__icon-mobile { display: inline-block; margin-right: 2px; }
+  .hero-stat__label-default { display: none; }
+  .hero-stat__label-mobile { display: inline; }
+
+  .hero__showcase-grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: var(--s-3);
+    max-width: 100%;
+    margin-inline: 0;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .hero__showcase-grid::-webkit-scrollbar { display: none; }
+  .hero__showcase-card {
+    flex: 0 0 78%;
+    scroll-snap-align: center;
+  }
+  .hero__showcase-img-wrap { max-height: 150px; }
+
+  .hero__showcase-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: var(--s-3);
+  }
+  .hero__showcase-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--line);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: width var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+  }
+  .hero__showcase-dot.is-active {
+    width: 20px;
+    background: var(--red);
+  }
+}
+@media (min-width: 641px) {
+  .hero__showcase-dots { display: none; }
+}
+
 /* ============================================================
    2. ENDLESS HORIZONTAL CATEGORY MARQUEE (PURE CATEGORIES, NO BUTTONS)
    ============================================================ */

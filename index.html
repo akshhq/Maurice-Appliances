@@ -41,7 +41,6 @@
     "url": "https://www.mauriceappliances.in",
     "logo": "https://www.mauriceappliances.in/assets/images/icons/favicon.svg",
     "description": "BIS (ISI) & ISO 9001:2015 certified manufacturer of home and kitchen appliances.",
-    "telephone": "1800 547 2505",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "VPO, Jia Teh. Bhunter",
@@ -300,7 +299,7 @@
           <!-- Left Column Copy & CTAs -->
           <div class="hero__copy">
             <div class="hero__eyebrow-row">
-              <span class="eyebrow">Engineered for Indian Homes</span>
+              <span class="eyebrow"><span class="eyebrow__icon-mobile" aria-hidden="true">🧭</span>Engineered for Indian Homes</span>
               <span class="hero__rating-badge">
                 <svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4-6.3-4.6L5.7 21.4 8 14 2 9.4h7.6z"/></svg>
                 <span>4.9 / 5.0 Rating</span>
@@ -346,14 +345,14 @@
                 <div class="hero-stat__value">
                   <span id="heroStatYears" class="tabular" data-count="16">16</span><span class="accent">+</span>
                 </div>
-                <span class="hero-stat__label">Years building</span>
+                <span class="hero-stat__label"><span class="hero-stat__label-default">Years building</span><span class="hero-stat__label-mobile">Years (since 2008)</span></span>
               </div>
             </div>
           </div>
 
           <!-- Right Column: Contained Grid System Showcase -->
           <div class="hero__stage">
-            <div class="hero__showcase-grid">
+            <div class="hero__showcase-grid" id="heroShowcaseGrid">
               <a href="product.html?cat=water-heaters&model=lava-digital-glass-line-25l-25-ltr-glass-lined-lava-digital" class="hero__showcase-card" data-cursor="Geysers">
                 <span class="hero__showcase-badge">Water Heating</span>
                 <div class="hero__showcase-img-wrap">
@@ -389,6 +388,12 @@
                 <span class="hero__showcase-title">Farratta &amp; Fans</span>
                 <span class="hero__showcase-sub">High Velocity Airflow</span>
               </a>
+            </div>
+            <div class="hero__showcase-dots" id="heroShowcaseDots" aria-hidden="true">
+              <button type="button" class="hero__showcase-dot is-active" data-index="0" aria-label="Show slide 1"></button>
+              <button type="button" class="hero__showcase-dot" data-index="1" aria-label="Show slide 2"></button>
+              <button type="button" class="hero__showcase-dot" data-index="2" aria-label="Show slide 3"></button>
+              <button type="button" class="hero__showcase-dot" data-index="3" aria-label="Show slide 4"></button>
             </div>
           </div>
         </div>
@@ -877,10 +882,6 @@
         <div class="footer__col footer__col--contact">
           <p class="footer__col-title">Customer Support</p>
           <ul class="footer__contact">
-            <li>
-              <span class="footer__ci">Toll-Free</span>
-              <a href="tel:18005472505">1800 547 2505</a>
-            </li>
             <li>
               <span class="footer__ci">Direct Support</span>
               <a href="tel:+919816591699">+91 98165-91699</a>
