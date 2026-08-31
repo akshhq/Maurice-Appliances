@@ -1,39 +1,6 @@
-/**
- * ==============================================================================
- * MAURICE APPLIANCES — GOOGLE APPS SCRIPT FOR FORM SUBMISSIONS
- * ==============================================================================
- * This script receives form submissions from all Maurice Appliances website forms
- * and logs the data into dedicated sheets (tabs) within a single Google Spreadsheet.
- *
- * HOW TO DEPLOY:
- * 1. Open Google Sheets (https://sheets.google.com) and create a new spreadsheet:
- *    Name it e.g. "Maurice Appliances — Website Form Submissions"
- * 2. Copy the Spreadsheet ID from the URL:
- *    https://docs.google.com/spreadsheets/d/[SPREADSHEET_ID]/edit
- * 3. In Google Sheets, click Extensions > Apps Script.
- * 4. Replace any existing code in Code.gs with this entire file.
- * 5. Update the SPREADSHEET_ID variable below with your copied ID.
- * 6. Click "Deploy" > "New deployment".
- * 7. Select type: "Web app".
- * 8. Set:
- *    - Description: "Maurice Website Forms API"
- *    - Execute as: "Me" (your Google account)
- *    - Who has access: "Anyone"
- * 9. Click "Deploy" and authorize permissions.
- * 10. Copy the generated Web App URL (ends in /exec) and add it to your .env file:
- *     GOOGLE_SHEET_ID="your_spreadsheet_id"
- *     GOOGLE_SCRIPT_WEBAPP_URL="https://script.google.com/macros/s/.../exec"
- * ==============================================================================
- */
+var SPREADSHEET_ID = "1LQgXlBv5mJ8YdXICO_F7l45Ci5abgcD-wSDjb-jKCAs";
 
-// REPLACE WITH YOUR ACTUAL GOOGLE SPREADSHEET ID
-var SPREADSHEET_ID = "YOUR_SPREADSHEET_ID_HERE";
-
-/**
- * Sheet Configuration: Schema for each form type
- */
 var SHEET_CONFIG = {
-  // 1. Contact Form (/contact/contact.html)
   "contact_message": {
     sheetName: "Contact Messages",
     headers: [

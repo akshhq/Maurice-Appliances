@@ -10,8 +10,8 @@ Fill in these details in your [`.env`](file:///.env) file or [`api/config.php`](
 
 | Field | Configuration Key | Recommended Value | Your Value |
 | :--- | :--- | :--- | :--- |
-| **Google Spreadsheet ID** | `GOOGLE_SHEET_ID` | `[From Google Sheet URL]` | `_________________________` |
-| **Google Script Web App URL** | `GOOGLE_SCRIPT_WEBAPP_URL` | `https://script.google.com/macros/s/.../exec` | `_________________________` |
+| **Google Spreadsheet ID** | `GOOGLE_SHEET_ID` | `[From Google Sheet URL]` | `1LQgXlBv5mJ8YdXICO_F7l45Ci5abgcD-wSDjb-jKCAs` |
+| **Google Script Web App URL** | `GOOGLE_SCRIPT_WEBAPP_URL` | `https://script.google.com/macros/s/.../exec` | `https://script.google.com/macros/s/AKfycbzhlrv3VIWTFlWfRWRI-9TY3-aOWYmSPDVtUIRQ5buWw6r896ESvgsgoQ-H7O1e8kGc/exec` |
 | **SMTP Server Host** | `SMTP_HOST` | `smtp.hostinger.com` | `smtp.hostinger.com` |
 | **SMTP Server Port** | `SMTP_PORT` | `465` (SSL) or `587` (TLS) | `465` |
 | **SMTP Security** | `SMTP_SECURITY` | `ssl` | `ssl` |
