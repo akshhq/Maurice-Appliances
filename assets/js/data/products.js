@@ -102,12 +102,13 @@ export const RAW_PRODUCTS = {
       weight: "800g",
       warranty: "2 Year",
       mrp: 790,
-      image: "media/IRON/dry-iron-adjustable-thermostat.jpeg",
+      image: "media/IRON/iron%20suprem.webp",
       gallery: [
-        "media/IRON/dry-iron-adjustable-thermostat.jpeg",
-        "media/IRON/dry-iron-all-fabrics.jpeg",
+        "media/IRON/iron%20suprem.webp",
         "media/IRON/dry-iron-features-soleplate.jpeg",
-        "media/IRON/dry-iron-360-swivel-cord.jpeg"
+        "media/IRON/dry-iron-adjustable-thermostat.jpeg",
+        "media/IRON/dry-iron-360-swivel-cord.jpeg",
+        "media/IRON/dry-iron-all-fabrics.jpeg"
       ]
     },
     {
@@ -120,12 +121,14 @@ export const RAW_PRODUCTS = {
       weight: "850g",
       warranty: "2 Year",
       mrp: 890,
-      image: "media/IRON/dry-iron-features-soleplate.jpeg",
+      image: "media/IRON/PREMIUM.webp",
       gallery: [
+        "media/IRON/PREMIUM.webp",
+        "media/IRON/Dry%20Iron%20Premium_page-0001.webp",
         "media/IRON/dry-iron-features-soleplate.jpeg",
-        "media/IRON/dry-iron-all-fabrics.jpeg",
+        "media/IRON/dry-iron-adjustable-thermostat.jpeg",
         "media/IRON/dry-iron-360-swivel-cord.jpeg",
-        "media/IRON/dry-iron-adjustable-thermostat.jpeg"
+        "media/IRON/dry-iron-all-fabrics.jpeg"
       ]
     },
     {
@@ -138,7 +141,10 @@ export const RAW_PRODUCTS = {
       weight: "2.5kg",
       warranty: "2 Year",
       mrp: 1290,
-      image: "media/IRON/ICON.webp"
+      image: "media/IRON/ICON.webp",
+      gallery: [
+        "media/IRON/ICON.webp"
+      ]
     },
     {
       model: "STEELO",
@@ -150,13 +156,14 @@ export const RAW_PRODUCTS = {
       weight: "950g",
       warranty: "2 Year",
       mrp: 1090,
-      image: "media/IRON/dry-iron-1000w-fast-heatup.jpeg",
+      image: "media/IRON/Dry%20Iron%20Premium_page-0001.webp",
       gallery: [
+        "media/IRON/Dry%20Iron%20Premium_page-0001.webp",
         "media/IRON/dry-iron-1000w-fast-heatup.jpeg",
-        "media/IRON/dry-iron-all-fabrics.jpeg",
         "media/IRON/dry-iron-features-soleplate.jpeg",
+        "media/IRON/dry-iron-adjustable-thermostat.jpeg",
         "media/IRON/dry-iron-360-swivel-cord.jpeg",
-        "media/IRON/dry-iron-adjustable-thermostat.jpeg"
+        "media/IRON/dry-iron-all-fabrics.jpeg"
       ]
     }
   ],
@@ -280,12 +287,13 @@ export const RAW_PRODUCTS = {
       weight: "0.8kg",
       warranty: "1 Year",
       mrp: 1290,
-      image: "media/kettle/flash-kettle-capacity-comparison.jpeg",
+      image: "media/kettle/Flash%201.5ltr%20kettle.webp",
       gallery: [
-        "media/kettle/flash-kettle-capacity-comparison.jpeg",
+        "media/kettle/Flash%201.5ltr%20kettle.webp",
         "media/kettle/flash-kettle-lifestyle-pour.jpeg",
         "media/kettle/flash-kettle-features.jpeg",
         "media/kettle/flash-kettle-cool-touch-handle.jpeg",
+        "media/kettle/flash-kettle-capacity-comparison.jpeg",
         "media/kettle/flash-kettle-lifestyle-living-room.jpeg"
       ]
     },
@@ -300,12 +308,13 @@ export const RAW_PRODUCTS = {
       weight: "0.9kg",
       warranty: "1 Year",
       mrp: 1490,
-      image: "media/kettle/flash-kettle-lifestyle-pour.jpeg",
+      image: "media/kettle/Flash%201.8ltr%20Kettle.webp",
       gallery: [
+        "media/kettle/Flash%201.8ltr%20Kettle.webp",
         "media/kettle/flash-kettle-lifestyle-pour.jpeg",
-        "media/kettle/flash-kettle-capacity-comparison.jpeg",
         "media/kettle/flash-kettle-features.jpeg",
         "media/kettle/flash-kettle-cool-touch-handle.jpeg",
+        "media/kettle/flash-kettle-capacity-comparison.jpeg",
         "media/kettle/flash-kettle-lifestyle-living-room.jpeg"
       ]
     },
@@ -320,8 +329,9 @@ export const RAW_PRODUCTS = {
       weight: "1.3kg",
       warranty: "1 Year",
       mrp: 3990,
-      image: "media/kettle/multipurpose-kettle-3in1-accessories.jpeg",
+      image: "media/kettle/kettle%20Multiprpose.webp",
       gallery: [
+        "media/kettle/kettle%20Multiprpose.webp",
         "media/kettle/multipurpose-kettle-3in1-accessories.jpeg",
         "media/kettle/multipurpose-kettle-temp-control.jpeg",
         "media/kettle/multipurpose-kettle-1-5l-capacity.jpeg",
@@ -340,8 +350,9 @@ export const RAW_PRODUCTS = {
       weight: "1kg",
       warranty: "1 Year",
       mrp: 2490,
-      image: "media/kettle/unique-kettle-lifestyle-table.jpeg",
+      image: "media/kettle/unique%201.5ltr.webp",
       gallery: [
+        "media/kettle/unique%201.5ltr.webp",
         "media/kettle/unique-kettle-lifestyle-table.jpeg",
         "media/kettle/unique-kettle-heating-glow.jpeg",
         "media/kettle/unique-kettle-safety-features.jpeg",
@@ -355,9 +366,9 @@ export const RAW_PRODUCTS = {
     { model: "MICROWAVE 20L", title: "Microwave Oven 20 L 700W", moq: "1 Pc", capacity: "20L", wattage: 700, specs: ["20 litre capacity solo microwave", "700W power output", "5 power level settings", "Digital timer with auto-cook programs", "Child lock safety feature", "ISI marked main cable"], dim: "440 x 340 x 280", weight: "11kg", warranty: "1 Year", mrp: 8990, image: "media/OTG_BERAKFAST-MAKER/MICROWAVE.webp" },
     { model: "OTG 15 LTR", title: "Oven Toaster Griller 15 L 1200W", moq: "1 Pc", capacity: "15L", wattage: 1200, specs: ["Dual infrared upper/lower heating elements", "Reinforced metal housing", "Safety internal glass viewport", "Removable crumb tray", "Wire rack included", "ISI marked main cable"], dim: "310 x 200 x 210", weight: "3kg", warranty: "1 Year", mrp: 4990 },
     { model: "OTG 21 LTR", title: "Oven Toaster Griller 21 L 1400W", moq: "1 Pc", capacity: "21L", wattage: 1400, specs: ["Dual infrared upper/lower heating elements", "Reinforced metal housing", "Safety internal glass viewport", "Full width wire grid rack", "Enameled baking tray included", "ISI marked main cable"], dim: "430 x 300 x 280", weight: "6kg", warranty: "1 Year", mrp: 6990 },
-    { model: "ATTA CHAKKI MAC-01", title: "Atta Chakki Traditional Stone Grinding", moq: "1 Pc", wattage: 750, specs: ["Traditional authentic stone grinding", "ISO certified", "Energy efficient motor", "Compact cabinet design", "Standard grain milling deck"], dim: "450 x 350 x 780", weight: "32kg", warranty: "1 Year", mrp: 11990, image: "media/ATTA-CHAKKI/Atta%20Chakki%20mac-01%20%28With%20traditaional%20stone%20grinding%29.webp" },
-    { model: "ATTA CHAKKI MAC-02", title: "Atta Chakki Multiple Grinding Options", moq: "1 Pc", wattage: 750, specs: ["Advanced multi-option custom setting mill", "Multiple variant custom grain output sieves", "ISO certified", "Energy efficient motor", "Compact cabinet design"], dim: "450 x 350 x 780", weight: "34kg", warranty: "1 Year", mrp: 15990, image: "media/ATTA-CHAKKI/Atta%20chakki%20mac-03%20%28with%20multiple%20girinding%20options%29.webp" },
-    { model: "ATTA CHAKKI MAC-03", title: "Atta Chakki with Masala Grinder", moq: "1 Pc", wattage: 1000, specs: ["High-speed heavy load multi-purpose pulverizer", "Independent masala spice grinder deck", "ISO certified", "Energy efficient motor", "Compact cabinet design"], dim: "450 x 350 x 780", weight: "36kg", warranty: "1 Year", mrp: 17990, image: "media/ATTA-CHAKKI/atta%20chakki%20mac-03%28with%20masala%20grinder%20options%29.webp" }
+    { model: "ATTA CHAKKI MAC-01", title: "Atta Chakki Traditional Stone Grinding", moq: "1 Pc", wattage: 750, specs: ["Traditional authentic stone grinding", "ISO certified", "Energy efficient motor", "Compact cabinet design", "Standard grain milling deck"], dim: "450 x 350 x 780", weight: "32kg", warranty: "1 Year", mrp: 11990, image: "media/ATTA-CHAKKI/atta-chakki-mac-01.webp" },
+    { model: "ATTA CHAKKI MAC-02", title: "Atta Chakki Multiple Grinding Options", moq: "1 Pc", wattage: 750, specs: ["Advanced multi-option custom setting mill", "Multiple variant custom grain output sieves", "ISO certified", "Energy efficient motor", "Compact cabinet design"], dim: "450 x 350 x 780", weight: "34kg", warranty: "1 Year", mrp: 15990, image: "media/ATTA-CHAKKI/atta-chakki-mac-02.webp" },
+    { model: "ATTA CHAKKI MAC-03", title: "Atta Chakki with Masala Grinder", moq: "1 Pc", wattage: 1000, specs: ["High-speed heavy load multi-purpose pulverizer", "Independent masala spice grinder deck", "ISO certified", "Energy efficient motor", "Compact cabinet design"], dim: "450 x 350 x 780", weight: "36kg", warranty: "1 Year", mrp: 17990, image: "media/ATTA-CHAKKI/atta-chakki-mac-03.webp" }
   ]
 };
 
@@ -391,12 +402,19 @@ Object.keys(RAW_PRODUCTS).forEach(catId => {
   RAW_PRODUCTS[catId].forEach((item, index) => {
     const slug = slugify(`${item.model}-${item.title}`);
     const warrantyYears = parseWarrantyYears(item.warranty);
+    // Ensure main product image is primary and gallery is always properly populated
+    let gallery = item.gallery ? [...item.gallery] : (item.image ? [item.image] : []);
+    if (item.image && gallery.length > 0 && gallery[0] !== item.image) {
+      gallery = [item.image, ...gallery.filter(g => g !== item.image)];
+    }
+
     const enriched = {
       ...item,
       cat: catId,
       slug: slug,
       warrantyYears: warrantyYears,
       priceBand: getPriceBand(item.mrp || 0),
+      gallery: gallery,
       index: index
     };
     PRODUCTS_BY_CAT[catId].push(enriched);
