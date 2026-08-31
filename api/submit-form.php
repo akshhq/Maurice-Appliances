@@ -40,6 +40,56 @@ function labelFromKey(string $key): string {
     return ucwords(str_replace(['_', '-'], ' ', $key));
 }
 
+function syncToGoogleSheets(array $data, array $config): bool {
+    $webhookUrl = trim((string) ($config['google_script_webapp_url'] ?? ''));
+    if ($webhookUrl === '' || strpos($webhookUrl, 'http') !== 0 || strpos($webhookUrl, 'YOUR_') !== false) {
+        return false;
+    }
+
+    $payload = $data;
+    if (!empty($config['google_sheet_id']) && strpos($config['google_sheet_id'], 'YOUR_') === false) {
+        $payload['spreadsheet_id'] = $config['google_sheet_id'];
+    }
+    $payload['source_url'] = $_SERVER['HTTP_REFERER'] ?? ('https://' . ($_SERVER['HTTP_HOST'] ?? 'mauriceappliances.in'));
+
+    $json = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+    if (function_exists('curl_init')) {
+        $ch = curl_init($webhookUrl);
+        if ($ch !== false) {
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_MAXREDIRS, 5);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json; charset=utf-8',
+                'Content-Length: ' . strlen($json)
+            ]);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 6);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+
+            $res = curl_exec($ch);
+            curl_close($ch);
+            return ($res !== false);
+        }
+    }
+
+    // Stream context fallback
+    $options = [
+        'http' => [
+            'method'  => 'POST',
+            'header'  => "Content-Type: application/json; charset=utf-8\r\n",
+            'content' => $json,
+            'timeout' => 6,
+            'follow_location' => 1
+        ]
+    ];
+    $context = stream_context_create($options);
+    @file_get_contents($webhookUrl, false, $context);
+    return true;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Request Method Validation
@@ -174,16 +224,26 @@ if ($hasVendor && class_exists(PHPMailer::class)) {
 
         $mail->send();
 
+        // Sync submission to Google Sheets (if webhook configured in .env)
+        syncToGoogleSheets($_POST, $config);
+
         jsonResponse(true, 'Your request has been submitted successfully.');
 
     } catch (Exception $e) {
         error_log('Maurice form mail error: ' . $e->getMessage());
+
+        // Still attempt Google Sheets logging even if mail server timed out
+        syncToGoogleSheets($_POST, $config);
+
         jsonResponse(false, 'Unable to submit your request right now. Please try again later.', 500);
     }
 } else {
     // Fallback if vendor autoload is not yet present on server: Log and inform
     error_log("Maurice Form: PHPMailer vendor library not found. Please run 'composer install'.");
     
+    // Sync submission to Google Sheets
+    syncToGoogleSheets($_POST, $config);
+
     // Attempt native mail fallback if PHP mail() is configured
     $headers  = "MIME-Version: 1.0\r\n";
     $headers .= "Content-type: text/html; charset=UTF-8\r\n";

@@ -5,18 +5,213 @@
    ============================================================ */
 
 /* ============================================================
-   1. HERO SECTION (Single Unified Flagship Showcase)
+   1. FULL-WIDTH HERO BANNER CAROUSEL (Edge-to-Edge 7s Looping Slider)
    ============================================================ */
-.hero {
+.hero-banner-section {
   position: relative;
-  min-height: calc(88svh - var(--nav-total));
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: calc(var(--nav-total) + 20px);
-  padding-bottom: var(--s-8);
+  width: 100%;
+  padding-top: var(--nav-total);
+  background: #101114;
   overflow: hidden;
+}
+
+.hero-banner__container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+  background: #131416;
+}
+
+.hero-banner__viewport {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-banner__track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.hero-banner__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  position: relative;
+}
+
+.hero-banner__link {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.45 / 1;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  background: #f7efe6;
+}
+
+@media (max-width: 1024px) {
+  .hero-banner__link {
+    aspect-ratio: 2.2 / 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner__link {
+    aspect-ratio: 2.0 / 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-banner__link {
+    aspect-ratio: 1.85 / 1;
+    min-height: 200px;
+  }
+}
+
+.hero-banner__link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-banner__link:hover img {
+  transform: scale(1.02);
+}
+
+/* Prev / Next Slider Arrows */
+.hero-banner__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-circle);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 4;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
+  transition: all var(--dur-1) var(--ease);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-banner__container:hover .hero-banner__arrow {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hero-banner__arrow:hover {
+  background: #ffffff;
+  color: var(--red);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 8px 28px rgba(224, 30, 38, 0.35);
+}
+
+.hero-banner__arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.hero-banner__arrow--prev {
+  left: clamp(12px, 2vw, 28px);
+}
+
+.hero-banner__arrow--next {
+  right: clamp(12px, 2vw, 28px);
+}
+
+@media (max-width: 768px) {
+  .hero-banner__arrow {
+    opacity: 0.9;
+    pointer-events: auto;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Pagination Dots & 7s Progress Bar Animation */
+.hero-banner__dots {
+  position: absolute;
+  bottom: clamp(10px, 2vw, 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 4;
+  background: rgba(19, 20, 22, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.hero-banner__dot {
+  width: 28px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--dur-2) var(--ease);
+}
+
+.hero-banner__dot:hover {
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.hero-banner__dot.is-active {
+  width: 48px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.hero-banner__dot-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  background: var(--red);
+  border-radius: var(--r-pill);
+}
+
+.hero-banner__dot.is-active .hero-banner__dot-fill {
+  width: 100%;
+  animation: heroBannerProgress 7s linear forwards;
+}
+
+.hero-banner__container.is-paused .hero-banner__dot.is-active .hero-banner__dot-fill {
+  animation-play-state: paused;
+}
+
+@keyframes heroBannerProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* ============================================================
+   2. HERO BRAND INTRO & CREDENTIALS SECTION
+   ============================================================ */
+.hero-intro {
+  position: relative;
+  padding-top: var(--s-7);
+  padding-bottom: var(--s-7);
   background: var(--hero-bg);
+  overflow: hidden;
 }
 
 .hero__canvas {
@@ -27,31 +222,30 @@
   opacity: 0.65;
 }
 
-.hero__wrap {
+.hero-intro__wrap {
   position: relative;
   z-index: 2;
   width: 100%;
 }
 
-.hero__grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  align-items: center;
-  gap: clamp(2rem, 1.5rem + 3vw, 4.5rem);
-}
-@media (max-width: 1024px) {
-  .hero__grid {
-    grid-template-columns: 1fr;
-    gap: var(--s-6);
-  }
+.hero-intro__grid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-5);
+  margin-bottom: var(--s-5);
+  flex-wrap: wrap;
 }
 
-/* Left Content Column */
+.hero-intro__copy {
+  max-width: 680px;
+}
+
 .hero__eyebrow-row {
   display: flex;
   align-items: center;
   gap: var(--s-2);
-  margin-bottom: var(--s-4);
+  margin-bottom: var(--s-3);
   flex-wrap: wrap;
 }
 .hero__rating-badge {
@@ -68,37 +262,36 @@
 }
 .hero__rating-badge svg { width: 13px; height: 13px; fill: #f59e0b; color: #f59e0b; }
 
-.hero__title {
+.hero-intro__title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.4rem, 1.4rem + 4vw, 4.2rem);
-  line-height: 1.06;
+  font-size: clamp(2.2rem, 1.4rem + 2.8vw, 3.5rem);
+  line-height: 1.1;
   letter-spacing: -0.025em;
   color: var(--ink);
-  margin-bottom: var(--s-4);
+  margin-bottom: var(--s-3);
 }
-.hero__title .accent {
+
+.hero-intro__title .accent {
   color: var(--red);
   background: linear-gradient(135deg, var(--red) 0%, var(--ember) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.hero__lead {
+.hero-intro__lead {
   font-size: var(--fs-body);
   color: var(--text-2);
-  max-width: 52ch;
-  margin-bottom: var(--s-5);
-  line-height: 1.65;
+  max-width: 58ch;
+  line-height: 1.6;
   font-weight: 400;
 }
 
-.hero__cta-row {
+.hero-intro__actions {
   display: flex;
   gap: var(--s-3);
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: var(--s-6);
 }
 
 /* Dynamic Stats Bar inside Hero */
@@ -137,146 +330,15 @@
   margin-top: 2px;
 }
 
-/* Right Visual Stage — Contained Grid Showcase */
-.hero__showcase-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--s-3);
-  max-width: 480px;
-  margin-inline: auto;
-  position: relative;
-}
-.hero__showcase-card {
-  background: var(--surface);
-  border: 1.5px solid var(--line);
-  border-radius: var(--r-lg);
-  padding: var(--s-3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  text-decoration: none;
-  box-shadow: var(--sh-1);
-  transition: all var(--dur-2) var(--ease);
-  position: relative;
-  overflow: hidden;
-}
-.hero__showcase-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--red);
-  box-shadow: var(--sh-3);
-}
-.hero__showcase-img-wrap {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  max-height: 120px;
-  display: grid;
-  place-items: center;
-  background: radial-gradient(circle at 50% 40%, #fff 0%, var(--surface-2) 100%);
-  border-radius: var(--r-md);
-  margin-bottom: var(--s-2);
-  overflow: hidden;
-  padding: 6px;
-}
-.hero__showcase-img-wrap img {
-  max-width: 85%;
-  max-height: 85%;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 12px rgba(19, 20, 22, 0.12));
-  transition: transform var(--dur-2) var(--ease);
-}
-.hero__showcase-card:hover .hero__showcase-img-wrap img {
-  transform: scale(1.06);
-}
-.hero__showcase-title {
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-}
-.hero__showcase-sub {
-  font-size: var(--fs-cap);
-  color: var(--text-3);
-  margin-top: 2px;
-}
-.hero__showcase-badge {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: 0.65rem;
-  padding: 2px 6px;
-  border-radius: var(--r-pill);
-  background: var(--surface);
-  border: 1px solid var(--line);
-  font-weight: 700;
-  color: var(--red);
-  box-shadow: var(--sh-1);
-}
-
-/* ---- Mobile-only: eyebrow icon + alt stat label ----
-   These stay invisible/unchanged above the breakpoint so tablet
-   and desktop markup renders exactly as before. */
 .eyebrow__icon-mobile,
 .hero-stat__label-mobile {
   display: none;
 }
 
-/* ---- Mobile-only: hero showcase becomes a swipeable single-card
-   carousel with dot pagination instead of a static 2x2 grid.
-   Only applies at phone widths; tablet/desktop grid above is untouched. ---- */
 @media (max-width: 640px) {
   .eyebrow__icon-mobile { display: inline-block; margin-right: 2px; }
   .hero-stat__label-default { display: none; }
   .hero-stat__label-mobile { display: inline; }
-
-  .hero__showcase-grid {
-    display: flex;
-    grid-template-columns: none;
-    gap: var(--s-3);
-    max-width: 100%;
-    margin-inline: 0;
-    overflow-x: auto;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 2px;
-  }
-  .hero__showcase-grid::-webkit-scrollbar { display: none; }
-  .hero__showcase-card {
-    flex: 0 0 78%;
-    scroll-snap-align: center;
-  }
-  .hero__showcase-img-wrap { max-height: 150px; }
-
-  .hero__showcase-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    margin-top: var(--s-3);
-  }
-  .hero__showcase-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 999px;
-    background: var(--line);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: width var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
-  }
-  .hero__showcase-dot.is-active {
-    width: 20px;
-    background: var(--red);
-  }
-}
-@media (min-width: 641px) {
-  .hero__showcase-dots { display: none; }
 }
 
 /* ============================================================

@@ -68,6 +68,16 @@ export function initProductDetailPage() {
               </div>
             </div>
             
+            ${(currentVariant.gallery && currentVariant.gallery.length > 1) ? `
+              <div class="pdp__thumbs" id="pdpThumbs" role="tablist" aria-label="Product Image Gallery">
+                ${currentVariant.gallery.map((imgSrc, idx) => `
+                  <button type="button" class="pdp__thumb ${idx === 0 ? 'active' : ''}" data-src="${imgSrc}" data-index="${idx}" aria-label="View Image ${idx + 1}">
+                    <img src="${imgSrc}" alt="${currentVariant.model} shot ${idx + 1}" loading="lazy">
+                  </button>
+                `).join('')}
+              </div>
+            ` : ''}
+
             <p class="pdp__cert-tag">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               <span>BIS / ISI License: <strong>IS: 2082 CM/L-9600024116</strong> &middot; ISO 9001:2015</span>
@@ -530,20 +540,23 @@ export function initProductDetailPage() {
       }
     });
 
-    // Thumbnail gallery angle switcher
+    // Thumbnail gallery switcher
     const thumbs = pdpApp.querySelectorAll('#pdpThumbs .pdp__thumb');
     const mainImageWrap = document.getElementById('pdpMainImageWrap');
     thumbs.forEach(thumb => {
       thumb.addEventListener('click', () => {
         thumbs.forEach(t => t.classList.remove('active'));
         thumb.classList.add('active');
+        const imgSrc = thumb.dataset.src;
         const angle = thumb.dataset.angle;
         if (mainImageWrap) {
           mainImageWrap.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-          mainImageWrap.style.opacity = '0.4';
-          mainImageWrap.style.transform = 'scale(0.96)';
+          mainImageWrap.style.opacity = '0.35';
+          mainImageWrap.style.transform = 'scale(0.97)';
           setTimeout(() => {
-            if (angle === 'spec') {
+            if (imgSrc) {
+              mainImageWrap.innerHTML = `<img class="pframe pdp__image" src="${imgSrc}" alt="${currentVariant.model} ${currentVariant.title}" loading="eager" decoding="async">`;
+            } else if (angle === 'spec') {
               mainImageWrap.innerHTML = `
                 <div style="padding:var(--s-4);text-align:center">
                   <svg viewBox="0 0 120 120" width="150" height="150" fill="none" stroke="var(--red)" stroke-width="1.8" style="margin:0 auto">
@@ -561,7 +574,7 @@ export function initProductDetailPage() {
             }
             mainImageWrap.style.opacity = '1';
             mainImageWrap.style.transform = 'none';
-          }, 150);
+          }, 140);
         }
       });
     });

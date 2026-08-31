@@ -92,10 +92,73 @@ export const RAW_PRODUCTS = {
     { model: "SAMPHIRE", title: "JMG 2 Jar 500 Watts", moq: "4 Pc", wattage: 500, capacity: "2 Jar", specs: ["30 minutes continuous rating", "High quality stainless steel blade", "2 Jars, 1 transparent and 1 SS", "ISI marked main cable"], dim: "293 x 159 x 293", weight: "4.3kg", warranty: "2 Year", mrp: 3590, image: "media/MIXER/Juicer%20Mixer%20Grinder%20Samphire_page-0001.webp" }
   ],
   "irons": [
-    { model: "SUPREME", title: "Dry Iron 750 Watts", moq: "12 Pc", wattage: 750, specs: ["Teflon coated base", "Power indicators", "Adjustable thermostat", "ISI marked main cable"], dim: "220 x 98 x 98", weight: "800g", warranty: "2 Year", mrp: 790, image: "media/IRON/iron%20suprem.webp" },
-    { model: "PREMIUM", title: "Dry Iron 750 Watts", moq: "12 Pc", wattage: 750, specs: ["Teflon coated base", "Power indicators", "Adjustable thermostat", "ISI marked main cable"], dim: "239 x 105 x 110", weight: "850g", warranty: "2 Year", mrp: 890, image: "media/IRON/PREMIUM.webp" },
-    { model: "ICON", title: "Heavy Weight Iron 1200 Watts", moq: "12 Pc", wattage: 1200, specs: ["Mirror finish stainless steel sole plate", "Power indicators", "Adjustable thermostat", "ISI marked main cable"], dim: "244 x 117 x 110", weight: "2.5kg", warranty: "2 Year", mrp: 1290, image: "media/IRON/ICON.webp" },
-    { model: "STEELO", title: "Dry Iron 1000 Watts", moq: "12 Pc", wattage: 1000, specs: ["Teflon coated base", "Power indicators", "Adjustable thermostat", "1000 watts element", "ISI marked main cable"], dim: "245 x 110 x 115", weight: "950g", warranty: "2 Year", mrp: 1090, image: "media/IRON/Dry%20Iron%20Premium_page-0001.webp" }
+    {
+      model: "SUPREME",
+      title: "Dry Iron 750 Watts",
+      moq: "12 Pc",
+      wattage: 750,
+      specs: ["Teflon coated base", "Power indicators", "Adjustable thermostat", "ISI marked main cable"],
+      dim: "220 x 98 x 98",
+      weight: "800g",
+      warranty: "2 Year",
+      mrp: 790,
+      image: "media/IRON/dry-iron-adjustable-thermostat.jpeg",
+      gallery: [
+        "media/IRON/dry-iron-adjustable-thermostat.jpeg",
+        "media/IRON/dry-iron-all-fabrics.jpeg",
+        "media/IRON/dry-iron-features-soleplate.jpeg",
+        "media/IRON/dry-iron-360-swivel-cord.jpeg"
+      ]
+    },
+    {
+      model: "PREMIUM",
+      title: "Dry Iron 750 Watts",
+      moq: "12 Pc",
+      wattage: 750,
+      specs: ["Teflon coated base", "Power indicators", "Adjustable thermostat", "ISI marked main cable"],
+      dim: "239 x 105 x 110",
+      weight: "850g",
+      warranty: "2 Year",
+      mrp: 890,
+      image: "media/IRON/dry-iron-features-soleplate.jpeg",
+      gallery: [
+        "media/IRON/dry-iron-features-soleplate.jpeg",
+        "media/IRON/dry-iron-all-fabrics.jpeg",
+        "media/IRON/dry-iron-360-swivel-cord.jpeg",
+        "media/IRON/dry-iron-adjustable-thermostat.jpeg"
+      ]
+    },
+    {
+      model: "ICON",
+      title: "Heavy Weight Iron 1200 Watts",
+      moq: "12 Pc",
+      wattage: 1200,
+      specs: ["Mirror finish stainless steel sole plate", "Power indicators", "Adjustable thermostat", "ISI marked main cable"],
+      dim: "244 x 117 x 110",
+      weight: "2.5kg",
+      warranty: "2 Year",
+      mrp: 1290,
+      image: "media/IRON/ICON.webp"
+    },
+    {
+      model: "STEELO",
+      title: "Dry Iron 1000 Watts",
+      moq: "12 Pc",
+      wattage: 1000,
+      specs: ["Teflon coated base", "Power indicators", "Adjustable thermostat", "1000 watts element", "ISI marked main cable"],
+      dim: "245 x 110 x 115",
+      weight: "950g",
+      warranty: "2 Year",
+      mrp: 1090,
+      image: "media/IRON/dry-iron-1000w-fast-heatup.jpeg",
+      gallery: [
+        "media/IRON/dry-iron-1000w-fast-heatup.jpeg",
+        "media/IRON/dry-iron-all-fabrics.jpeg",
+        "media/IRON/dry-iron-features-soleplate.jpeg",
+        "media/IRON/dry-iron-360-swivel-cord.jpeg",
+        "media/IRON/dry-iron-adjustable-thermostat.jpeg"
+      ]
+    }
   ],
   "water-heaters": [
     { model: "LOTUS 1L INSTANT", title: "1 Ltr Instant ABS Lotus", moq: "1 Pc", wattage: 3000, capacity: "1L", elementType: "Copper / Enameled", specs: ["ABS outer body", "Long life enameled heating element", "Long life superior insulation", "With 7 safety devices", "Easy to operate and maintain", "ISI marked fire retardant cable with 3 pin top 15 amp"], dim: "146 x 122 x 293", weight: "2.5kg", warranty: "2 Year Complete & 5 Year Inner Container Warranty", mrp: 2990, image: "media/GEYSER/Lotus%201%20Ltr._page-0001.webp" },
@@ -206,10 +269,86 @@ export const RAW_PRODUCTS = {
     { model: "COMMERCIAL HEAVY DUTY", title: "5000 Watts Commercial Grade Induction", moq: "1 Pc", wattage: 5000, elementType: "High Impact Commercial Ceramic", specs: ["High impact mass ceramic plate", "Structural grade solid steel body", "Designed for continuous heavy catering operations", "Advanced heating technology", "ISI marked main cable"], dim: "330 x 400 x 60", weight: "5kg", warranty: "1 Year", mrp: 24990, image: "media/INDUCTION_INFRARED/COMMERCIAL%20INDUCTION.webp" }
   ],
   "kitchen-appliances": [
-    { model: "FLASH KETTLE 1.5", title: "Electric Kettle 1.5 L 1500W Stainless Steel", moq: "12 Pc", capacity: "1.5L", wattage: 1500, specs: ["304 grade stainless steel body", "Auto cut-off", "Boil dry sensor", "360 degree wireless charging base", "LED power indicator", "ISI marked main cable"], dim: "200 x 170 x 225", weight: "0.8kg", warranty: "1 Year", mrp: 1290, image: "media/kettle/Flash%201.5ltr%20kettle.webp" },
-    { model: "FLASH KETTLE 1.8", title: "Electric Kettle 1.8 L 1800W Stainless Steel", moq: "12 Pc", capacity: "1.8L", wattage: 1800, specs: ["304 grade stainless steel body", "Auto cut-off", "Boil dry sensor", "360 degree wireless charging base", "LED power indicator", "Large capacity rapid boil", "ISI marked main cable"], dim: "210 x 165 x 230", weight: "0.9kg", warranty: "1 Year", mrp: 1490, image: "media/kettle/Flash%201.8ltr%20Kettle.webp" },
-    { model: "MULTIPURPOSE KETTLE 1.5", title: "Multipurpose Kettle 1.5 L 1200W 3-in-1", moq: "6 Pc", capacity: "1.5L", wattage: 1200, specs: ["3-in-1 multi-functional design", "Detachable steamer bowl", "Egg boiling tray", "Double walled stainless composite", "360 degree swivel base", "ISI marked main cable"], dim: "180 x 150 x 220", weight: "1.3kg", warranty: "1 Year", mrp: 3990, image: "media/kettle/kettle%20Multiprpose.webp" },
-    { model: "UNIQUE KETTLE 1.5", title: "Electric Kettle 1.5 L 1500W Cool Touch", moq: "6 Pc", capacity: "1.5L", wattage: 1500, specs: ["Dual layer heat shield cool touch exterior", "Single-touch pneumatic safety lid", "Cordless 360 degree swivel base", "LED power indicator", "ISI marked main cable"], dim: "210 x 160 x 230", weight: "1kg", warranty: "1 Year", mrp: 2490, image: "media/kettle/unique%201.5ltr.webp" },
+    {
+      model: "FLASH KETTLE 1.5",
+      title: "Electric Kettle 1.5 L 1500W Stainless Steel",
+      moq: "12 Pc",
+      capacity: "1.5L",
+      wattage: 1500,
+      specs: ["304 grade stainless steel body", "Auto cut-off", "Boil dry sensor", "360 degree wireless charging base", "LED power indicator", "ISI marked main cable"],
+      dim: "200 x 170 x 225",
+      weight: "0.8kg",
+      warranty: "1 Year",
+      mrp: 1290,
+      image: "media/kettle/flash-kettle-capacity-comparison.jpeg",
+      gallery: [
+        "media/kettle/flash-kettle-capacity-comparison.jpeg",
+        "media/kettle/flash-kettle-lifestyle-pour.jpeg",
+        "media/kettle/flash-kettle-features.jpeg",
+        "media/kettle/flash-kettle-cool-touch-handle.jpeg",
+        "media/kettle/flash-kettle-lifestyle-living-room.jpeg"
+      ]
+    },
+    {
+      model: "FLASH KETTLE 1.8",
+      title: "Electric Kettle 1.8 L 1800W Stainless Steel",
+      moq: "12 Pc",
+      capacity: "1.8L",
+      wattage: 1800,
+      specs: ["304 grade stainless steel body", "Auto cut-off", "Boil dry sensor", "360 degree wireless charging base", "LED power indicator", "Large capacity rapid boil", "ISI marked main cable"],
+      dim: "210 x 165 x 230",
+      weight: "0.9kg",
+      warranty: "1 Year",
+      mrp: 1490,
+      image: "media/kettle/flash-kettle-lifestyle-pour.jpeg",
+      gallery: [
+        "media/kettle/flash-kettle-lifestyle-pour.jpeg",
+        "media/kettle/flash-kettle-capacity-comparison.jpeg",
+        "media/kettle/flash-kettle-features.jpeg",
+        "media/kettle/flash-kettle-cool-touch-handle.jpeg",
+        "media/kettle/flash-kettle-lifestyle-living-room.jpeg"
+      ]
+    },
+    {
+      model: "MULTIPURPOSE KETTLE 1.5",
+      title: "Multipurpose Kettle 1.5 L 1200W 3-in-1",
+      moq: "6 Pc",
+      capacity: "1.5L",
+      wattage: 1200,
+      specs: ["3-in-1 multi-functional design", "Detachable steamer bowl", "Egg boiling tray", "Double walled stainless composite", "360 degree swivel base", "ISI marked main cable"],
+      dim: "180 x 150 x 220",
+      weight: "1.3kg",
+      warranty: "1 Year",
+      mrp: 3990,
+      image: "media/kettle/multipurpose-kettle-3in1-accessories.jpeg",
+      gallery: [
+        "media/kettle/multipurpose-kettle-3in1-accessories.jpeg",
+        "media/kettle/multipurpose-kettle-temp-control.jpeg",
+        "media/kettle/multipurpose-kettle-1-5l-capacity.jpeg",
+        "media/kettle/multipurpose-kettle-360-swivel-base.jpeg",
+        "media/kettle/multipurpose-kettle-ergonomic-handle.jpeg"
+      ]
+    },
+    {
+      model: "UNIQUE KETTLE 1.5",
+      title: "Electric Kettle 1.5 L 1500W Cool Touch",
+      moq: "6 Pc",
+      capacity: "1.5L",
+      wattage: 1500,
+      specs: ["Dual layer heat shield cool touch exterior", "Single-touch pneumatic safety lid", "Cordless 360 degree swivel base", "LED power indicator", "ISI marked main cable"],
+      dim: "210 x 160 x 230",
+      weight: "1kg",
+      warranty: "1 Year",
+      mrp: 2490,
+      image: "media/kettle/unique-kettle-lifestyle-table.jpeg",
+      gallery: [
+        "media/kettle/unique-kettle-lifestyle-table.jpeg",
+        "media/kettle/unique-kettle-heating-glow.jpeg",
+        "media/kettle/unique-kettle-safety-features.jpeg",
+        "media/kettle/unique-kettle-1-5l-capacity.jpeg",
+        "media/kettle/unique-kettle-cool-touch-handle.jpeg"
+      ]
+    },
     { model: "AIR PRO 3.2", title: "Digital Air Fryer 3.2 L 1000W", moq: "2 Pc", capacity: "3.2L", wattage: 1000, specs: ["360 degree rapid air circulation", "Non-stick detachable basket", "Cool-touch ergonomic handle", "Auto-pause / shut-off safety", "ISI marked main cable"], dim: "260 x 310 x 300", weight: "3.5kg", warranty: "1 Year", mrp: 6990 },
     { model: "BREAKFAST MAKER", title: "3-in-1 Breakfast Maker 1200W", moq: "1 Pc", wattage: 1200, specs: ["Top non-stick griddle", "Left-side oven toaster", "Right-side drip coffee maker", "Step-based timer control", "Temperature adjustment dial", "ISI marked main cable"], dim: "450 x 200 x 210", weight: "4kg", warranty: "1 Year", mrp: 6490, image: "media/OTG_BERAKFAST-MAKER/BREAK%20FAST%20MAKER.webp" },
     { model: "COFFEE MAKER", title: "Drip Coffee Maker 600W 4-Cup", moq: "2 Pc", wattage: 600, specs: ["4-cup capacity glass carafe", "Built-in reusable filter basket", "Keep-warm plate with auto shut-off", "Easy-clean water reservoir", "Brew strength control", "ISI marked main cable"], dim: "210 x 170 x 310", weight: "1.2kg", warranty: "1 Year", mrp: 3990, image: "media/OTG_BERAKFAST-MAKER/COFFEE%20MAKER.webp" },

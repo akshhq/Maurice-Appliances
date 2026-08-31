@@ -54,4 +54,14 @@ return [
     */
     'to_email'      => $env['TO_EMAIL'] ?? 'customer.care@mauriceappliances.in',
     'to_name'       => $env['TO_NAME'] ?? 'Maurice Appliances',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Google Sheets Webhook Integration
+    |--------------------------------------------------------------------------
+    | Automatically uploads every form submission to the configured Google Sheet
+    | into its dedicated sheet tab alongside sending the notification email.
+    */
+    'google_sheet_id'           => $env['GOOGLE_SHEET_ID'] ?? '',
+    'google_script_webapp_url'  => $env['GOOGLE_SCRIPT_WEBAPP_URL'] ?? '',
 ];

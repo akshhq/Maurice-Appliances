@@ -15,51 +15,188 @@ export function initHomePage() {
   if (initialized) return;
   initialized = true;
 
+  // Initialize hero banner slider first so auto-sliding starts immediately
+  try {
+    initHeroBannerSlider();
+  } catch (err) {
+    console.error('Hero banner slider init error:', err);
+  }
+
   initDynamicHeroStats();
   countUp();
   emberField();
   initProductFinder();
   initB2BExpressForm();
   initReveals();
-  initHeroShowcaseCarousel();
 }
 
-/* ---- Hero showcase carousel (mobile-only visual; safe no-op on desktop) ---- */
-function initHeroShowcaseCarousel() {
-  const grid = document.getElementById('heroShowcaseGrid');
-  const dotsWrap = document.getElementById('heroShowcaseDots');
-  if (!grid || !dotsWrap) return;
-  const dots = [...dotsWrap.querySelectorAll('.hero__showcase-dot')];
-  const cards = [...grid.querySelectorAll('.hero__showcase-card')];
-  if (!dots.length || !cards.length) return;
+/* ---- 7-Second Looping Hero Banner Slider ---- */
+function initHeroBannerSlider() {
+  const slider = document.getElementById('heroBannerSlider');
+  const track = document.getElementById('heroSliderTrack');
+  const dotsWrap = document.getElementById('heroSliderDots');
+  const prevBtn = document.getElementById('heroSliderPrev');
+  const nextBtn = document.getElementById('heroSliderNext');
 
-  let ticking = false;
-  function updateActiveDot() {
-    ticking = false;
-    const gridRect = grid.getBoundingClientRect();
-    const center = gridRect.left + gridRect.width / 2;
-    let closest = 0;
-    let closestDist = Infinity;
-    cards.forEach((card, i) => {
-      const r = card.getBoundingClientRect();
-      const dist = Math.abs((r.left + r.width / 2) - center);
-      if (dist < closestDist) { closestDist = dist; closest = i; }
+  if (!slider || !track) return;
+
+  const slides = [...track.querySelectorAll('.hero-banner__slide, .hero__slide')];
+  const dots = dotsWrap ? [...dotsWrap.querySelectorAll('.hero-banner__dot, .hero__slider-dot')] : [];
+  const totalSlides = slides.length;
+  if (totalSlides <= 1) return;
+
+  let currentIndex = 0;
+  let autoTimer = null;
+  const slideInterval = 7000; // 7 seconds loop
+
+  function updateSliderVisuals(instant = false) {
+    track.style.transition = instant ? 'none' : 'transform 0.75s cubic-bezier(0.25, 1, 0.5, 1)';
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    dots.forEach((dot, idx) => {
+      const isActive = idx === currentIndex;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+
+      // Restart CSS animation for active dot fill
+      const fill = dot.querySelector('.hero-banner__dot-fill, .hero__slider-dot-fill');
+      if (fill) {
+        fill.style.animation = 'none';
+        if (isActive) {
+          void fill.offsetWidth; // Force reflow
+          fill.style.animation = `heroBannerProgress ${slideInterval}ms linear forwards`;
+        }
+      }
     });
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === closest));
   }
 
-  grid.addEventListener('scroll', () => {
-    if (!ticking) { ticking = true; requestAnimationFrame(updateActiveDot); }
-  }, { passive: true });
+  function goToSlide(index, userInitiated = false) {
+    if (index >= totalSlides) {
+      currentIndex = 0;
+    } else if (index < 0) {
+      currentIndex = totalSlides - 1;
+    } else {
+      currentIndex = index;
+    }
 
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      const card = cards[i];
-      if (card) card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest', inline: 'center' });
+    updateSliderVisuals();
+    if (userInitiated) {
+      resetTimer();
+    }
+  }
+
+  function nextSlide(userInitiated = false) {
+    goToSlide(currentIndex + 1, userInitiated);
+  }
+
+  function prevSlide(userInitiated = false) {
+    goToSlide(currentIndex - 1, userInitiated);
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (document.visibilityState === 'visible') {
+      autoTimer = setInterval(() => {
+        nextSlide(false);
+      }, slideInterval);
+    }
+  }
+
+  function stopTimer() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  function resetTimer() {
+    stopTimer();
+    startTimer();
+  }
+
+  // Button navigation (manual interaction resets the 7s countdown)
+  prevBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    prevSlide(true);
+  });
+
+  nextBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    nextSlide(true);
+  });
+
+  // Dots navigation
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      goToSlide(idx, true);
     });
   });
 
-  updateActiveDot();
+  // Touch Swipe Support (Mobile & Tablet)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  slider.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+    touchStartTime = Date.now();
+  }, { passive: true });
+
+  slider.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+    const elapsedTime = Date.now() - touchStartTime;
+
+    // Horizontal swipe threshold (> 40px and more horizontal than vertical)
+    if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY) && elapsedTime < 600) {
+      if (diffX < 0) {
+        nextSlide(true);
+      } else {
+        prevSlide(true);
+      }
+    }
+  }, { passive: true });
+
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    if (document.activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+      return;
+    }
+    if (e.key === 'ArrowLeft') {
+      prevSlide(true);
+    } else if (e.key === 'ArrowRight') {
+      nextSlide(true);
+    }
+  });
+
+  // Page visibility awareness: pause when tab hidden, resume when tab active
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      stopTimer();
+    } else {
+      startTimer();
+    }
+  });
+
+  // Expose global methods for testing/debugging
+  window.__mauriceSlider = {
+    goToSlide,
+    nextSlide,
+    prevSlide,
+    startTimer,
+    stopTimer
+  };
+
+  // Start immediately
+  updateSliderVisuals(true);
+  startTimer();
 }
 
 /* ---- 1. Dynamic Hero Stats ---- */

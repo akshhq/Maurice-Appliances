@@ -10,6 +10,8 @@ Fill in these details in your [`.env`](file:///.env) file or [`api/config.php`](
 
 | Field | Configuration Key | Recommended Value | Your Value |
 | :--- | :--- | :--- | :--- |
+| **Google Spreadsheet ID** | `GOOGLE_SHEET_ID` | `[From Google Sheet URL]` | `_________________________` |
+| **Google Script Web App URL** | `GOOGLE_SCRIPT_WEBAPP_URL` | `https://script.google.com/macros/s/.../exec` | `_________________________` |
 | **SMTP Server Host** | `SMTP_HOST` | `smtp.hostinger.com` | `smtp.hostinger.com` |
 | **SMTP Server Port** | `SMTP_PORT` | `465` (SSL) or `587` (TLS) | `465` |
 | **SMTP Security** | `SMTP_SECURITY` | `ssl` | `ssl` |
@@ -20,7 +22,24 @@ Fill in these details in your [`.env`](file:///.env) file or [`api/config.php`](
 | **Destination Inbox (To)**| `TO_EMAIL` | `customer.care@mauriceappliances.in` | `customer.care@mauriceappliances.in` |
 
 > [!IMPORTANT]
-> **Security Notice**: Never commit your real mailbox password to GitHub or public repositories. Put the password in `.env` or edit `api/config.php` directly on your Hostinger server.
+> **Security Notice**: Never commit your real mailbox password to GitHub or public repositories. Put the credentials in `.env` or edit `api/config.php` directly on your Hostinger server.
+
+---
+
+## 1.1 Google Sheets Form Destinations (Auto-Created Tabs)
+
+All website form submissions automatically log to separate tabs in your single Google Sheet:
+
+| Form Type | Website Location | Sheet Tab Name | Captured Columns |
+|---|---|---|---|
+| `contact_message` | `/contact/contact.html` | **Contact Messages** | Timestamp, Name, Phone, Email, Subject, Message, URL |
+| `dealer_application` | `/dealers/become-dealer.html` | **Dealer Applications** | Timestamp, Firm Name, Contact Person, Phone, Email, State, City, GSTIN, Type, Notes, URL |
+| `warranty_registration` | `/support/warranty.html` | **Warranty Registrations** | Timestamp, Customer Name, Phone, Email, Category, Model, Serial, Purchase Date, Invoice No, Dealer, Price, Pincode, Address, URL |
+| `service_ticket` | `/support/service.html` | **Service Requests** | Timestamp, Customer Name, Phone, Category, Model, City, Pincode, Issue Description, URL |
+| `job_application` | `/company/careers.html` | **Job Applications** | Timestamp, Applicant Name, Phone, Email, Role Applied, Experience/LinkedIn, URL |
+| `express_dealer_callback` | `/index.html` | **Express Callbacks** | Timestamp, Full Name/Firm, City & State, Phone, URL |
+| `product_inquiry` | Product Modal (PDPs) | **Product Inquiries** | Timestamp, Product SKU, Customer Name, Phone, Email, City, Inquiry Type, Notes, URL |
+| `newsletter_subscription` | Footer Form | **Newsletter Subscribers** | Timestamp, Email Address, Status, URL |
 
 ---
 
