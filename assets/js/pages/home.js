@@ -136,6 +136,16 @@ function initHeroBannerSlider() {
     });
   });
 
+  // Pause slider when hovered on desktop
+  slider.addEventListener('mouseenter', () => {
+    slider.classList.add('is-paused');
+    stopTimer();
+  });
+  slider.addEventListener('mouseleave', () => {
+    slider.classList.remove('is-paused');
+    startTimer();
+  });
+
   // Touch Swipe Support (Mobile & Tablet)
   let touchStartX = 0;
   let touchStartY = 0;
@@ -145,6 +155,7 @@ function initHeroBannerSlider() {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     touchStartTime = Date.now();
+    stopTimer();
   }, { passive: true });
 
   slider.addEventListener('touchend', (e) => {
@@ -161,6 +172,8 @@ function initHeroBannerSlider() {
       } else {
         prevSlide(true);
       }
+    } else {
+      startTimer();
     }
   }, { passive: true });
 
