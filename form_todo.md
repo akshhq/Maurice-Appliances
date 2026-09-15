@@ -8,18 +8,18 @@ This checklist contains all necessary steps and configuration values to connect 
 
 Fill in these details in your [`.env`](file:///.env) file or [`api/config.php`](file:///api/config.php):
 
-| Field | Configuration Key | Recommended Value | Your Value |
-| :--- | :--- | :--- | :--- |
-| **Google Spreadsheet ID** | `GOOGLE_SHEET_ID` | `[From Google Sheet URL]` | `1LQgXlBv5mJ8YdXICO_F7l45Ci5abgcD-wSDjb-jKCAs` |
+| Field                         | Configuration Key          | Recommended Value                             | Your Value                                                                                                         |
+| :---------------------------- | :------------------------- | :-------------------------------------------- | :----------------------------------------------------------------------------------------------------------------- |
+| **Google Spreadsheet ID**     | `GOOGLE_SHEET_ID`          | `[From Google Sheet URL]`                     | `1LQgXlBv5mJ8YdXICO_F7l45Ci5abgcD-wSDjb-jKCAs`                                                                     |
 | **Google Script Web App URL** | `GOOGLE_SCRIPT_WEBAPP_URL` | `https://script.google.com/macros/s/.../exec` | `https://script.google.com/macros/s/AKfycbzhlrv3VIWTFlWfRWRI-9TY3-aOWYmSPDVtUIRQ5buWw6r896ESvgsgoQ-H7O1e8kGc/exec` |
-| **SMTP Server Host** | `SMTP_HOST` | `smtp.hostinger.com` | `smtp.hostinger.com` |
-| **SMTP Server Port** | `SMTP_PORT` | `465` (SSL) or `587` (TLS) | `465` |
-| **SMTP Security** | `SMTP_SECURITY` | `ssl` | `ssl` |
-| **SMTP Username** | `SMTP_USERNAME` | `customer.care@mauriceappliances.in` | `customer.care@mauriceappliances.in` |
-| **SMTP Password** | `SMTP_PASSWORD` | `[YOUR_HOSTINGER_MAILBOX_PASSWORD]` | `_________________________` |
-| **Sender Email (From)**| `FROM_EMAIL` | `customer.care@mauriceappliances.in` | `customer.care@mauriceappliances.in` |
-| **Sender Name** | `FROM_NAME` | `Maurice Appliances Website` | `Maurice Appliances Website` |
-| **Destination Inbox (To)**| `TO_EMAIL` | `customer.care@mauriceappliances.in` | `customer.care@mauriceappliances.in` |
+| **SMTP Server Host**          | `SMTP_HOST`                | `smtp.hostinger.com`                          | `smtp.hostinger.com`                                                                                               |
+| **SMTP Server Port**          | `SMTP_PORT`                | `465` (SSL) or `587` (TLS)                    | `465`                                                                                                              |
+| **SMTP Security**             | `SMTP_SECURITY`            | `ssl`                                         | `ssl`                                                                                                              |
+| **SMTP Username**             | `SMTP_USERNAME`            | `customer.care@mauriceappliances.in`          | `customer.care@mauriceappliances.in`                                                                               |
+| **SMTP Password**             | `SMTP_PASSWORD`            | `[YOUR_HOSTINGER_MAILBOX_PASSWORD]`           | `_________________________`                                                                                        |
+| **Sender Email (From)**       | `FROM_EMAIL`               | `customer.care@mauriceappliances.in`          | `customer.care@mauriceappliances.in`                                                                               |
+| **Sender Name**               | `FROM_NAME`                | `Maurice Appliances Website`                  | `Maurice Appliances Website`                                                                                       |
+| **Destination Inbox (To)**    | `TO_EMAIL`                 | `customer.care@mauriceappliances.in`          | `customer.care@mauriceappliances.in`                                                                               |
 
 > [!IMPORTANT]
 > **Security Notice**: Never commit your real mailbox password to GitHub or public repositories. Put the credentials in `.env` or edit `api/config.php` directly on your Hostinger server.
@@ -30,16 +30,16 @@ Fill in these details in your [`.env`](file:///.env) file or [`api/config.php`](
 
 All website form submissions automatically log to separate tabs in your single Google Sheet:
 
-| Form Type | Website Location | Sheet Tab Name | Captured Columns |
-|---|---|---|---|
-| `contact_message` | `/contact/contact.html` | **Contact Messages** | Timestamp, Name, Phone, Email, Subject, Message, URL |
-| `dealer_application` | `/dealers/become-dealer.html` | **Dealer Applications** | Timestamp, Firm Name, Contact Person, Phone, Email, State, City, GSTIN, Type, Notes, URL |
-| `warranty_registration` | `/support/warranty.html` | **Warranty Registrations** | Timestamp, Customer Name, Phone, Email, Category, Model, Serial, Purchase Date, Invoice No, Dealer, Price, Pincode, Address, URL |
-| `service_ticket` | `/support/service.html` | **Service Requests** | Timestamp, Customer Name, Phone, Category, Model, City, Pincode, Issue Description, URL |
-| `job_application` | `/company/careers.html` | **Job Applications** | Timestamp, Applicant Name, Phone, Email, Role Applied, Experience/LinkedIn, URL |
-| `express_dealer_callback` | `/index.html` | **Express Callbacks** | Timestamp, Full Name/Firm, City & State, Phone, URL |
-| `product_inquiry` | Product Modal (PDPs) | **Product Inquiries** | Timestamp, Product SKU, Customer Name, Phone, Email, City, Inquiry Type, Notes, URL |
-| `newsletter_subscription` | Footer Form | **Newsletter Subscribers** | Timestamp, Email Address, Status, URL |
+| Form Type                 | Website Location              | Sheet Tab Name             | Captured Columns                                                                                                                 |
+| ------------------------- | ----------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `contact_message`         | `/contact/contact.html`       | **Contact Messages**       | Timestamp, Name, Phone, Email, Subject, Message, URL                                                                             |
+| `dealer_application`      | `/dealers/become-dealer.html` | **Dealer Applications**    | Timestamp, Firm Name, Contact Person, Phone, Email, State, City, GSTIN, Type, Notes, URL                                         |
+| `warranty_registration`   | `/support/warranty.html`      | **Warranty Registrations** | Timestamp, Customer Name, Phone, Email, Category, Model, Serial, Purchase Date, Invoice No, Dealer, Price, Pincode, Address, URL |
+| `service_ticket`          | `/support/service.html`       | **Service Requests**       | Timestamp, Customer Name, Phone, Category, Model, City, Pincode, Issue Description, URL                                          |
+| `job_application`         | `/company/careers.html`       | **Job Applications**       | Timestamp, Applicant Name, Phone, Email, Role Applied, Experience/LinkedIn, URL                                                  |
+| `express_dealer_callback` | `/index.html`                 | **Express Callbacks**      | Timestamp, Full Name/Firm, City & State, Phone, URL                                                                              |
+| `product_inquiry`         | Product Modal (PDPs)          | **Product Inquiries**      | Timestamp, Product SKU, Customer Name, Phone, Email, City, Inquiry Type, Notes, URL                                              |
+| `newsletter_subscription` | Footer Form                   | **Newsletter Subscribers** | Timestamp, Email Address, Status, URL                                                                                            |
 
 ---
 
@@ -48,15 +48,20 @@ All website form submissions automatically log to separate tabs in your single G
 The backend uses **PHPMailer** to communicate with Hostinger's SMTP server securely.
 
 ### Option A: Install via Composer (Recommended)
+
 If SSH or Composer is enabled on your Hostinger plan:
+
 ```bash
 # In the website root folder on Hostinger
 composer install
 ```
-*(This will read `composer.json` and generate the `vendor/` folder with PHPMailer).*
+
+_(This will read `composer.json` and generate the `vendor/` folder with PHPMailer)._
 
 ### Option B: Upload `vendor/` Folder
+
 If you do not have SSH on your hosting plan:
+
 1. Run `composer install` or `composer require phpmailer/phpmailer` on your local computer.
 2. Upload the generated `vendor/` folder into your website root directory on Hostinger via File Manager or FTP.
 
@@ -74,7 +79,7 @@ Before testing frontend forms, verify the PHP endpoint directly in your browser:
      "message": "Method not allowed. Please submit the form via POST."
    }
    ```
-   *(If you see this response, PHP is executing correctly and ready to receive submissions).*
+   _(If you see this response, PHP is executing correctly and ready to receive submissions)._
 
 ---
 
@@ -126,9 +131,9 @@ Test each form on the website to confirm emails arrive in `customer.care@maurice
 
 ## 5. Troubleshooting & FAQ
 
-| Issue / Symptom | Probable Cause | Resolution |
-| :--- | :--- | :--- |
-| **"Unable to submit your request right now" (500 Error)** | Incorrect mailbox password or SMTP authentication failure. | Double-check the password in `.env` / `api/config.php`. Verify you can log in at `https://mail.hostinger.com`. |
-| **"PHPMailer vendor library not installed"** | The `vendor/autoload.php` file is missing. | Run `composer install` or upload the `vendor/` folder to Hostinger. |
-| **Emails going to Spam / Junk** | Hostinger SPF/DKIM records need verification. | Check Hostinger DNS zone settings to confirm `v=spf1 include:_spf.mail.hostinger.com ~all` and DKIM are enabled. |
-| **Reply button in email replies to customer.care instead of the customer** | Customer did not enter an email or entered an invalid email. | The endpoint automatically sets `Reply-To` when a valid email address is provided in the form submission. |
+| Issue / Symptom                                                            | Probable Cause                                               | Resolution                                                                                                       |
+| :------------------------------------------------------------------------- | :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| **"Unable to submit your request right now" (500 Error)**                  | Incorrect mailbox password or SMTP authentication failure.   | Double-check the password in `.env` / `api/config.php`. Verify you can log in at `https://mail.hostinger.com`.   |
+| **"PHPMailer vendor library not installed"**                               | The `vendor/autoload.php` file is missing.                   | Run `composer install` or upload the `vendor/` folder to Hostinger.                                              |
+| **Emails going to Spam / Junk**                                            | Hostinger SPF/DKIM records need verification.                | Check Hostinger DNS zone settings to confirm `v=spf1 include:_spf.mail.hostinger.com ~all` and DKIM are enabled. |
+| **Reply button in email replies to customer.care instead of the customer** | Customer did not enter an email or entered an invalid email. | The endpoint automatically sets `Reply-To` when a valid email address is provided in the form submission.        |

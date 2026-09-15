@@ -39,16 +39,33 @@
   transition: transform var(--dur-2) var(--ease);
   z-index: 0;
 }
-.btn > * { position: relative; z-index: 1; }
-.btn > span { position: relative; z-index: 1; }
+.btn > * {
+  position: relative;
+  z-index: 1;
+}
+.btn > span {
+  position: relative;
+  z-index: 1;
+}
 
-.btn:hover { transform: translateY(-2px); box-shadow: var(--sh-ember); }
-.btn:hover::after { transform: translateY(0); }
-.btn:active { transform: translateY(0); }
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sh-ember);
+}
+.btn:hover::after {
+  transform: translateY(0);
+}
+.btn:active {
+  transform: translateY(0);
+}
 
 /* Arrow micro-animation */
-.btn .arrow { transition: transform var(--dur-2) var(--ease); }
-.btn:hover .arrow { transform: translateX(4px); }
+.btn .arrow {
+  transition: transform var(--dur-2) var(--ease);
+}
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
 
 /* ---- Ghost variant ---- */
 .btn--ghost {
@@ -57,31 +74,53 @@
   --btn-hover-bg: var(--ink);
   border: 1.5px solid var(--line-strong);
 }
-.btn--ghost:hover { --btn-fg: #fff; color: #fff; border-color: var(--ink); box-shadow: var(--sh-2); }
+.btn--ghost:hover {
+  --btn-fg: #fff;
+  color: #fff;
+  border-color: var(--ink);
+  box-shadow: var(--sh-2);
+}
 
 /* ---- Ghost Red variant ---- */
 .btn--ghost-red {
   --btn-bg: transparent;
   --btn-fg: var(--red);
   --btn-hover-bg: var(--red);
-  border: 1.5px solid rgba(224,30,38,0.3);
+  border: 1.5px solid rgba(224, 30, 38, 0.3);
 }
-.btn--ghost-red:hover { --btn-fg: #fff; color: #fff; border-color: var(--red); }
+.btn--ghost-red:hover {
+  --btn-fg: #fff;
+  color: #fff;
+  border-color: var(--red);
+}
 
 /* ---- Light variant (on dark backgrounds) ---- */
 .btn--light {
-  --btn-bg: rgba(255,255,255,0.12);
+  --btn-bg: rgba(255, 255, 255, 0.12);
   --btn-fg: #fff;
   --btn-hover-bg: #fff;
-  border: 1.5px solid rgba(255,255,255,0.28);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(8px);
 }
-.btn--light:hover { color: var(--ink); border-color: #fff; box-shadow: none; }
+.btn--light:hover {
+  color: var(--ink);
+  border-color: #fff;
+  box-shadow: none;
+}
 
 /* ---- Sizes ---- */
-.btn--lg { padding: 1em 2em; font-size: var(--fs-body); }
-.btn--sm { padding: 0.6em 1.1em; font-size: var(--fs-xs); }
-.btn--xs { padding: 0.45em 0.85em; font-size: var(--fs-cap); }
+.btn--lg {
+  padding: 1em 2em;
+  font-size: var(--fs-body);
+}
+.btn--sm {
+  padding: 0.6em 1.1em;
+  font-size: var(--fs-xs);
+}
+.btn--xs {
+  padding: 0.45em 0.85em;
+  font-size: var(--fs-cap);
+}
 
 /* ---- Icon-only ---- */
 .btn--icon {
@@ -119,11 +158,11 @@
 .badge--red {
   background: rgba(224, 30, 38, 0.08);
   color: var(--red-deep);
-  border-color: rgba(224, 30, 38, 0.20);
+  border-color: rgba(224, 30, 38, 0.2);
 }
 
 .badge--ember {
-  background: rgba(255, 106, 61, 0.10);
+  background: rgba(255, 106, 61, 0.1);
   color: var(--ember-deep);
   border-color: rgba(255, 106, 61, 0.24);
 }

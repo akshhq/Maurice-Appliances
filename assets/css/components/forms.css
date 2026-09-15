@@ -15,11 +15,23 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--s-4);
 }
-@media (max-width: 768px) { .fieldgrid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .fieldgrid {
+    grid-template-columns: 1fr;
+  }
+}
 
-.field { display: grid; gap: var(--s-1); margin-bottom: var(--s-3); }
-.field:last-child { margin-bottom: 0; }
-.field--full { grid-column: 1 / -1; }
+.field {
+  display: grid;
+  gap: var(--s-1);
+  margin-bottom: var(--s-3);
+}
+.field:last-child {
+  margin-bottom: 0;
+}
+.field--full {
+  grid-column: 1 / -1;
+}
 
 .field label {
   font-size: var(--fs-cap);
@@ -31,7 +43,9 @@
   align-items: center;
   gap: 2px;
 }
-.field label .req { color: var(--red); }
+.field label .req {
+  color: var(--red);
+}
 
 .field input,
 .field select,
@@ -44,7 +58,10 @@
   font-size: var(--fs-sm);
   color: var(--text-1);
   font-family: inherit;
-  transition: border-color var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+  transition:
+    border-color var(--dur-1) var(--ease),
+    box-shadow var(--dur-1) var(--ease),
+    background var(--dur-1) var(--ease);
 }
 .field select {
   cursor: pointer;
@@ -92,7 +109,7 @@
   padding: var(--s-3) var(--s-4);
   display: none;
 }
-.form-msg.ok  {
+.form-msg.ok {
   display: block;
   background: rgba(26, 138, 85, 0.1);
   color: #156d43;

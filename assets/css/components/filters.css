@@ -7,7 +7,10 @@
   padding-block: var(--s-4);
   border-top: 1px solid var(--line);
 }
-.fgroup:first-of-type { border-top: none; padding-top: 0; }
+.fgroup:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
 .fgroup__title {
   font-size: var(--fs-xs);
   font-weight: 700;
@@ -68,8 +71,12 @@
   outline: 2px solid var(--red);
   outline-offset: 2px;
 }
-.fopt:hover { color: var(--text-1); }
-.fopt:hover .fopt__box { border-color: var(--silver); }
+.fopt:hover {
+  color: var(--text-1);
+}
+.fopt:hover .fopt__box {
+  border-color: var(--silver);
+}
 .fopt__count {
   margin-left: auto;
   font-size: var(--fs-cap);

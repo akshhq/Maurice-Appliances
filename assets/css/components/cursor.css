@@ -14,7 +14,9 @@
 }
 
 @media (hover: none), (pointer: coarse) {
-  .cursor { display: none !important; }
+  .cursor {
+    display: none !important;
+  }
 }
 
 .cursor__ring {
@@ -38,7 +40,9 @@
   border-radius: 50%;
   background: var(--red);
   transform: translate(-50%, -50%);
-  transition: opacity var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
+  transition:
+    opacity var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
 }
 
 .cursor__label {
@@ -61,8 +65,12 @@
   background: var(--red);
   box-shadow: 0 4px 20px rgba(224, 30, 38, 0.35);
 }
-.cursor.is-hover .cursor__dot { opacity: 0; }
-.cursor.is-hover .cursor__label { opacity: 1; }
+.cursor.is-hover .cursor__dot {
+  opacity: 0;
+}
+.cursor.is-hover .cursor__label {
+  opacity: 1;
+}
 
 .cursor.is-hover-subtle .cursor__ring {
   width: 48px;

@@ -19,9 +19,11 @@
 .pcard:hover {
   transform: translateY(-6px);
   box-shadow: var(--sh-3);
-  border-color: rgba(224,30,38,0.15);
+  border-color: rgba(224, 30, 38, 0.15);
 }
-.pcard.is-hidden { display: none !important; }
+.pcard.is-hidden {
+  display: none !important;
+}
 
 /* ---- Media / image area ---- */
 .pcard__stage {
@@ -31,7 +33,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(130% 120% at 50% 25%, #fff 0%, var(--surface-2) 100%);
+  background: radial-gradient(
+    130% 120% at 50% 25%,
+    #fff 0%,
+    var(--surface-2) 100%
+  );
   padding: var(--s-4);
   overflow: hidden;
 }
@@ -39,12 +45,18 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 60%, rgba(255,106,61,0.08), transparent 65%);
+  background: radial-gradient(
+    circle at 50% 60%,
+    rgba(255, 106, 61, 0.08),
+    transparent 65%
+  );
   opacity: 0;
   transition: opacity var(--dur-3) var(--ease);
   pointer-events: none;
 }
-.pcard:hover .pcard__stage::after { opacity: 1; }
+.pcard:hover .pcard__stage::after {
+  opacity: 1;
+}
 
 /* Alias for legacy .pcard__media */
 .pcard__media {
@@ -54,7 +66,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(130% 120% at 50% 25%, #fff 0%, var(--surface-2) 100%);
+  background: radial-gradient(
+    130% 120% at 50% 25%,
+    #fff 0%,
+    var(--surface-2) 100%
+  );
   padding: var(--s-4);
   overflow: hidden;
 }
@@ -73,7 +89,9 @@
   transition: transform var(--dur-3) var(--ease);
 }
 .pcard:hover .pcard__image,
-.pcard:hover .pcard__frame { transform: scale(1.03); }
+.pcard:hover .pcard__frame {
+  transform: scale(1.03);
+}
 
 /* Product frame SVG fallback */
 .pframe {
@@ -88,7 +106,9 @@
   --ink: var(--graphite);
   transition: transform var(--dur-3) var(--ease);
 }
-.pcard:hover .pframe { transform: scale(1.03); }
+.pcard:hover .pframe {
+  transform: scale(1.03);
+}
 
 /* ---- Badges overlay (removed from product image) ---- */
 .pcard__badges {
@@ -130,7 +150,9 @@
   color: inherit;
   transition: color var(--dur-1) var(--ease);
 }
-.pcard__title a:hover { color: var(--red); }
+.pcard__title a:hover {
+  color: var(--red);
+}
 
 /* Spec pills */
 .pcard__spec-pills {
@@ -165,7 +187,11 @@
   gap: var(--s-2) var(--s-4);
   margin-top: auto;
 }
-.pcard__spec span { display: inline-flex; align-items: center; gap: 5px; }
+.pcard__spec span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
 
 /* ---- Card footer ---- */
 .pcard__foot {
@@ -177,7 +203,10 @@
   gap: var(--s-2);
 }
 
-.pcard__price-wrap { display: flex; flex-direction: column; }
+.pcard__price-wrap {
+  display: flex;
+  flex-direction: column;
+}
 .pcard__mrp {
   font-weight: 700;
   font-size: 1.15rem;
@@ -192,7 +221,11 @@
 }
 
 /* Legacy .pcard__price */
-.pcard__price .l { display: block; font-size: var(--fs-cap); color: var(--text-3); }
+.pcard__price .l {
+  display: block;
+  font-size: var(--fs-cap);
+  color: var(--text-3);
+}
 .pcard__price .v {
   font-weight: 700;
   font-size: 1.1rem;
@@ -213,8 +246,14 @@
   color: var(--red);
   transition: gap var(--dur-2) var(--ease);
 }
-.pcard__link svg { width: 14px; height: 14px; transition: transform var(--dur-2) var(--ease); }
-.pcard:hover .pcard__link svg { transform: translateX(4px); }
+.pcard__link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform var(--dur-2) var(--ease);
+}
+.pcard:hover .pcard__link svg {
+  transform: translateX(4px);
+}
 
 /* Stretch link — makes entire card clickable */
 .pcard__stretch {
@@ -225,8 +264,14 @@
 /* Items with z-index > 3 override stretch link */
 
 /* ---- Reveal animation ---- */
-.pcard.reveal { opacity: 0; transform: translateY(20px); }
-.pcard.reveal.in-view { opacity: 1; transform: none; }
+.pcard.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.pcard.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
 
 /* img-wrap alias */
 .pcard__img-wrap {
@@ -250,4 +295,6 @@
   z-index: 1;
 }
 .pcard:hover .pcard__img-wrap img,
-.pcard:hover .pcard__img-wrap svg { transform: scale(1.03); }
+.pcard:hover .pcard__img-wrap svg {
+  transform: scale(1.03);
+}

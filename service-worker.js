@@ -7,44 +7,52 @@
    Bump CACHE_VERSION on each deploy to invalidate old caches.
    ============================================================ */
 
-const CACHE_VERSION = 'maurice-v2.0.0';
-const STATIC_CACHE  = `${CACHE_VERSION}-static`;
-const PAGE_CACHE    = `${CACHE_VERSION}-pages`;
+const CACHE_VERSION = "maurice-v2.0.0";
+const STATIC_CACHE = `${CACHE_VERSION}-static`;
+const PAGE_CACHE = `${CACHE_VERSION}-pages`;
 
 const PRECACHE = [
-  '/',
-  '/index.html',
-  '/products.html',
-  '/assets/css/style.css?v=3.0',
-  '/assets/js/app.js?v=3.0',
+  "/",
+  "/index.html",
+  "/products.html",
+  "/assets/css/style.css?v=3.0",
+  "/assets/js/app.js?v=3.0",
 ];
 
-self.addEventListener('install', (event) => {
+self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(STATIC_CACHE)
+    caches
+      .open(STATIC_CACHE)
       .then((cache) => cache.addAll(PRECACHE).catch(() => null))
-      .then(() => self.skipWaiting())
+      .then(() => self.skipWaiting()),
   );
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys()
-      .then((keys) => Promise.all(
-        keys.filter((k) => !k.startsWith(CACHE_VERSION)).map((k) => caches.delete(k))
-      ))
-      .then(() => self.clients.claim())
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((k) => !k.startsWith(CACHE_VERSION))
+            .map((k) => caches.delete(k)),
+        ),
+      )
+      .then(() => self.clients.claim()),
   );
 });
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener("fetch", (event) => {
   const { request } = event;
-  if (request.method !== 'GET') return;
+  if (request.method !== "GET") return;
 
   const url = new URL(request.url);
-  if (url.origin !== self.location.origin) return;      // leave CDNs alone
+  if (url.origin !== self.location.origin) return; // leave CDNs alone
 
-  const isStatic = /\.(css|js|woff2?|svg|png|jpe?g|webp|avif|ico)$/.test(url.pathname);
+  const isStatic = /\.(css|js|woff2?|svg|png|jpe?g|webp|avif|ico)$/.test(
+    url.pathname,
+  );
 
   if (isStatic) {
     // Stale-while-revalidate
@@ -52,11 +60,14 @@ self.addEventListener('fetch', (event) => {
       caches.open(STATIC_CACHE).then((cache) =>
         cache.match(request).then((cached) => {
           const network = fetch(request)
-            .then((res) => { if (res.ok) cache.put(request, res.clone()); return res; })
+            .then((res) => {
+              if (res.ok) cache.put(request, res.clone());
+              return res;
+            })
             .catch(() => cached);
           return cached || network;
-        })
-      )
+        }),
+      ),
     );
   } else {
     // HTML Navigation requests: network-first, fallback to cache
@@ -69,7 +80,11 @@ self.addEventListener('fetch', (event) => {
           }
           return res;
         })
-        .catch(() => caches.match(request).then((cached) => cached || caches.match('/index.html')))
+        .catch(() =>
+          caches
+            .match(request)
+            .then((cached) => cached || caches.match("/index.html")),
+        ),
     );
   }
 });

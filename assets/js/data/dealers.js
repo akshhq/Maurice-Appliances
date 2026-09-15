@@ -14,12 +14,13 @@ export const DEALER_NETWORK = [
     district: "Kullu",
     city: "Bhunter",
     pincode: "175125",
-    address: "VPO Jia, Tehsil Bhunter, Near Airport Highway, Kullu, HP - 175 125",
+    address:
+      "VPO Jia, Tehsil Bhunter, Near Airport Highway, Kullu, HP - 175 125",
     phone: "+91 98165-91699",
     altPhone: "+91 90154-88584",
     email: "kullu.depot@mauriceappliances.in",
     categories: ["Water Heaters", "Room Heaters", "Fans", "Kitchen Appliances"],
-    isFactoryOutlet: true
+    isFactoryOutlet: true,
   },
   {
     id: "hp-02",
@@ -33,7 +34,7 @@ export const DEALER_NETWORK = [
     address: "Shop 14-16, Cart Road, Below Lift, Shimla, HP - 171 001",
     phone: "+91 98160-23411",
     email: "shimla.dist@mauriceappliances.in",
-    categories: ["Room Heaters", "Water Heaters", "Induction", "Chimneys"]
+    categories: ["Room Heaters", "Water Heaters", "Induction", "Chimneys"],
   },
   {
     id: "hp-03",
@@ -47,7 +48,12 @@ export const DEALER_NETWORK = [
     address: "Indira Market Complex, Shop 42, Mandi, HP - 175 001",
     phone: "+91 94180-87654",
     email: "mandi.dealer@mauriceappliances.in",
-    categories: ["Room Heaters", "Water Heaters", "Mixer Grinders", "Gas Stoves"]
+    categories: [
+      "Room Heaters",
+      "Water Heaters",
+      "Mixer Grinders",
+      "Gas Stoves",
+    ],
   },
   {
     id: "hp-04",
@@ -61,7 +67,7 @@ export const DEALER_NETWORK = [
     address: "Kotwali Bazaar, Main Chowk, Dharamshala, Kangra, HP - 176 215",
     phone: "+91 98055-12345",
     email: "kangra.dealer@mauriceappliances.in",
-    categories: ["Water Heaters", "Room Heaters", "Madhani", "Irons"]
+    categories: ["Water Heaters", "Room Heaters", "Madhani", "Irons"],
   },
   {
     id: "hp-05",
@@ -75,7 +81,7 @@ export const DEALER_NETWORK = [
     address: "The Mall Road, Opp. PNB Building, Solan, HP - 173 212",
     phone: "+91 98170-99881",
     email: "solan.dist@mauriceappliances.in",
-    categories: ["All 11 Categories"]
+    categories: ["All 11 Categories"],
   },
 
   // Delhi NCR
@@ -92,7 +98,7 @@ export const DEALER_NETWORK = [
     phone: "+91 90154-88584",
     email: "delhi.sales@mauriceappliances.in",
     categories: ["All 11 Categories"],
-    isFactoryOutlet: true
+    isFactoryOutlet: true,
   },
   {
     id: "dl-02",
@@ -107,7 +113,7 @@ export const DEALER_NETWORK = [
     phone: "+91 98165-91699",
     email: "bawana.unit@mauriceappliances.in",
     categories: ["All 11 Categories"],
-    isFactoryOutlet: true
+    isFactoryOutlet: true,
   },
   {
     id: "dl-03",
@@ -121,7 +127,13 @@ export const DEALER_NETWORK = [
     address: "Shop 108, Bhagirath Palace, Chandni Chowk, Delhi - 110 006",
     phone: "+91 98110-45678",
     email: "chandni.dist@mauriceappliances.in",
-    categories: ["Fans", "Water Heaters", "Induction", "Gas Stoves", "Chimneys"]
+    categories: [
+      "Fans",
+      "Water Heaters",
+      "Induction",
+      "Gas Stoves",
+      "Chimneys",
+    ],
   },
   {
     id: "dl-04",
@@ -135,7 +147,7 @@ export const DEALER_NETWORK = [
     address: "Block 2, Furniture Market Road, Kirti Nagar, New Delhi - 110 015",
     phone: "+91 98711-22334",
     email: "kirtinagar@mauriceappliances.in",
-    categories: ["Chimneys", "Gas Stoves", "Water Heaters", "Mixer Grinders"]
+    categories: ["Chimneys", "Gas Stoves", "Water Heaters", "Mixer Grinders"],
   },
 
   // Punjab
@@ -148,10 +160,11 @@ export const DEALER_NETWORK = [
     district: "Amritsar",
     city: "Amritsar",
     pincode: "143001",
-    address: "Hall Bazaar, Near Golden Temple Chowk, Amritsar, Punjab - 143 001",
+    address:
+      "Hall Bazaar, Near Golden Temple Chowk, Amritsar, Punjab - 143 001",
     phone: "+91 98880-11223",
     email: "amritsar.dist@mauriceappliances.in",
-    categories: ["Room Heaters", "Water Heaters", "Fans", "Madhani", "Irons"]
+    categories: ["Room Heaters", "Water Heaters", "Fans", "Madhani", "Irons"],
   },
   {
     id: "pb-02",
@@ -165,7 +178,7 @@ export const DEALER_NETWORK = [
     address: "Clock Tower Market, GT Road, Ludhiana, Punjab - 141 001",
     phone: "+91 98140-55667",
     email: "ludhiana.dist@mauriceappliances.in",
-    categories: ["All 11 Categories"]
+    categories: ["All 11 Categories"],
   },
   {
     id: "pb-03",
@@ -179,7 +192,7 @@ export const DEALER_NETWORK = [
     address: "Phagwara Gate Electrical Market, Jalandhar, Punjab - 144 001",
     phone: "+91 98150-77889",
     email: "jalandhar.dealer@mauriceappliances.in",
-    categories: ["Water Heaters", "Room Heaters", "Induction", "Gas Stoves"]
+    categories: ["Water Heaters", "Room Heaters", "Induction", "Gas Stoves"],
   },
 
   // Haryana & Chandigarh
@@ -195,7 +208,7 @@ export const DEALER_NETWORK = [
     address: "SCO 84-85, Sector 22-B, Chandigarh - 160 022",
     phone: "+91 98720-33445",
     email: "chandigarh.dist@mauriceappliances.in",
-    categories: ["All 11 Categories"]
+    categories: ["All 11 Categories"],
   },
   {
     id: "hr-02",
@@ -209,7 +222,7 @@ export const DEALER_NETWORK = [
     address: "Nicholson Road, Sadar Bazaar, Ambala Cantt, Haryana - 133 001",
     phone: "+91 94160-66778",
     email: "ambala.dealer@mauriceappliances.in",
-    categories: ["Fans", "Room Heaters", "Water Heaters", "Madhani"]
+    categories: ["Fans", "Room Heaters", "Water Heaters", "Madhani"],
   },
   {
     id: "hr-03",
@@ -220,10 +233,11 @@ export const DEALER_NETWORK = [
     district: "Gurugram",
     city: "Gurugram",
     pincode: "122001",
-    address: "Old Railway Road, Opp. Dayanand Market, Gurugram, Haryana - 122 001",
+    address:
+      "Old Railway Road, Opp. Dayanand Market, Gurugram, Haryana - 122 001",
     phone: "+91 99990-88776",
     email: "gurugram.dealer@mauriceappliances.in",
-    categories: ["Chimneys", "Induction", "Gas Stoves", "Water Heaters"]
+    categories: ["Chimneys", "Induction", "Gas Stoves", "Water Heaters"],
   },
 
   // Uttarakhand
@@ -239,7 +253,7 @@ export const DEALER_NETWORK = [
     address: "Paltan Bazaar, Near Ghanta Ghar, Dehradun, Uttarakhand - 248 001",
     phone: "+91 94120-11998",
     email: "dehradun.dist@mauriceappliances.in",
-    categories: ["Room Heaters", "Water Heaters", "Fans", "Gas Stoves"]
+    categories: ["Room Heaters", "Water Heaters", "Fans", "Gas Stoves"],
   },
   {
     id: "uk-02",
@@ -253,7 +267,12 @@ export const DEALER_NETWORK = [
     address: "Nainital Road, Near Bus Stand, Haldwani, Uttarakhand - 263 139",
     phone: "+91 94111-55443",
     email: "haldwani.dealer@mauriceappliances.in",
-    categories: ["Water Heaters", "Room Heaters", "Induction", "Mixer Grinders"]
+    categories: [
+      "Water Heaters",
+      "Room Heaters",
+      "Induction",
+      "Mixer Grinders",
+    ],
   },
 
   // Uttar Pradesh
@@ -269,7 +288,7 @@ export const DEALER_NETWORK = [
     address: "Aminabad Electrical Market, Shop 56, Lucknow, UP - 226 001",
     phone: "+91 94150-22334",
     email: "lucknow.dist@mauriceappliances.in",
-    categories: ["All 11 Categories"]
+    categories: ["All 11 Categories"],
   },
   {
     id: "up-02",
@@ -283,7 +302,7 @@ export const DEALER_NETWORK = [
     address: "Belanganj Commercial Center, Agra, UP - 282 003",
     phone: "+91 98370-44556",
     email: "agra.dealer@mauriceappliances.in",
-    categories: ["Gas Stoves", "Chimneys", "Water Heaters", "Irons"]
+    categories: ["Gas Stoves", "Chimneys", "Water Heaters", "Irons"],
   },
 
   // Rajasthan
@@ -299,7 +318,13 @@ export const DEALER_NETWORK = [
     address: "MI Road, Near Panch Batti, Jaipur, Rajasthan - 302 001",
     phone: "+91 98290-77665",
     email: "jaipur.dist@mauriceappliances.in",
-    categories: ["Fans", "Mixer Grinders", "Water Heaters", "Induction", "Gas Stoves"]
+    categories: [
+      "Fans",
+      "Mixer Grinders",
+      "Water Heaters",
+      "Induction",
+      "Gas Stoves",
+    ],
   },
 
   // Jammu & Kashmir
@@ -315,7 +340,12 @@ export const DEALER_NETWORK = [
     address: "Residency Road, Lal Chowk, Srinagar, J&K - 190 001",
     phone: "+91 94190-33221",
     email: "srinagar.dist@mauriceappliances.in",
-    categories: ["Room Heaters", "Water Heaters", "Gas Heaters", "Immersion Rods"]
+    categories: [
+      "Room Heaters",
+      "Water Heaters",
+      "Gas Heaters",
+      "Immersion Rods",
+    ],
   },
   {
     id: "jk-02",
@@ -329,33 +359,43 @@ export const DEALER_NETWORK = [
     address: "Raghunath Bazaar, Jammu Tawi, J&K - 180 001",
     phone: "+91 94191-88776",
     email: "jammu.dealer@mauriceappliances.in",
-    categories: ["Water Heaters", "Room Heaters", "Fans", "Mixer Grinders"]
-  }
+    categories: ["Water Heaters", "Room Heaters", "Fans", "Mixer Grinders"],
+  },
 ];
 
 export function getStates() {
-  const states = new Set(DEALER_NETWORK.map(d => d.state));
+  const states = new Set(DEALER_NETWORK.map((d) => d.state));
   return Array.from(states).sort();
 }
 
 export function getDistricts(state = "") {
-  const filtered = state ? DEALER_NETWORK.filter(d => d.state.toLowerCase() === state.toLowerCase()) : DEALER_NETWORK;
-  const districts = new Set(filtered.map(d => d.district));
+  const filtered = state
+    ? DEALER_NETWORK.filter(
+        (d) => d.state.toLowerCase() === state.toLowerCase(),
+      )
+    : DEALER_NETWORK;
+  const districts = new Set(filtered.map((d) => d.district));
   return Array.from(districts).sort();
 }
 
-export function filterDealers({ state = "", district = "", pincode = "", query = "" } = {}) {
+export function filterDealers({
+  state = "",
+  district = "",
+  pincode = "",
+  query = "",
+} = {}) {
   const q = query.trim().toLowerCase();
   const pin = pincode.trim();
   const st = state.trim().toLowerCase();
   const dist = district.trim().toLowerCase();
 
-  return DEALER_NETWORK.filter(d => {
+  return DEALER_NETWORK.filter((d) => {
     if (st && d.state.toLowerCase() !== st) return false;
     if (dist && d.district.toLowerCase() !== dist) return false;
     if (pin && !d.pincode.startsWith(pin)) return false;
     if (q) {
-      const match = `${d.firm} ${d.city} ${d.district} ${d.state} ${d.contactPerson} ${d.address}`.toLowerCase();
+      const match =
+        `${d.firm} ${d.city} ${d.district} ${d.state} ${d.contactPerson} ${d.address}`.toLowerCase();
       if (!match.includes(q)) return false;
     }
     return true;

@@ -29,7 +29,9 @@
   border: 1px solid rgba(255, 255, 255, 0.12);
   transform: translateY(20px);
   opacity: 0;
-  transition: transform var(--dur-2) var(--ease), opacity var(--dur-2) var(--ease);
+  transition:
+    transform var(--dur-2) var(--ease),
+    opacity var(--dur-2) var(--ease);
 }
 
 .toast.is-visible {
@@ -51,9 +53,15 @@
   flex: none;
 }
 
-.toast--success .toast__dot { background: #22c55e; }
-.toast--warning .toast__dot { background: var(--ember); }
-.toast--error .toast__dot   { background: var(--red); }
+.toast--success .toast__dot {
+  background: #22c55e;
+}
+.toast--warning .toast__dot {
+  background: var(--ember);
+}
+.toast--error .toast__dot {
+  background: var(--red);
+}
 
 .toast__msg {
   font-size: var(--fs-sm);

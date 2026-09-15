@@ -3,17 +3,17 @@
  * Handles SKU prefilled inquiries, dealer inquiries, and WhatsApp direct links.
  */
 
-import { COMPANY } from '../data/products.js?v=3.0';
-import { showToast } from '../core/catalog-utils.js?v=3.0';
+import { COMPANY } from "../data/products.js?v=3.0";
+import { showToast } from "../core/catalog-utils.js?v=3.0";
 
 export function initInquiryModal() {
-  let modal = document.getElementById('inquiryModal');
+  let modal = document.getElementById("inquiryModal");
   if (!modal) {
-    modal = document.createElement('div');
-    modal.id = 'inquiryModal';
-    modal.className = 'modal';
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
+    modal = document.createElement("div");
+    modal.id = "inquiryModal";
+    modal.className = "modal";
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
     modal.innerHTML = `
       <div class="modal__backdrop" id="inquiryBackdrop"></div>
       <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="inquiryTitle">
@@ -77,110 +77,132 @@ export function initInquiryModal() {
     document.body.appendChild(modal);
   }
 
-  const form = document.getElementById('inquiryForm');
-  const productInput = document.getElementById('inq-product');
-  const waBtn = document.getElementById('inquiryWhatsAppBtn');
+  const form = document.getElementById("inquiryForm");
+  const productInput = document.getElementById("inq-product");
+  const waBtn = document.getElementById("inquiryWhatsAppBtn");
 
-  function openModal(productName = '') {
-    if (productInput) productInput.value = productName || 'Maurice Home Appliance General Inquiry';
-    modal.style.display = 'flex';
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+  function openModal(productName = "") {
+    if (productInput)
+      productInput.value =
+        productName || "Maurice Home Appliance General Inquiry";
+    modal.style.display = "flex";
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
   }
 
   function closeModal() {
-    modal.classList.remove('is-open');
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    modal.classList.remove("is-open");
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
   }
 
   // Global click delegator for open & close buttons
-  document.addEventListener('click', (e) => {
+  document.addEventListener("click", (e) => {
     // Open modal
-    const openBtn = e.target.closest('.open-inquiry-btn');
+    const openBtn = e.target.closest(".open-inquiry-btn");
     if (openBtn) {
       e.preventDefault();
-      const model = openBtn.dataset.model || '';
+      const model = openBtn.dataset.model || "";
       openModal(model);
       return;
     }
 
     // Close modal
-    if (e.target.closest('#closeInquiryBtn') || e.target.closest('#inquiryBackdrop')) {
+    if (
+      e.target.closest("#closeInquiryBtn") ||
+      e.target.closest("#inquiryBackdrop")
+    ) {
       e.preventDefault();
       closeModal();
     }
   });
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
   });
 
   // Handle WhatsApp Direct Send
-  waBtn?.addEventListener('click', () => {
+  waBtn?.addEventListener("click", () => {
     const p = productInput.value;
-    const name = document.getElementById('inq-name').value.trim();
-    const city = document.getElementById('inq-city').value.trim();
-    const type = document.getElementById('inq-type').value;
-    const text = encodeURIComponent(`Hello Maurice Appliances Team, I would like to inquire about *${p}*. \nType: ${type}\nName: ${name || 'Customer'}\nLocation: ${city || 'India'}`);
-    window.open(`https://wa.me/${COMPANY.whatsapp.replace(/[^0-9]/g, '')}?text=${text}`, '_blank');
+    const name = document.getElementById("inq-name").value.trim();
+    const city = document.getElementById("inq-city").value.trim();
+    const type = document.getElementById("inq-type").value;
+    const text = encodeURIComponent(
+      `Hello Maurice Appliances Team, I would like to inquire about *${p}*. \nType: ${type}\nName: ${name || "Customer"}\nLocation: ${city || "India"}`,
+    );
+    window.open(
+      `https://wa.me/${COMPANY.whatsapp.replace(/[^0-9]/g, "")}?text=${text}`,
+      "_blank",
+    );
   });
 
   function getApiEndpoint() {
-    const isSubfolder = ['/company/', '/dealers/', '/support/', '/contact/', '/legal/', '/pages/'].some(p => window.location.pathname.includes(p));
-    return isSubfolder ? '../api/submit-form.php' : './api/submit-form.php';
+    const isSubfolder = [
+      "/company/",
+      "/dealers/",
+      "/support/",
+      "/contact/",
+      "/legal/",
+      "/pages/",
+    ].some((p) => window.location.pathname.includes(p));
+    return isSubfolder ? "../api/submit-form.php" : "./api/submit-form.php";
   }
 
   // Handle Form Submission
-  form?.addEventListener('submit', async (e) => {
+  form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const name = document.getElementById('inq-name').value.trim();
-    const phone = document.getElementById('inq-phone').value.trim();
-    const city = document.getElementById('inq-city').value.trim();
+    const name = document.getElementById("inq-name").value.trim();
+    const phone = document.getElementById("inq-phone").value.trim();
+    const city = document.getElementById("inq-city").value.trim();
 
     if (!name || !phone || !city) {
-      showToast('Please fill in your Name, Phone Number, and City.', 'warning');
+      showToast("Please fill in your Name, Phone Number, and City.", "warning");
       return;
     }
 
-    const submitBtn = document.getElementById('submitInquiryBtn');
-    const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+    const submitBtn = document.getElementById("submitInquiryBtn");
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : "";
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span>Submitting...</span>';
+      submitBtn.innerHTML = "<span>Submitting...</span>";
     }
 
     const formData = new FormData();
-    formData.append('formType', 'product_inquiry');
-    formData.append('product', productInput.value || '');
-    formData.append('name', name);
-    formData.append('phone', phone);
-    formData.append('email', document.getElementById('inq-email').value.trim());
-    formData.append('city', city);
-    formData.append('inquiry_type', document.getElementById('inq-type').value);
-    formData.append('notes', document.getElementById('inq-notes').value.trim());
+    formData.append("formType", "product_inquiry");
+    formData.append("product", productInput.value || "");
+    formData.append("name", name);
+    formData.append("phone", phone);
+    formData.append("email", document.getElementById("inq-email").value.trim());
+    formData.append("city", city);
+    formData.append("inquiry_type", document.getElementById("inq-type").value);
+    formData.append("notes", document.getElementById("inq-notes").value.trim());
 
     try {
       const response = await fetch(getApiEndpoint(), {
-        method: 'POST',
-        body: formData
+        method: "POST",
+        body: formData,
       });
 
       const result = await response.json();
 
       if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Submission failed');
+        throw new Error(result.message || "Submission failed");
       }
 
-      showToast('Thank you! Your inquiry has been submitted. Our regional sales team will contact you shortly.', 'success');
+      showToast(
+        "Thank you! Your inquiry has been submitted. Our regional sales team will contact you shortly.",
+        "success",
+      );
       form.reset();
       closeModal();
-
     } catch (error) {
-      console.error('Product inquiry error:', error);
-      showToast('Unable to submit your inquiry. Please try again later or email customer.care@mauriceappliances.in', 'error');
+      console.error("Product inquiry error:", error);
+      showToast(
+        "Unable to submit your inquiry. Please try again later or email customer.care@mauriceappliances.in",
+        "error",
+      );
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;

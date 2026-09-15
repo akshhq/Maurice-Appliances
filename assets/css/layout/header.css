@@ -32,7 +32,9 @@
   z-index: -1;
 }
 
-.nav.hidden { transform: translateY(-130%); }
+.nav.hidden {
+  transform: translateY(-130%);
+}
 
 .nav__bar {
   display: flex;
@@ -72,7 +74,11 @@
   padding-left: 10px;
   border-left: 1px solid var(--line-strong);
 }
-@media (max-width: 1280px) { .nav__logo-tagline { display: none; } }
+@media (max-width: 1280px) {
+  .nav__logo-tagline {
+    display: none;
+  }
+}
 
 /* Logo underline hover */
 .nav__logo-line {
@@ -86,7 +92,9 @@
   transform-origin: left;
   transition: transform var(--dur-3) var(--ease);
 }
-.nav__logo:hover .nav__logo-line { transform: scaleX(1); }
+.nav__logo:hover .nav__logo-line {
+  transform: scaleX(1);
+}
 
 /* ---- Nav links ---- */
 .nav__links {
@@ -96,9 +104,15 @@
   flex: 1;
   justify-content: center;
 }
-@media (max-width: 1024px) { .nav__links { display: none; } }
+@media (max-width: 1024px) {
+  .nav__links {
+    display: none;
+  }
+}
 
-.nav__item { position: relative; }
+.nav__item {
+  position: relative;
+}
 
 .nav__link {
   display: inline-flex;
@@ -109,14 +123,23 @@
   font-weight: 600;
   color: var(--text-1);
   border-radius: var(--r-pill);
-  transition: color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
+  transition:
+    color var(--dur-1) var(--ease),
+    background var(--dur-1) var(--ease);
   white-space: nowrap;
 }
-.nav__link:hover { color: var(--red); background: rgba(224,30,38,0.05); }
-.nav__link[aria-current="page"] { color: var(--red); }
+.nav__link:hover {
+  color: var(--red);
+  background: rgba(224, 30, 38, 0.05);
+}
+.nav__link[aria-current="page"] {
+  color: var(--red);
+}
 
 .nav__caret {
-  transition: transform var(--dur-2) var(--ease), color var(--dur-1) var(--ease);
+  transition:
+    transform var(--dur-2) var(--ease),
+    color var(--dur-1) var(--ease);
   opacity: 0.5;
 }
 .nav__item {
@@ -158,7 +181,10 @@
   pointer-events: none;
   transform: translateY(8px) scale(0.98);
   transform-origin: top left;
-  transition: opacity var(--dur-2) var(--ease), visibility var(--dur-2), transform var(--dur-2) var(--ease);
+  transition:
+    opacity var(--dur-2) var(--ease),
+    visibility var(--dur-2),
+    transform var(--dur-2) var(--ease);
 }
 
 /* Invisible bridge so mouse pointer never drops hover when crossing between link and menu */
@@ -188,9 +214,14 @@
   font-size: var(--fs-sm);
   color: var(--text-2);
   font-weight: 500;
-  transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
+  transition:
+    background var(--dur-1) var(--ease),
+    color var(--dur-1) var(--ease);
 }
-.drop a:hover { background: var(--surface-2); color: var(--red); }
+.drop a:hover {
+  background: var(--surface-2);
+  color: var(--red);
+}
 
 /* ============================================================
    4-COLUMN MEGA MENU (Havells Style)
@@ -209,7 +240,10 @@
   pointer-events: none;
   transform: translateY(-8px);
   transform-origin: top center;
-  transition: opacity var(--dur-2) var(--ease), visibility var(--dur-2), transform var(--dur-2) var(--ease);
+  transition:
+    opacity var(--dur-2) var(--ease),
+    visibility var(--dur-2),
+    transform var(--dur-2) var(--ease);
   max-height: 85vh;
   overflow-y: auto;
   z-index: calc(var(--z-nav) - 1);
@@ -231,8 +265,12 @@
 }
 
 @media (max-width: 1280px) {
-  .mega__4col { grid-template-columns: repeat(3, 1fr); }
-  .mega__promo-box { display: none; }
+  .mega__4col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .mega__promo-box {
+    display: none;
+  }
 }
 
 .mega__col-head {
@@ -249,9 +287,16 @@
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
 }
-.mega__col-head svg { width: 16px; height: 16px; color: var(--red); }
+.mega__col-head svg {
+  width: 16px;
+  height: 16px;
+  color: var(--red);
+}
 
-.mega__list { display: grid; gap: 2px; }
+.mega__list {
+  display: grid;
+  gap: 2px;
+}
 
 .mega__cat-item {
   display: flex;
@@ -259,7 +304,9 @@
   gap: var(--s-3);
   padding: var(--s-3) var(--s-3);
   border-radius: var(--r-sm);
-  transition: background var(--dur-1) var(--ease), transform var(--dur-1) var(--ease);
+  transition:
+    background var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
 }
 .mega__cat-item:hover {
   background: var(--surface-2);
@@ -275,20 +322,33 @@
   display: grid;
   place-items: center;
   flex: none;
-  transition: background var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+  transition:
+    background var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease);
 }
 .mega__cat-item:hover .mega__cat-icon {
   background: var(--red);
   color: #fff;
 }
 
-.mega__cat-info { display: flex; flex-direction: column; }
-.mega__cat-title { font-size: var(--fs-sm); font-weight: 600; color: var(--text-1); }
-.mega__cat-sub { font-size: var(--fs-cap); color: var(--text-3); margin-top: 1px; }
+.mega__cat-info {
+  display: flex;
+  flex-direction: column;
+}
+.mega__cat-title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-1);
+}
+.mega__cat-sub {
+  font-size: var(--fs-cap);
+  color: var(--text-3);
+  margin-top: 1px;
+}
 
 /* ---- Mega promo card ---- */
 .mega__promo-box {
-  background: linear-gradient(145deg, #F6F7F9 0%, #ECEEF1 100%);
+  background: linear-gradient(145deg, #f6f7f9 0%, #eceef1 100%);
   border: 1px solid var(--line);
   border-radius: var(--r);
   padding: var(--s-5);
@@ -336,7 +396,9 @@
   color: var(--text-1);
   transition: color var(--dur-1) var(--ease);
 }
-.mega__promo-links a:hover { color: var(--red); }
+.mega__promo-links a:hover {
+  color: var(--red);
+}
 
 /* ============================================================
    NAV ACTIONS (CTA Buttons)
@@ -357,7 +419,7 @@
   background: var(--red);
   color: #fff !important;
   font-weight: 700;
-  box-shadow: 0 4px 14px rgba(224,30,38,0.22);
+  box-shadow: 0 4px 14px rgba(224, 30, 38, 0.22);
 }
 .nav__bulk-btn:hover {
   background: var(--red-deep);
@@ -366,10 +428,14 @@
 }
 
 @media (max-width: 1024px) {
-  .nav__actions .nav__dealer-btn { display: none !important; }
+  .nav__actions .nav__dealer-btn {
+    display: none !important;
+  }
 }
 @media (max-width: 768px) {
-  .nav__actions .nav__bulk-btn { display: none !important; }
+  .nav__actions .nav__bulk-btn {
+    display: none !important;
+  }
 }
 
 /* ============================================================
@@ -385,7 +451,13 @@
   border: 1px solid var(--line);
   flex: none;
 }
-@media (max-width: 1024px) { .nav__burger { display: flex; align-items: center; justify-content: center; } }
+@media (max-width: 1024px) {
+  .nav__burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 .nav__burger span {
   position: absolute;
@@ -394,14 +466,28 @@
   height: 1.5px;
   background: var(--ink);
   border-radius: 2px;
-  transition: transform var(--dur-2) var(--ease), opacity var(--dur-1) var(--ease);
+  transition:
+    transform var(--dur-2) var(--ease),
+    opacity var(--dur-1) var(--ease);
 }
-.nav__burger span:nth-child(1) { top: 13px; }
-.nav__burger span:nth-child(2) { top: 19px; }
-.nav__burger span:nth-child(3) { top: 25px; }
-.nav__burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.nav__burger.open span:nth-child(2) { opacity: 0; }
-.nav__burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.nav__burger span:nth-child(1) {
+  top: 13px;
+}
+.nav__burger span:nth-child(2) {
+  top: 19px;
+}
+.nav__burger span:nth-child(3) {
+  top: 25px;
+}
+.nav__burger.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav__burger.open span:nth-child(2) {
+  opacity: 0;
+}
+.nav__burger.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
 
 /* ---- Mobile menu drawer ---- */
 .mobile {
@@ -417,8 +503,13 @@
   transition: transform var(--dur-3) var(--ease);
   visibility: hidden;
 }
-.mobile.open { transform: none; visibility: visible; }
-.mobile__inner { padding: var(--s-5) var(--gutter) var(--s-10); }
+.mobile.open {
+  transform: none;
+  visibility: visible;
+}
+.mobile__inner {
+  padding: var(--s-5) var(--gutter) var(--s-10);
+}
 
 .mobile__label {
   font-size: var(--fs-cap);
@@ -428,9 +519,15 @@
   font-weight: 700;
   margin: var(--s-6) 0 var(--s-3);
 }
-.mobile__label:first-child { margin-top: 0; }
+.mobile__label:first-child {
+  margin-top: 0;
+}
 
-.mobile__cats { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-2); }
+.mobile__cats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-2);
+}
 .mobile__cats a {
   display: flex;
   align-items: center;
@@ -441,10 +538,19 @@
   border: 1px solid var(--line);
   font-weight: 600;
   font-size: var(--fs-sm);
-  transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
+  transition:
+    background var(--dur-1) var(--ease),
+    border-color var(--dur-1) var(--ease);
 }
-.mobile__cats a:hover { background: var(--mist); border-color: var(--line-strong); }
-.mobile__cats a > span { font-size: var(--fs-cap); color: var(--text-3); font-weight: 500; }
+.mobile__cats a:hover {
+  background: var(--mist);
+  border-color: var(--line-strong);
+}
+.mobile__cats a > span {
+  font-size: var(--fs-cap);
+  color: var(--text-3);
+  font-weight: 500;
+}
 
 .mobile__cats-soon {
   display: flex;
@@ -470,8 +576,15 @@
   color: var(--text-2);
   transition: color var(--dur-1) var(--ease);
 }
-.mobile__link:hover { color: var(--red); }
-.mobile__link:last-child { border-bottom: none; }
+.mobile__link:hover {
+  color: var(--red);
+}
+.mobile__link:last-child {
+  border-bottom: none;
+}
 
-.mobile__cta { width: 100%; justify-content: center; margin-top: var(--s-6); }
-
+.mobile__cta {
+  width: 100%;
+  justify-content: center;
+  margin-top: var(--s-6);
+}

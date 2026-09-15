@@ -3,7 +3,12 @@
    ============================================================ */
 
 /* ---- Heading hierarchy ---- */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: var(--lh-snug);
@@ -11,18 +16,32 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-1);
 }
 
-h1 { font-size: var(--fs-h1); line-height: var(--lh-tight); letter-spacing: -0.025em; }
-h2 { font-size: var(--fs-h2); }
-h3 { font-size: var(--fs-h3); }
-h4 { font-size: var(--fs-h4); }
+h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.025em;
+}
+h2 {
+  font-size: var(--fs-h2);
+}
+h3 {
+  font-size: var(--fs-h3);
+}
+h4 {
+  font-size: var(--fs-h4);
+}
 
 p {
   max-width: var(--maxw-text);
   line-height: var(--lh-body);
 }
 
-strong { font-weight: 700; }
-em { font-style: italic; }
+strong {
+  font-weight: 700;
+}
+em {
+  font-style: italic;
+}
 
 /* ---- Display text ---- */
 .display {
@@ -57,22 +76,47 @@ em { font-style: italic; }
 }
 
 /* ---- Muted / helper text ---- */
-.muted { color: var(--text-3); }
-.caption { font-size: var(--fs-xs); color: var(--text-4); }
+.muted {
+  color: var(--text-3);
+}
+.caption {
+  font-size: var(--fs-xs);
+  color: var(--text-4);
+}
 
 /* ---- Tabular nums ---- */
-.tabular { font-variant-numeric: tabular-nums; }
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
 
 /* ---- Text utilities ---- */
-.text-center { text-align: center; }
-.text-balance { text-wrap: balance; }
+.text-center {
+  text-align: center;
+}
+.text-balance {
+  text-wrap: balance;
+}
 
 /* ---- Prose content ---- */
-.prose { max-width: 72ch; overflow-wrap: break-word; word-break: break-word; }
-.prose > * + * { margin-top: var(--s-4); }
-.prose h2 { font-size: var(--fs-h2); margin-top: var(--s-8); }
-.prose h3 { font-size: var(--fs-h3); margin-top: var(--s-7); }
-.prose p { color: var(--text-2); }
+.prose {
+  max-width: 72ch;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.prose > * + * {
+  margin-top: var(--s-4);
+}
+.prose h2 {
+  font-size: var(--fs-h2);
+  margin-top: var(--s-8);
+}
+.prose h3 {
+  font-size: var(--fs-h3);
+  margin-top: var(--s-7);
+}
+.prose p {
+  color: var(--text-2);
+}
 .prose ul {
   display: grid;
   gap: var(--s-3);
@@ -95,5 +139,11 @@ em { font-style: italic; }
   border-radius: 50%;
   background: var(--red);
 }
-.prose a { color: var(--red); text-decoration: underline; text-underline-offset: 3px; }
-.prose a:hover { text-decoration-thickness: 2px; }
+.prose a {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose a:hover {
+  text-decoration-thickness: 2px;
+}

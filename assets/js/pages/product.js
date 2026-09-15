@@ -4,28 +4,48 @@
  * Frequently Bought Together Bundle, Interactive Pincode Checker, Variant Matrix & Reviews.
  */
 
-import { ALL_PRODUCTS, PRODUCTS_BY_CAT, getProductBySlug, getCategory, getRelatedProducts } from '../data/products.js?v=3.0';
-import { formatINR, renderProductVisual, renderProductCard, showToast } from '../core/catalog-utils.js?v=3.0';
-import { initReveals } from '../core/scroll.js?v=3.0';
+import {
+  ALL_PRODUCTS,
+  PRODUCTS_BY_CAT,
+  getProductBySlug,
+  getCategory,
+  getRelatedProducts,
+} from "../data/products.js?v=3.0";
+import {
+  formatINR,
+  renderProductVisual,
+  renderProductCard,
+  showToast,
+} from "../core/catalog-utils.js?v=3.0";
+import { initReveals } from "../core/scroll.js?v=3.0";
 
 let initialized = false;
 
 export function initProductDetailPage() {
-  const pdpApp = document.getElementById('pdpApp');
+  const pdpApp = document.getElementById("pdpApp");
   if (!pdpApp || initialized) return;
   initialized = true;
 
   const urlParams = new URLSearchParams(window.location.search);
-  const catParam = urlParams.get('cat') || '';
-  const modelParam = urlParams.get('model') || urlParams.get('id') || '';
+  const catParam = urlParams.get("cat") || "";
+  const modelParam = urlParams.get("model") || urlParams.get("id") || "";
 
   let product = getProductBySlug(modelParam, catParam) || ALL_PRODUCTS[0];
   let currentVariant = product;
 
   function renderPDP() {
-    const category = getCategory(currentVariant.cat) || { name: 'Home Appliances', id: currentVariant.cat };
-    const related = getRelatedProducts(currentVariant.cat, currentVariant.slug, 3);
-    const adjacentVariants = (PRODUCTS_BY_CAT[currentVariant.cat] || []).filter(p => p.slug !== currentVariant.slug).slice(0, 2);
+    const category = getCategory(currentVariant.cat) || {
+      name: "Home Appliances",
+      id: currentVariant.cat,
+    };
+    const related = getRelatedProducts(
+      currentVariant.cat,
+      currentVariant.slug,
+      3,
+    );
+    const adjacentVariants = (PRODUCTS_BY_CAT[currentVariant.cat] || [])
+      .filter((p) => p.slug !== currentVariant.slug)
+      .slice(0, 2);
 
     // Calculate dynamic deal discount & bundle price
     const mrp = currentVariant.mrp || 4990;
@@ -64,19 +84,27 @@ export function initProductDetailPage() {
           <div class="pdp__visual">
             <div class="pdp__stage" id="pdpStage">
               <div id="pdpMainImageWrap" class="pdp__image-container">
-                ${renderProductVisual(currentVariant, 'pdp__image', false)}
+                ${renderProductVisual(currentVariant, "pdp__image", false)}
               </div>
             </div>
             
-            ${(currentVariant.gallery && currentVariant.gallery.length > 1) ? `
+            ${
+              currentVariant.gallery && currentVariant.gallery.length > 1
+                ? `
               <div class="pdp__thumbs" id="pdpThumbs" role="tablist" aria-label="Product Image Gallery">
-                ${currentVariant.gallery.map((imgSrc, idx) => `
-                  <button type="button" class="pdp__thumb ${idx === 0 ? 'active' : ''}" data-src="${imgSrc}" data-index="${idx}" aria-label="View Image ${idx + 1}">
+                ${currentVariant.gallery
+                  .map(
+                    (imgSrc, idx) => `
+                  <button type="button" class="pdp__thumb ${idx === 0 ? "active" : ""}" data-src="${imgSrc}" data-index="${idx}" aria-label="View Image ${idx + 1}">
                     <img src="${imgSrc}" alt="${currentVariant.model} shot ${idx + 1}" loading="lazy">
                   </button>
-                `).join('')}
+                `,
+                  )
+                  .join("")}
               </div>
-            ` : ''}
+            `
+                : ""
+            }
 
             <p class="pdp__cert-tag">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -89,7 +117,7 @@ export function initProductDetailPage() {
             <div class="pdp__meta-badges">
               <span class="badge badge--ember">#1 Best Seller in ${category.name}</span>
               <span class="badge badge--red">ISI IS: 2082 Certified</span>
-              ${currentVariant.warranty ? `<span class="badge badge--dark">${currentVariant.warranty}</span>` : ''}
+              ${currentVariant.warranty ? `<span class="badge badge--dark">${currentVariant.warranty}</span>` : ""}
             </div>
 
             <a href="products.html?cat=${encodeURIComponent(category.id)}" class="pdp__brand-kicker">
@@ -130,7 +158,7 @@ export function initProductDetailPage() {
             <div class="pdp__services-strip">
               <div class="pdp__service-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>${currentVariant.warranty || '1 Year'} Complete Warranty</span>
+                <span>${currentVariant.warranty || "1 Year"} Complete Warranty</span>
               </div>
               <div class="pdp__service-item">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4.5 12.5h6L11 22l8.5-11.5h-6z"/></svg>
@@ -147,19 +175,27 @@ export function initProductDetailPage() {
             </div>
 
             <!-- Capacity / Wattage Variant Selector -->
-            ${(PRODUCTS_BY_CAT[currentVariant.cat] || []).length > 1 ? `
+            ${
+              (PRODUCTS_BY_CAT[currentVariant.cat] || []).length > 1
+                ? `
             <div class="pdp__variants">
               <p class="pdp__variants-label">Select Capacity / Variant:</p>
               <div class="pdp__variants-chips">
-                ${(PRODUCTS_BY_CAT[currentVariant.cat] || []).map(p => `
-                  <button type="button" class="variant-chip ${p.slug === currentVariant.slug ? 'active' : ''}" data-slug="${p.slug}">
+                ${(PRODUCTS_BY_CAT[currentVariant.cat] || [])
+                  .map(
+                    (p) => `
+                  <button type="button" class="variant-chip ${p.slug === currentVariant.slug ? "active" : ""}" data-slug="${p.slug}">
                     <b>${p.model}</b>
-                    <span>${p.capacity || (p.wattage ? p.wattage + 'W' : formatINR(p.mrp))}</span>
+                    <span>${p.capacity || (p.wattage ? p.wattage + "W" : formatINR(p.mrp))}</span>
                   </button>
-                `).join('')}
+                `,
+                  )
+                  .join("")}
               </div>
             </div>
-            ` : ''}
+            `
+                : ""
+            }
 
             <!-- "About This Item" Structured Highlights (Amazon Pattern) -->
             <div class="pdp__about-block">
@@ -171,18 +207,22 @@ export function initProductDetailPage() {
                 </li>
                 <li class="pdp__bullet-item">
                   <svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5l4 4L17 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <div><b>Engineered Heating Core:</b> ${currentVariant.elementType || '100% High-Grade Copper Element'} engineered for extreme durability and rapid heat exchange.</div>
+                  <div><b>Engineered Heating Core:</b> ${currentVariant.elementType || "100% High-Grade Copper Element"} engineered for extreme durability and rapid heat exchange.</div>
                 </li>
                 <li class="pdp__bullet-item">
                   <svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5l4 4L17 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                   <div><b>Multi-Stage Safety Architecture:</b> Thermostat cutoff with independent thermal fuse to safeguard against dry-heating and pressure surge.</div>
                 </li>
-                ${(currentVariant.specs || []).map(s => `
+                ${(currentVariant.specs || [])
+                  .map(
+                    (s) => `
                   <li class="pdp__bullet-item">
                     <svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5l4 4L17 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <div><b>Key Specification:</b> ${s}</div>
                   </li>
-                `).join('')}
+                `,
+                  )
+                  .join("")}
               </ul>
             </div>
           </div>
@@ -210,7 +250,7 @@ export function initProductDetailPage() {
                   <svg class="arrow" width="15" height="15" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </button>
 
-                <a href="https://wa.me/919816591699?text=${encodeURIComponent('Hi Maurice Team, I am interested in ' + currentVariant.model + ' (' + currentVariant.title + '). Please share trade quotation.')}" target="_blank" rel="noopener noreferrer" class="pdp__whatsapp-btn">
+                <a href="https://wa.me/919816591699?text=${encodeURIComponent("Hi Maurice Team, I am interested in " + currentVariant.model + " (" + currentVariant.title + "). Please share trade quotation.")}" target="_blank" rel="noopener noreferrer" class="pdp__whatsapp-btn">
                   <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                   <span>WhatsApp Trade Connect</span>
                 </a>
@@ -275,19 +315,19 @@ export function initProductDetailPage() {
                 <tr><td>Product Name</td><td>${currentVariant.title}</td></tr>
                 <tr><td>Product Category</td><td>${category.name}</td></tr>
                 <tr><td>Rated Electrical Input</td><td>220–230 V AC, 50 Hz</td></tr>
-                <tr><td>Power Consumption</td><td>${currentVariant.wattage ? currentVariant.wattage + ' Watts' : 'Standard Rating'}</td></tr>
-                <tr><td>Capacity / Size</td><td>${currentVariant.capacity || 'Standard Configuration'}</td></tr>
-                <tr><td>Heating / Core Element</td><td>${currentVariant.elementType || '100% High-Grade Copper / Incoloy Element'}</td></tr>
+                <tr><td>Power Consumption</td><td>${currentVariant.wattage ? currentVariant.wattage + " Watts" : "Standard Rating"}</td></tr>
+                <tr><td>Capacity / Size</td><td>${currentVariant.capacity || "Standard Configuration"}</td></tr>
+                <tr><td>Heating / Core Element</td><td>${currentVariant.elementType || "100% High-Grade Copper / Incoloy Element"}</td></tr>
               </tbody>
             </table>
             <table class="spectable">
               <tbody>
-                <tr><td>Dimensions (L × W × H)</td><td>${currentVariant.dim || 'Standard Chassis'} mm</td></tr>
-                <tr><td>Gross / Net Weight</td><td>${currentVariant.weight || 'Standard'}</td></tr>
+                <tr><td>Dimensions (L × W × H)</td><td>${currentVariant.dim || "Standard Chassis"} mm</td></tr>
+                <tr><td>Gross / Net Weight</td><td>${currentVariant.weight || "Standard"}</td></tr>
                 <tr><td>Safety Systems</td><td>High Precision Thermostat & Thermal Cut-off</td></tr>
                 <tr><td>Main Supply Cable</td><td>ISI Marked Fire Retardant 3-Core Heavy Gauge Cable</td></tr>
-                <tr><td>Warranty Coverage</td><td><strong>${currentVariant.warranty || '1 Year Complete'}</strong></td></tr>
-                <tr><td>Minimum Order Quantity</td><td>${currentVariant.moq || '1 Pc'}</td></tr>
+                <tr><td>Warranty Coverage</td><td><strong>${currentVariant.warranty || "1 Year Complete"}</strong></td></tr>
+                <tr><td>Minimum Order Quantity</td><td>${currentVariant.moq || "1 Pc"}</td></tr>
                 <tr><td>Manufacturing Origin</td><td>India (Bawana Delhi & Kullu HP Units)</td></tr>
               </tbody>
             </table>
@@ -338,7 +378,9 @@ export function initProductDetailPage() {
       </section>
 
       <!-- Section: Amazon-Style Compare with Similar Items Table -->
-      ${adjacentVariants.length > 0 ? `
+      ${
+        adjacentVariants.length > 0
+          ? `
       <section class="section" id="comparison" style="background:var(--paper)">
         <div class="wrap">
           <div class="section-head">
@@ -356,48 +398,54 @@ export function initProductDetailPage() {
                     <span class="badge badge--red" style="margin-bottom:6px">Current Selection</span>
                     <strong>${currentVariant.model}</strong>
                   </th>
-                  ${adjacentVariants.map(v => `
+                  ${adjacentVariants
+                    .map(
+                      (v) => `
                     <th>
                       <strong>${v.model}</strong>
                       <div style="margin-top:6px">
                         <button type="button" class="btn btn--xs switch-variant-btn" data-slug="${v.slug}">Switch to this</button>
                       </div>
                     </th>
-                  `).join('')}
+                  `,
+                    )
+                    .join("")}
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>MRP Price</td>
                   <td class="current-model-th"><strong>${formatINR(currentVariant.mrp)}</strong></td>
-                  ${adjacentVariants.map(v => `<td>${formatINR(v.mrp)}</td>`).join('')}
+                  ${adjacentVariants.map((v) => `<td>${formatINR(v.mrp)}</td>`).join("")}
                 </tr>
                 <tr>
                   <td>Capacity / Size</td>
-                  <td class="current-model-th">${currentVariant.capacity || 'Standard'}</td>
-                  ${adjacentVariants.map(v => `<td>${v.capacity || 'Standard'}</td>`).join('')}
+                  <td class="current-model-th">${currentVariant.capacity || "Standard"}</td>
+                  ${adjacentVariants.map((v) => `<td>${v.capacity || "Standard"}</td>`).join("")}
                 </tr>
                 <tr>
                   <td>Power Rating</td>
-                  <td class="current-model-th">${currentVariant.wattage ? currentVariant.wattage + 'W' : 'Standard'}</td>
-                  ${adjacentVariants.map(v => `<td>${v.wattage ? v.wattage + 'W' : 'Standard'}</td>`).join('')}
+                  <td class="current-model-th">${currentVariant.wattage ? currentVariant.wattage + "W" : "Standard"}</td>
+                  ${adjacentVariants.map((v) => `<td>${v.wattage ? v.wattage + "W" : "Standard"}</td>`).join("")}
                 </tr>
                 <tr>
                   <td>Warranty Term</td>
-                  <td class="current-model-th"><strong>${currentVariant.warranty || '1 Year'}</strong></td>
-                  ${adjacentVariants.map(v => `<td>${v.warranty || '1 Year'}</td>`).join('')}
+                  <td class="current-model-th"><strong>${currentVariant.warranty || "1 Year"}</strong></td>
+                  ${adjacentVariants.map((v) => `<td>${v.warranty || "1 Year"}</td>`).join("")}
                 </tr>
                 <tr>
                   <td>BIS Certification</td>
                   <td class="current-model-th">IS: 2082 CM/L-9600024116</td>
-                  ${adjacentVariants.map(() => `<td>IS: 2082 CM/L-9600024116</td>`).join('')}
+                  ${adjacentVariants.map(() => `<td>IS: 2082 CM/L-9600024116</td>`).join("")}
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       </section>
-      ` : ''}
+      `
+          : ""
+      }
 
       <!-- Section: Amazon-Style Customer Ratings & Testimonials Breakdown -->
       <section class="section" id="reviews">
@@ -461,7 +509,7 @@ export function initProductDetailPage() {
             <div class="prose">
               <p>Every Maurice appliance is backed by standard factory warranty covering material defects and workmanship. In the unlikely event of a fault, our regional service technicians are available across India.</p>
               <ul>
-                <li><strong>Warranty Term:</strong> ${currentVariant.warranty || '1 Year Complete'}</li>
+                <li><strong>Warranty Term:</strong> ${currentVariant.warranty || "1 Year Complete"}</li>
                 <li><strong>Dedicated Support:</strong> Contact our customer care team</li>
                 <li><strong>Direct Email:</strong> customer.care@mauriceappliances.in</li>
               </ul>
@@ -480,7 +528,9 @@ export function initProductDetailPage() {
       </section>
 
       <!-- Section: Related Products in Same Category -->
-      ${related.length > 0 ? `
+      ${
+        related.length > 0
+          ? `
       <section class="section">
         <div class="wrap">
           <div class="featured__head">
@@ -492,71 +542,81 @@ export function initProductDetailPage() {
             <a href="products.html?cat=${encodeURIComponent(category.id)}" class="btn btn--ghost btn--sm">View All ${category.name}</a>
           </div>
           <div class="related__grid" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:var(--s-5)">
-            ${related.map(rp => renderProductCard(rp, { showCompare: true })).join('')}
+            ${related.map((rp) => renderProductCard(rp, { showCompare: true })).join("")}
           </div>
         </div>
       </section>
-      ` : ''}
+      `
+          : ""
+      }
     `;
 
     attachPDPListeners();
     setTimeout(() => {
-      pdpApp.querySelectorAll('.pcard').forEach(c => c.classList.add('in-view'));
+      pdpApp
+        .querySelectorAll(".pcard")
+        .forEach((c) => c.classList.add("in-view"));
       initReveals();
     }, 10);
   }
 
   function attachPDPListeners() {
     // Variant click listener
-    pdpApp.querySelectorAll('.variant-chip, .switch-variant-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const slug = btn.dataset.slug;
-        const target = getProductBySlug(slug);
-        if (target) {
-          currentVariant = target;
-          const url = new URL(window.location);
-          url.searchParams.set('cat', currentVariant.cat);
-          url.searchParams.set('model', currentVariant.slug);
-          window.history.pushState(null, '', url);
-          renderPDP();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    pdpApp
+      .querySelectorAll(".variant-chip, .switch-variant-btn")
+      .forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const slug = btn.dataset.slug;
+          const target = getProductBySlug(slug);
+          if (target) {
+            currentVariant = target;
+            const url = new URL(window.location);
+            url.searchParams.set("cat", currentVariant.cat);
+            url.searchParams.set("model", currentVariant.slug);
+            window.history.pushState(null, "", url);
+            renderPDP();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        });
       });
-    });
 
     // Pincode Delivery Estimator Checker
-    const pinBtn = document.getElementById('pdpPincodeCheckBtn');
-    const pinInput = document.getElementById('pdpPincodeInput');
-    const pinMsg = document.getElementById('pdpPincodeMsg');
-    pinBtn?.addEventListener('click', () => {
-      const pin = (pinInput?.value || '').trim();
+    const pinBtn = document.getElementById("pdpPincodeCheckBtn");
+    const pinInput = document.getElementById("pdpPincodeInput");
+    const pinMsg = document.getElementById("pdpPincodeMsg");
+    pinBtn?.addEventListener("click", () => {
+      const pin = (pinInput?.value || "").trim();
       if (!pin || pin.length < 6) {
-        showToast('Please enter a valid 6-digit Pincode.', 'warning');
+        showToast("Please enter a valid 6-digit Pincode.", "warning");
         return;
       }
       if (pinMsg) {
         pinMsg.textContent = `Express Dispatch Available to ${pin} (Nearest Stockist: ~4.2 km)`;
-        showToast(`Stock verified for ${pin}! Factory dispatch ready.`, 'success');
+        showToast(
+          `Stock verified for ${pin}! Factory dispatch ready.`,
+          "success",
+        );
       }
     });
 
     // Thumbnail gallery switcher
-    const thumbs = pdpApp.querySelectorAll('#pdpThumbs .pdp__thumb');
-    const mainImageWrap = document.getElementById('pdpMainImageWrap');
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        thumbs.forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
+    const thumbs = pdpApp.querySelectorAll("#pdpThumbs .pdp__thumb");
+    const mainImageWrap = document.getElementById("pdpMainImageWrap");
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => {
+        thumbs.forEach((t) => t.classList.remove("active"));
+        thumb.classList.add("active");
         const imgSrc = thumb.dataset.src;
         const angle = thumb.dataset.angle;
         if (mainImageWrap) {
-          mainImageWrap.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-          mainImageWrap.style.opacity = '0.35';
-          mainImageWrap.style.transform = 'scale(0.97)';
+          mainImageWrap.style.transition =
+            "opacity 0.2s ease, transform 0.2s ease";
+          mainImageWrap.style.opacity = "0.35";
+          mainImageWrap.style.transform = "scale(0.97)";
           setTimeout(() => {
             if (imgSrc) {
               mainImageWrap.innerHTML = `<img class="pframe pdp__image" src="${imgSrc}" alt="${currentVariant.model} ${currentVariant.title}" loading="eager" decoding="async">`;
-            } else if (angle === 'spec') {
+            } else if (angle === "spec") {
               mainImageWrap.innerHTML = `
                 <div style="padding:var(--s-4);text-align:center">
                   <svg viewBox="0 0 120 120" width="150" height="150" fill="none" stroke="var(--red)" stroke-width="1.8" style="margin:0 auto">
@@ -570,48 +630,58 @@ export function initProductDetailPage() {
                 </div>
               `;
             } else {
-              mainImageWrap.innerHTML = renderProductVisual(currentVariant, 'pdp__image', false);
+              mainImageWrap.innerHTML = renderProductVisual(
+                currentVariant,
+                "pdp__image",
+                false,
+              );
             }
-            mainImageWrap.style.opacity = '1';
-            mainImageWrap.style.transform = 'none';
+            mainImageWrap.style.opacity = "1";
+            mainImageWrap.style.transform = "none";
           }, 140);
         }
       });
     });
 
     // Print Spec Sheet / PDF Trigger
-    document.getElementById('printSpecSheetBtn')?.addEventListener('click', () => {
-      window.print();
-    });
+    document
+      .getElementById("printSpecSheetBtn")
+      ?.addEventListener("click", () => {
+        window.print();
+      });
 
     // Sticky nav scroll-spy
-    const stickyNav = document.getElementById('pdpStickyNav');
+    const stickyNav = document.getElementById("pdpStickyNav");
     if (stickyNav) {
-      const links = stickyNav.querySelectorAll('.pdp-nav-link');
-      window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY + 120;
-        links.forEach(link => {
-          const targetId = link.getAttribute('href').replace('#', '');
-          const targetEl = document.getElementById(targetId);
-          if (targetEl) {
-            const top = targetEl.offsetTop;
-            const height = targetEl.offsetHeight;
-            if (scrollPos >= top && scrollPos < top + height) {
-              links.forEach(l => l.classList.remove('active'));
-              link.classList.add('active');
+      const links = stickyNav.querySelectorAll(".pdp-nav-link");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const scrollPos = window.scrollY + 120;
+          links.forEach((link) => {
+            const targetId = link.getAttribute("href").replace("#", "");
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+              const top = targetEl.offsetTop;
+              const height = targetEl.offsetHeight;
+              if (scrollPos >= top && scrollPos < top + height) {
+                links.forEach((l) => l.classList.remove("active"));
+                link.classList.add("active");
+              }
             }
-          }
-        });
-      }, { passive: true });
+          });
+        },
+        { passive: true },
+      );
     }
   }
 
   renderPDP();
 }
 
-if (document.readyState !== 'loading') {
+if (document.readyState !== "loading") {
   initProductDetailPage();
 } else {
-  document.addEventListener('DOMContentLoaded', initProductDetailPage);
+  document.addEventListener("DOMContentLoaded", initProductDetailPage);
 }
-document.addEventListener('maurice:ready', initProductDetailPage);
+document.addEventListener("maurice:ready", initProductDetailPage);

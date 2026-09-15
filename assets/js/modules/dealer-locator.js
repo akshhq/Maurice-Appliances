@@ -3,10 +3,15 @@
  * State / District cascade + Instant Pincode & Keyword search + Map directions.
  */
 
-import { DEALER_NETWORK, getStates, getDistricts, filterDealers } from '../data/dealers.js?v=3.0';
+import {
+  DEALER_NETWORK,
+  getStates,
+  getDistricts,
+  filterDealers,
+} from "../data/dealers.js?v=3.0";
 
 export function initDealerLocator() {
-  const container = document.getElementById('dealerLocatorApp');
+  const container = document.getElementById("dealerLocatorApp");
   if (!container) return;
 
   const states = getStates();
@@ -18,7 +23,7 @@ export function initDealerLocator() {
           <label for="dealerStateSelect">Select State</label>
           <select id="dealerStateSelect" class="locator-select">
             <option value="">All States / UTs (${states.length})</option>
-            ${states.map(s => `<option value="${s}">${s}</option>`).join('')}
+            ${states.map((s) => `<option value="${s}">${s}</option>`).join("")}
           </select>
         </div>
         <div class="locator-field">
@@ -58,44 +63,46 @@ export function initDealerLocator() {
     </div>
   `;
 
-  const stateSelect = document.getElementById('dealerStateSelect');
-  const distSelect = document.getElementById('dealerDistrictSelect');
-  const pinInput = document.getElementById('dealerPincodeInput');
-  const countEl = document.getElementById('dealerResultCount');
-  const gridEl = document.getElementById('dealerResultsGrid');
-  const emptyEl = document.getElementById('dealerEmptyState');
-  const resetBtn = document.getElementById('resetDealerFilters');
-  const clearPinBtn = document.getElementById('clearPincodeBtn');
+  const stateSelect = document.getElementById("dealerStateSelect");
+  const distSelect = document.getElementById("dealerDistrictSelect");
+  const pinInput = document.getElementById("dealerPincodeInput");
+  const countEl = document.getElementById("dealerResultCount");
+  const gridEl = document.getElementById("dealerResultsGrid");
+  const emptyEl = document.getElementById("dealerEmptyState");
+  const resetBtn = document.getElementById("resetDealerFilters");
+  const clearPinBtn = document.getElementById("clearPincodeBtn");
 
   function updateDistricts() {
     const selectedState = stateSelect.value;
     const districts = getDistricts(selectedState);
-    distSelect.innerHTML = `<option value="">All Districts (${districts.length})</option>` +
-      districts.map(d => `<option value="${d}">${d}</option>`).join('');
+    distSelect.innerHTML =
+      `<option value="">All Districts (${districts.length})</option>` +
+      districts.map((d) => `<option value="${d}">${d}</option>`).join("");
   }
 
   function renderDealers() {
     const results = filterDealers({
       state: stateSelect.value,
       district: distSelect.value,
-      pincode: pinInput.value
+      pincode: pinInput.value,
     });
 
     if (countEl) countEl.textContent = results.length;
-    emptyEl.classList.toggle('is-hidden', results.length > 0);
-    gridEl.classList.toggle('is-hidden', results.length === 0);
+    emptyEl.classList.toggle("is-hidden", results.length > 0);
+    gridEl.classList.toggle("is-hidden", results.length === 0);
 
-    gridEl.innerHTML = results.map(d => {
-      const gmapsQuery = encodeURIComponent(`${d.firm}, ${d.address}`);
-      const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
-      const phoneClean = (d.phone || '').replace(/[^0-9+]/g, '');
+    gridEl.innerHTML = results
+      .map((d) => {
+        const gmapsQuery = encodeURIComponent(`${d.firm}, ${d.address}`);
+        const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${gmapsQuery}`;
+        const phoneClean = (d.phone || "").replace(/[^0-9+]/g, "");
 
-      return `
-        <div class="dealer-card ${d.isFactoryOutlet ? 'dealer-card--featured' : ''} in-view">
+        return `
+        <div class="dealer-card ${d.isFactoryOutlet ? "dealer-card--featured" : ""} in-view">
           <div class="dealer-card__head">
             <div>
               <span class="dealer-card__type">${d.type}</span>
-              ${d.isFactoryOutlet ? '<span class="badge badge--red" style="margin-left:6px">Direct Manufacturing Depot</span>' : ''}
+              ${d.isFactoryOutlet ? '<span class="badge badge--red" style="margin-left:6px">Direct Manufacturing Depot</span>' : ""}
               <h3 class="dealer-card__firm">${d.firm}</h3>
             </div>
           </div>
@@ -109,10 +116,14 @@ export function initDealerLocator() {
               <strong>Contact:</strong> ${d.contactPerson} &middot; 
               <a href="tel:${phoneClean}" class="dealer-card__phone">${d.phone}</a>
             </p>
-            ${d.categories ? `
+            ${
+              d.categories
+                ? `
             <div class="dealer-card__tags">
-              ${d.categories.map(c => `<span class="dealer-tag">${c}</span>`).join('')}
-            </div>` : ''}
+              ${d.categories.map((c) => `<span class="dealer-tag">${c}</span>`).join("")}
+            </div>`
+                : ""
+            }
           </div>
 
           <div class="dealer-card__foot">
@@ -127,29 +138,30 @@ export function initDealerLocator() {
           </div>
         </div>
       `;
-    }).join('');
+      })
+      .join("");
   }
 
-  stateSelect.addEventListener('change', () => {
+  stateSelect.addEventListener("change", () => {
     updateDistricts();
     renderDealers();
   });
 
-  distSelect.addEventListener('change', renderDealers);
+  distSelect.addEventListener("change", renderDealers);
 
-  pinInput.addEventListener('input', () => {
+  pinInput.addEventListener("input", () => {
     renderDealers();
   });
 
-  clearPinBtn.addEventListener('click', () => {
-    pinInput.value = '';
+  clearPinBtn.addEventListener("click", () => {
+    pinInput.value = "";
     renderDealers();
   });
 
-  resetBtn.addEventListener('click', () => {
-    stateSelect.value = '';
+  resetBtn.addEventListener("click", () => {
+    stateSelect.value = "";
     updateDistricts();
-    pinInput.value = '';
+    pinInput.value = "";
     renderDealers();
   });
 

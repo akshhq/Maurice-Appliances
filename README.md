@@ -31,17 +31,17 @@ The official marketing and product-catalogue website for **Maurice Appliances**,
 
 ## Project Overview
 
-| Detail | Value |
-|---|---|
-| **Brand** | Maurice Appliances (`maurice®`) |
-| **Established** | 2010 (registered brand: 2012) |
-| **Live Domain** | www.mauriceappliances.in |
-| **Certifications** | BIS (ISI) Certified, ISO 9001:2015 |
-| **Products** | 108 products across 11 categories |
-| **Language** | PHP 8.0+ |
-| **Hosting** | Hostinger (Apache shared hosting) |
-| **Timezone** | Asia/Kolkata |
-| **Data Store** | JSON flat-file (`database/schema/products.json`) |
+| Detail             | Value                                            |
+| ------------------ | ------------------------------------------------ |
+| **Brand**          | Maurice Appliances (`maurice®`)                  |
+| **Established**    | 2010 (registered brand: 2012)                    |
+| **Live Domain**    | www.mauriceappliances.in                         |
+| **Certifications** | BIS (ISI) Certified, ISO 9001:2015               |
+| **Products**       | 108 products across 11 categories                |
+| **Language**       | PHP 8.0+                                         |
+| **Hosting**        | Hostinger (Apache shared hosting)                |
+| **Timezone**       | Asia/Kolkata                                     |
+| **Data Store**     | JSON flat-file (`database/schema/products.json`) |
 
 The website is a **server-side rendered** PHP application with no external database dependency. All 108 products are stored in a single versioned JSON file and served via PHP helper functions with per-request in-memory caching.
 
@@ -49,18 +49,18 @@ The website is a **server-side rendered** PHP application with no external datab
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Server-side** | PHP 8.0+ (strict types throughout) |
-| **Templating** | Native PHP partials / sections |
-| **Styling** | Vanilla CSS (no framework) |
-| **Scripting** | Vanilla JavaScript + GSAP animations |
-| **Animations** | GSAP, Lenis (smooth scroll), SplitType, Lottie |
-| **Data** | JSON flat-file database |
-| **Web server** | Apache + `.htaccess` rewrite rules |
-| **Mail** | PHP `mail()` / SMTP (configurable) |
-| **PWA** | Web App Manifest + Service Worker |
-| **SEO** | Schema.org JSON-LD on every page |
+| Layer           | Technology                                     |
+| --------------- | ---------------------------------------------- |
+| **Server-side** | PHP 8.0+ (strict types throughout)             |
+| **Templating**  | Native PHP partials / sections                 |
+| **Styling**     | Vanilla CSS (no framework)                     |
+| **Scripting**   | Vanilla JavaScript + GSAP animations           |
+| **Animations**  | GSAP, Lenis (smooth scroll), SplitType, Lottie |
+| **Data**        | JSON flat-file database                        |
+| **Web server**  | Apache + `.htaccess` rewrite rules             |
+| **Mail**        | PHP `mail()` / SMTP (configurable)             |
+| **PWA**         | Web App Manifest + Service Worker              |
+| **SEO**         | Schema.org JSON-LD on every page               |
 
 ---
 
@@ -172,30 +172,30 @@ maurice-main-website/
 
 ## Pages & Features
 
-| Page | URL | Description |
-|---|---|---|
-| Homepage | `/index.html` | Hero, marquee, categories, stats, featured products, journey timeline, dealer CTA |
-| Product Catalogue | `/products.html` | 100+ products with filter, search, sort & compare |
-| Product Detail | `/product.html?model={slug}` | Full specs, images, downloads for a single product |
-| Category | `/category.html?cat={slug}` | Filtered view of one product category |
-| About | `/company/about.html` | Company overview |
-| Our Journey | `/company/journey.html` | Brand history timeline (2010 – present) |
-| Manufacturing | `/company/manufacturing.html` | Factory & production labs |
-| Vision & Mission | `/company/vision.html` | Strategic objectives |
-| Core Values | `/company/values.html` | Nine core brand values |
-| Careers | `/company/careers.html` | Careers / job application form |
-| Media | `/company/media.html` | Press & media resources |
-| Dealers | `/dealers/dealers.html` | Dealer network locator |
-| Become a Dealer | `/dealers/become-dealer.html` | Dealer application form (live) |
-| Service | `/support/service.html` | After-sales service info |
-| Warranty | `/support/warranty.html` | Warranty policy & digital registration |
-| FAQ | `/support/faq.html` | Frequently asked questions |
-| Downloads | `/support/downloads.html` | Product catalogues & spec sheets |
-| Contact | `/contact/contact.html` | Contact form & office locations |
-| Privacy Policy | `/legal/privacy.html` | Privacy policy |
-| Terms of Service | `/legal/terms.html` | Terms and conditions |
-| Sitemap | `/sitemap.xml` | Dynamic XML sitemap |
-| Diagnostics | `/check.php` | Server health check (**delete after install**) |
+| Page              | URL                           | Description                                                                       |
+| ----------------- | ----------------------------- | --------------------------------------------------------------------------------- |
+| Homepage          | `/index.html`                 | Hero, marquee, categories, stats, featured products, journey timeline, dealer CTA |
+| Product Catalogue | `/products.html`              | 100+ products with filter, search, sort & compare                                 |
+| Product Detail    | `/product.html?model={slug}`  | Full specs, images, downloads for a single product                                |
+| Category          | `/category.html?cat={slug}`   | Filtered view of one product category                                             |
+| About             | `/company/about.html`         | Company overview                                                                  |
+| Our Journey       | `/company/journey.html`       | Brand history timeline (2010 – present)                                           |
+| Manufacturing     | `/company/manufacturing.html` | Factory & production labs                                                         |
+| Vision & Mission  | `/company/vision.html`        | Strategic objectives                                                              |
+| Core Values       | `/company/values.html`        | Nine core brand values                                                            |
+| Careers           | `/company/careers.html`       | Careers / job application form                                                    |
+| Media             | `/company/media.html`         | Press & media resources                                                           |
+| Dealers           | `/dealers/dealers.html`       | Dealer network locator                                                            |
+| Become a Dealer   | `/dealers/become-dealer.html` | Dealer application form (live)                                                    |
+| Service           | `/support/service.html`       | After-sales service info                                                          |
+| Warranty          | `/support/warranty.html`      | Warranty policy & digital registration                                            |
+| FAQ               | `/support/faq.html`           | Frequently asked questions                                                        |
+| Downloads         | `/support/downloads.html`     | Product catalogues & spec sheets                                                  |
+| Contact           | `/contact/contact.html`       | Contact form & office locations                                                   |
+| Privacy Policy    | `/legal/privacy.html`         | Privacy policy                                                                    |
+| Terms of Service  | `/legal/terms.html`           | Terms and conditions                                                              |
+| Sitemap           | `/sitemap.xml`                | Dynamic XML sitemap                                                               |
+| Diagnostics       | `/check.php`                  | Server health check (**delete after install**)                                    |
 
 All pages are **fully mobile responsive** and include **Schema.org JSON-LD** structured data for SEO.
 
@@ -216,19 +216,19 @@ database/schema/products.json
 
 ### Product Categories
 
-| # | Category | Status |
-|---|---|---|
-| 1 | Water Heaters (Geysers) | Active |
-| 2 | Mixer Grinders & JMG | Active |
-| 3 | Room Heaters | Active |
-| 4 | Fans (Table, Wall, Pedestal, Ceiling) | Active |
-| 5 | Induction Cooktops | Active |
-| 6 | Gas Stoves | Active |
-| 7 | Electric Chimneys | Active |
-| 8 | Irons (Dry & Steam) | Active |
-| 9 | Small Kitchen Appliances | Active |
-| 10 | Heat Pillars & Blowers | Active |
-| 11 | Coolers & AC | Coming Soon |
+| #   | Category                              | Status      |
+| --- | ------------------------------------- | ----------- |
+| 1   | Water Heaters (Geysers)               | Active      |
+| 2   | Mixer Grinders & JMG                  | Active      |
+| 3   | Room Heaters                          | Active      |
+| 4   | Fans (Table, Wall, Pedestal, Ceiling) | Active      |
+| 5   | Induction Cooktops                    | Active      |
+| 6   | Gas Stoves                            | Active      |
+| 7   | Electric Chimneys                     | Active      |
+| 8   | Irons (Dry & Steam)                   | Active      |
+| 9   | Small Kitchen Appliances              | Active      |
+| 10  | Heat Pillars & Blowers                | Active      |
+| 11  | Coolers & AC                          | Coming Soon |
 
 ### Adding Product Photos
 
@@ -243,13 +243,13 @@ Product images currently display as clean line drawings. To switch to real photo
 
 All endpoints live under `/api/v1/` and return JSON.
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/v1/products.php` | List / search products |
-| `GET` | `/api/v1/categories.php` | List all categories |
-| `POST` | `/api/v1/contact.php` | Submit a contact enquiry |
-| `POST` | `/api/v1/dealer.php` | Submit a dealer application |
-| `POST` | `/api/v1/newsletter.php` | Newsletter sign-up |
+| Method | Endpoint                 | Description                 |
+| ------ | ------------------------ | --------------------------- |
+| `GET`  | `/api/v1/products.php`   | List / search products      |
+| `GET`  | `/api/v1/categories.php` | List all categories         |
+| `POST` | `/api/v1/contact.php`    | Submit a contact enquiry    |
+| `POST` | `/api/v1/dealer.php`     | Submit a dealer application |
+| `POST` | `/api/v1/newsletter.php` | Newsletter sign-up          |
 
 A v2 API is scaffolded at `/api/v2/` for future use.
 
@@ -257,17 +257,17 @@ A v2 API is scaffolded at `/api/v2/` for future use.
 
 ## Integrations
 
-| Integration | Folder | Notes |
-|---|---|---|
-| Analytics | `integrations/analytics/` | Google Analytics / custom analytics |
-| CRM | `integrations/crm/` | CRM lead sync |
-| Google | `integrations/google/` | Google services (Maps, Search Console, etc.) |
-| Meta Pixel | `integrations/meta/` | Facebook / Instagram ad tracking |
-| Razorpay | `integrations/razorpay/` | Indian payment gateway |
-| PayPal | `integrations/paypal/` | International payment gateway |
-| Stripe | `integrations/stripe/` | Card payment gateway |
-| WhatsApp | `integrations/whatsapp/` | WhatsApp Business API |
-| SMTP | `integrations/smtp/` | Transactional email via SMTP |
+| Integration | Folder                    | Notes                                        |
+| ----------- | ------------------------- | -------------------------------------------- |
+| Analytics   | `integrations/analytics/` | Google Analytics / custom analytics          |
+| CRM         | `integrations/crm/`       | CRM lead sync                                |
+| Google      | `integrations/google/`    | Google services (Maps, Search Console, etc.) |
+| Meta Pixel  | `integrations/meta/`      | Facebook / Instagram ad tracking             |
+| Razorpay    | `integrations/razorpay/`  | Indian payment gateway                       |
+| PayPal      | `integrations/paypal/`    | International payment gateway                |
+| Stripe      | `integrations/stripe/`    | Card payment gateway                         |
+| WhatsApp    | `integrations/whatsapp/`  | WhatsApp Business API                        |
+| SMTP        | `integrations/smtp/`      | Transactional email via SMTP                 |
 
 ---
 
@@ -424,69 +424,70 @@ database/schema/products.json
 ```
 
 **Editing rules:**
+
 - Keep all commas, quote marks and brackets exactly as they are
 - Changes appear on the site immediately — no cache clear needed
 - Back up the file before editing
 
 **Field reference (per product):**
 
-| Field | Description |
-|---|---|
-| `id` | URL slug (unique, lowercase, hyphens) |
-| `name` | Product display name |
-| `category` | Category slug |
-| `motor` / `power` | Motor or wattage spec |
-| `price` | MRP in INR |
-| `warranty` | Warranty duration |
-| `specs` | Key-value specification pairs |
-| `image` | Image filename in `assets/images/products/` |
+| Field             | Description                                 |
+| ----------------- | ------------------------------------------- |
+| `id`              | URL slug (unique, lowercase, hyphens)       |
+| `name`            | Product display name                        |
+| `category`        | Category slug                               |
+| `motor` / `power` | Motor or wattage spec                       |
+| `price`           | MRP in INR                                  |
+| `warranty`        | Warranty duration                           |
+| `specs`           | Key-value specification pairs               |
+| `image`           | Image filename in `assets/images/products/` |
 
 ---
 
 ## Diagnostics & Troubleshooting
 
-| Problem | Solution |
-|---|---|
-| **500 error** | Visit `yourdomain.com/check.php` — it reports exactly what is wrong |
-| **PHP version error** | `hPanel -> Advanced -> PHP Configuration` -> set to 8.0+ |
-| **Contact form not sending** | Switch `MAIL_DRIVER` to `smtp` in `.env` |
-| **Blank page with no error** | Enable `APP_DEBUG=true` in `.env` temporarily |
-| **Images not loading** | Check `assets/images/products/` path; confirm filenames match `products.json` |
-| **Cache stale** | Clear the `cache/` directory contents |
-| **Permissions error** | Set `storage/`, `logs/`, `cache/`, `uploads/` to 755 |
+| Problem                      | Solution                                                                      |
+| ---------------------------- | ----------------------------------------------------------------------------- |
+| **500 error**                | Visit `yourdomain.com/check.php` — it reports exactly what is wrong           |
+| **PHP version error**        | `hPanel -> Advanced -> PHP Configuration` -> set to 8.0+                      |
+| **Contact form not sending** | Switch `MAIL_DRIVER` to `smtp` in `.env`                                      |
+| **Blank page with no error** | Enable `APP_DEBUG=true` in `.env` temporarily                                 |
+| **Images not loading**       | Check `assets/images/products/` path; confirm filenames match `products.json` |
+| **Cache stale**              | Clear the `cache/` directory contents                                         |
+| **Permissions error**        | Set `storage/`, `logs/`, `cache/`, `uploads/` to 755                          |
 
 ---
 
 ## Company Information
 
-| Field | Detail |
-|---|---|
-| **Company** | Maurice Appliances |
-| **Founded** | 2010 |
-| **Brand Registered** | 2012 |
-| **Registered Address** | VPO, Jia Teh. Bhunter, Distt Kullu, Himachal Pradesh - 175 125 |
-| **Corporate Office** | 6487 C-6, Vatika Complex, Vasant Kunj, New Delhi - 110 070 |
-| **Manufacturing Units** | Bawana, Delhi · Jia, Kullu (Himachal Pradesh) |
-| **Certifications** | BIS (ISI) Certified · ISO 9001:2015 |
-| **Sales** | +91 98165-91699 · +91 90154-88584 |
-| **Email** | mauriceappliances@gmail.com |
-| **Info Email** | info@mauriceappliances.com |
-| **Website** | www.mauriceappliances.in |
+| Field                   | Detail                                                         |
+| ----------------------- | -------------------------------------------------------------- |
+| **Company**             | Maurice Appliances                                             |
+| **Founded**             | 2010                                                           |
+| **Brand Registered**    | 2012                                                           |
+| **Registered Address**  | VPO, Jia Teh. Bhunter, Distt Kullu, Himachal Pradesh - 175 125 |
+| **Corporate Office**    | 6487 C-6, Vatika Complex, Vasant Kunj, New Delhi - 110 070     |
+| **Manufacturing Units** | Bawana, Delhi · Jia, Kullu (Himachal Pradesh)                  |
+| **Certifications**      | BIS (ISI) Certified · ISO 9001:2015                            |
+| **Sales**               | +91 98165-91699 · +91 90154-88584                              |
+| **Email**               | mauriceappliances@gmail.com                                    |
+| **Info Email**          | info@mauriceappliances.com                                     |
+| **Website**             | www.mauriceappliances.in                                       |
 
 ### Brand Milestones
 
-| Year | Milestone |
-|---|---|
-| 2010 | Founded in Kullu, Himachal Pradesh |
-| 2012 | Formally registered `maurice®`; launched Heat Pillar & Water Heaters |
-| 2014 | Launched Gas Stoves & Electric Chimneys; ABS body water heaters |
-| 2015 | Irons, Mixer Grinders, JMG, Hand Blenders; factories in Delhi & H.P. |
-| 2016 | Expanded Room Heater & Ceiling Fan variants |
-| 2017 | BIS (ISI) Certification achieved |
+| Year | Milestone                                                                   |
+| ---- | --------------------------------------------------------------------------- |
+| 2010 | Founded in Kullu, Himachal Pradesh                                          |
+| 2012 | Formally registered `maurice®`; launched Heat Pillar & Water Heaters        |
+| 2014 | Launched Gas Stoves & Electric Chimneys; ABS body water heaters             |
+| 2015 | Irons, Mixer Grinders, JMG, Hand Blenders; factories in Delhi & H.P.        |
+| 2016 | Expanded Room Heater & Ceiling Fan variants                                 |
+| 2017 | BIS (ISI) Certification achieved                                            |
 | 2018 | Govt. supply — 45,000 Induction Cooktops & 95,000 Heat Pillars (H.P. Govt.) |
-| 2019 | ABS Heat Blowers series; Single Rod Heat Pillars |
-| 2021 | Electric Kettles (1.5 L & 1.8 L) |
-| 2022 | Sandwich Toasters, Atta Chakki, Exhaust & Ventilating Fans |
+| 2019 | ABS Heat Blowers series; Single Rod Heat Pillars                            |
+| 2021 | Electric Kettles (1.5 L & 1.8 L)                                            |
+| 2022 | Sandwich Toasters, Atta Chakki, Exhaust & Ventilating Fans                  |
 
 ---
 
@@ -502,4 +503,4 @@ Third-party libraries loaded at runtime (GSAP, Lenis, SplitType) remain subject 
 
 ---
 
-*For support, contact **mauriceappliances@gmail.com** or call **+91 98165-91699**.*
+_For support, contact **mauriceappliances@gmail.com** or call **+91 98165-91699**._
