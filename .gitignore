@@ -1,15 +1,83 @@
-# Environment and credentials
+# ==============================================================================
+# Environment & Sensitive Credentials
+# ==============================================================================
 .env
 .env.local
+.env.development
+.env.test
+.env.production
 .env.*.local
+.env.backup
+*.env
+!.env.example
 
-# Dependency directories
+# ==============================================================================
+# Dependencies & Package Managers
+# ==============================================================================
 vendor/
 node_modules/
+.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# OS / Editor files
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
+# ==============================================================================
+# Logs, Debugging & Temporary Files
+# ==============================================================================
 *.log
+logs/
+error_log
+php_errors.log
+*.tmp
+*.temp
+audit.mjs
+server.mjs
+verify-images.mjs
+
+# ==============================================================================
+# Compressed Archives & Backups
+# ==============================================================================
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+*.bak
+*.old
+
+# ==============================================================================
+# OS Generated Files
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# ==============================================================================
+# IDE & Code Editors
+# ==============================================================================
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ==============================================================================
+# Windows Junctions & Temporary Upload Drops
+# ==============================================================================
+media/new media/
+media/new media
+media/new_media/
+media/new_media

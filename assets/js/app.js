@@ -13,6 +13,7 @@ import { initInquiryModal } from "./modules/inquiry-modal.js?v=3.0";
 import { initCompareDrawer } from "./modules/compare-drawer.js?v=3.0";
 import { initGlobalSearch } from "./modules/global-search.js?v=3.0";
 import { initFloatingWidgets } from "./modules/floating-widgets.js?v=3.0";
+import { initDocViewer } from "./modules/doc-viewer.js?v=3.0";
 
 function boot() {
   const isSubfolder = [
@@ -33,6 +34,7 @@ function boot() {
   initCompareDrawer(basePath); // LG-style sticky compare drawer + side-by-side modal
   initGlobalSearch(basePath); // Instant Global Search Command Palette (CTRL+K)
   initFloatingWidgets(); // WhatsApp direct connect + Sticky back-to-top button
+  initDocViewer(); // On-screen PDF & certificate viewer modal
 
   window.__mauriceReady = true;
   window.__mauriceBasePath = basePath;

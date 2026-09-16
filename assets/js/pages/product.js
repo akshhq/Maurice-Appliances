@@ -108,7 +108,7 @@ export function initProductDetailPage() {
 
             <p class="pdp__cert-tag">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <span>BIS / ISI License: <strong>IS: 2082 CM/L-9600024116</strong> &middot; ISO 9001:2015</span>
+              <span>${currentVariant.certDetails ? currentVariant.certDetails.certTagHtml : "BIS &middot; ISO 9001:2015 Certified"}</span>
             </p>
           </div>
 
@@ -116,7 +116,7 @@ export function initProductDetailPage() {
           <div class="pdp__info">
             <div class="pdp__meta-badges">
               <span class="badge badge--ember">#1 Best Seller in ${category.name}</span>
-              <span class="badge badge--red">ISI IS: 2082 Certified</span>
+              <span class="badge badge--red">${currentVariant.certDetails ? currentVariant.certDetails.badgeText : "Certified Quality"}</span>
               ${currentVariant.warranty ? `<span class="badge badge--dark">${currentVariant.warranty}</span>` : ""}
             </div>
 
@@ -203,7 +203,7 @@ export function initProductDetailPage() {
               <ul class="pdp__bullets">
                 <li class="pdp__bullet-item">
                   <svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5l4 4L17 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  <div><b>Certified BIS Compliance:</b> Manufactured under Bureau of Indian Standards License IS: 2082 CM/L-9600024116.</div>
+                  <div><b>Certified Quality Compliance:</b> ${currentVariant.certDetails ? currentVariant.certDetails.complianceText : "Manufactured under ISO 9001:2015 quality standards."}</div>
                 </li>
                 <li class="pdp__bullet-item">
                   <svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5l4 4L17 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -348,8 +348,8 @@ export function initProductDetailPage() {
             <div class="featitem">
               <div class="featitem__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
               <div>
-                <h4>BIS (ISI) License IS: 2082</h4>
-                <p>100% compliant with Bureau of Indian Standards safety guidelines under verified test license CM/L-9600024116.</p>
+                <h4>${currentVariant.certDetails ? currentVariant.certDetails.featureHeading : "ISO 9001:2015 Quality Tested"}</h4>
+                <p>${currentVariant.certDetails ? currentVariant.certDetails.featureDesc : "100% compliant with strict laboratory quality benchmarks."}</p>
               </div>
             </div>
             <div class="featitem">
@@ -434,9 +434,9 @@ export function initProductDetailPage() {
                   ${adjacentVariants.map((v) => `<td>${v.warranty || "1 Year"}</td>`).join("")}
                 </tr>
                 <tr>
-                  <td>BIS Certification</td>
-                  <td class="current-model-th">IS: 2082 CM/L-9600024116</td>
-                  ${adjacentVariants.map(() => `<td>IS: 2082 CM/L-9600024116</td>`).join("")}
+                  <td>Standards & License</td>
+                  <td class="current-model-th">${currentVariant.certDetails ? currentVariant.certDetails.tableValue : "ISO 9001:2015"}</td>
+                  ${adjacentVariants.map((v) => `<td>${v.certDetails ? v.certDetails.tableValue : "ISO 9001:2015"}</td>`).join("")}
                 </tr>
               </tbody>
             </table>
@@ -626,7 +626,7 @@ export function initProductDetailPage() {
                     <line x1="60" y1="30" x2="60" y2="90"/>
                   </svg>
                   <p style="font-size:var(--fs-xs);font-weight:700;color:var(--text-2);margin-top:var(--s-2)">Exploded Technical Assembly Diagram</p>
-                  <p style="font-size:var(--fs-cap);color:var(--text-3)">BIS IS: 2082 CM/L-9600024116 Verified Specification</p>
+                  <p style="font-size:var(--fs-cap);color:var(--text-3)">${currentVariant.certDetails ? currentVariant.certDetails.tableValue : "ISO 9001:2015"} Verified Specification</p>
                 </div>
               `;
             } else {

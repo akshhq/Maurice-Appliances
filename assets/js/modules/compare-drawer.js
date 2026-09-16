@@ -163,7 +163,7 @@ export function initCompareDrawer(basePath = "") {
           </tr>
           <tr>
             <td>BIS / ISI License</td>
-            ${products.map(() => `<td>IS: 2082 CM/L-9600024116</td>`).join("")}
+            ${products.map((p) => `<td>${p.certDetails ? p.certDetails.tableValue : (p.isNo && p.cmlNo ? `IS: ${p.isNo} CM/L-${p.cmlNo}` : "ISO 9001:2015")}</td>`).join("")}
           </tr>
         </tbody>
       </table>
